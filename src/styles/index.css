@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=BioRhyme:wght@200..800&family=Cormorant+Garamond:wght@700&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #792477;
+  --color-text-primary: #1d1d1b;
+  --color-background: #f4f2f2;
+}
+body {
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  accent-color: var(--color-primary);
+}
+.font-secondary {
+  font-family: 'Alegreya', serif;
+}
+.color-primary {
+  color: var(--color-primary);
+}
+.color-gray-1 {
+  color: #666362;
+}
+.color-blue-1 {
+  color: #29235c;
+}
+.color-violet-1 {
+  color: #757ab9;
+}
+.color-blue-2 {
+  color: #0089bb;
+}
+.color-green-1 {
+  color: #248e90;
+}
+.color-orange-1 {
+  color: #e63b11;
+}
+.color-orange-2 {
+  color: #db9705;
+}
+.bg-primary {
+  background-color: var(--color-primary);
+}
+.bg-background {
+  background-color: var(--color-background);
+}
+
+#root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+.font-secondary {
+  font-family: 'BioRhyme', serif;
+}
+.font-tertiary {
+  font-family: 'Cormorant Garamond', serif;
+}
+.a-main,
+.a-main-active {
+  padding: 0.1rem 0.5rem 0.25rem 0.5rem;
+}
+.a-main:hover,
+.a-main-active {
+  background-color: var(--color-primary);
+  color: white;
+}
+header,
+footer div {
+  /* background-image: url('/images/bg.jpg'); */
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.section-main {
+  padding-top: 3rem;
+  padding-bottom: 4rem;
+  @media (max-width: 900px) {
+    padding-top: 2rem;
+  }
+}
+.section-main div {
+  /* background-image: url('/images/bg-section.png'); */
+  background-repeat: no-repeat;
+  /* background-position: top center; */
+  background-size: 100% auto;
+}
+.submenu li::after {
+  content: '—';
+  padding: 0 0.25rem 0 0.25rem;
+}
+.decalogo-list li {
+  position: relative;
+  @media (max-width: 900px) {
+    margin-left: 2.25rem;
+  }
+}
+.decalogo-list li::before {
+  content: '»';
+  position: absolute;
+  left: -2.25rem;
+  font-family: 'BioRhyme', serif;
+  font-weight: 900;
+  color: var(--color-primary);
+  font-size: 1.6rem;
+}
