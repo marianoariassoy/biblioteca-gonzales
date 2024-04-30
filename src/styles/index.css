@@ -75,7 +75,7 @@ body {
 }
 header,
 footer div {
-  /* background-image: url('/images/bg.jpg'); */
+  background-image: url('/images/bg.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
 }
@@ -86,8 +86,8 @@ footer div {
     padding-top: 1.5rem;
   }
 }
-.section-main div {
-  /* background-image: url('/images/bg-section.png'); */
+.bg-section {
+  background-image: url('/images/bg-section.png');
   background-repeat: no-repeat;
   /* background-position: top center; */
   background-size: 100% auto;
