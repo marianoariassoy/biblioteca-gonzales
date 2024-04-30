@@ -39,7 +39,7 @@ body {
   color: #e63b11;
 }
 .color-orange-2 {
-  background-color: #db9705;
+  color: #db9705;
 }
 
 .vertical-text {
@@ -77,7 +77,11 @@ header,
 footer div {
   background-image: url('/images/bg.jpg');
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: auto 100%;
+  background-position: top center;
+}
+header {
+  background-position-y: -4rem;
 }
 .section-main {
   padding-top: 2.5rem;
