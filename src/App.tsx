@@ -4,6 +4,7 @@ import Historia from './pages/quinessomos/historia'
 import HistoriaDecalogo from './pages/quinessomos/decalogo'
 import Archivo from './pages/archivo/archivo'
 import SobreArchivos from './pages/leer/sobre-archivos'
+import Montajes from './pages/leer/montajes'
 import Soncats from './pages/mirar/soncats'
 import HoracioAcerca from './pages/horacio/acerca'
 
@@ -32,6 +33,10 @@ function App() {
       <Route
         path='/leer/sobre-archivos'
         component={SobreArchivos}
+      />
+      <Route
+        path='/leer/montajes'
+        component={Montajes}
       />
       <Route
         path='/mirar/soncats'
