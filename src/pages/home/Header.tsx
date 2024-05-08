@@ -1,5 +1,5 @@
-import Forma from '../../assets/forma.svg'
 import Slider from './Slider'
+import Talleres from './Talleres'
 
 const Header = () => {
   return (
@@ -10,28 +10,7 @@ const Header = () => {
         </div>
       </div>
       <div className='lg:w-1/4 lg:h-[50vh] lg:pl-4'>
-        <article
-          className='rounded-2xl h-full w-full text-white relative overflow-hidden grid lg:grid-rows-2'
-          style={{ backgroundColor: '#008d36' }}
-        >
-          <div className='bg-white/25 p-3 flex items-center justify-center'>
-            <img
-              src={Forma}
-              alt='Ilustración'
-              className='h-36 lg:h-full'
-            />
-          </div>
-          <div className='text-white flex flex-col gap-y-3 p-6'>
-            <h2
-              className='text-xl'
-              style={{ color: '#9bba62' }}
-            >
-              Talleres
-            </h2>
-            <p className='font-extrabold '>Espacio de formación académica, artística y no formal</p>
-            <p>Ciclos de Lectura</p>
-          </div>
-        </article>
+        <Talleres />
       </div>
     </section>
   )

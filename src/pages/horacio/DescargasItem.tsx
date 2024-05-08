@@ -1,31 +1,21 @@
-import Image from '../../components/Image'
-
 interface Props {
   item: {
     title: string
     file: string
-    image: string
   }
 }
 
 const item = ({ item }: Props) => {
   return (
     <article className='flex flex-col gap-y-3'>
-      <div>
+      <div className='flex items-center justify-between'>
         <a
           href={item.file}
           target='_blank'
-          rel='noopener noreferrer'
-          className='aspect-[4/5] hover:opacity-70 transition-all block'
+          className='hover:underline'
         >
-          <Image
-            src={item.image}
-            alt={item.title}
-          />
+          {item.title}
         </a>
-      </div>
-      <div className='flex items-center justify-between'>
-        <span>{item.title}</span>
         <a
           href={item.file}
           target='_blank'

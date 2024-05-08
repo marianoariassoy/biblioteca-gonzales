@@ -40,7 +40,7 @@ export const menu = [
     section: [
       { title: 'Acerca de HG', url: '/horacio-gonzalez/acerca' },
       { title: 'Dibujos  ', url: '/horacio-gonzalez/dibujos' },
-      { title: 'Fotos', url: '/horacio-gonzalez/Fotos' },
+      { title: 'Fotos', url: '/horacio-gonzalez/fotos' },
       { title: 'Descargas', url: '/horacio-gonzalez/descargas' }
     ]
   },
