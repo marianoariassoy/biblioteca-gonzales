@@ -16,7 +16,9 @@ const SliderItem = ({ data }) => {
   }, [data.image])
 
   return isLoading ? (
-    <Loader />
+    <div className='w-full h-full aspect-video'>
+      <Loader />
+    </div>
   ) : (
     <div className='relative h-full w-full'>
       <div className='absolute h-full w-full left-0 top-0 bg-black/20 z-20'>
@@ -38,23 +40,30 @@ const Slider = () => {
 
   const properties = {
     arrows: false,
-    transitionDuration: 600,
+    transitionDuration: 500,
     pauseOnHover: false,
     autoplay: true,
-    indicators: false
+    indicators: true
   }
 
-  if (loading) return <Loader />
+  if (loading)
+    return (
+      <div className='w-full h-full aspect-video'>
+        <Loader />
+      </div>
+    )
 
   return (
-    <Slide {...properties}>
-      {data.map(item => (
-        <SliderItem
-          key={item.id}
-          data={item}
-        />
-      ))}
-    </Slide>
+    <div className='w-full h-full'>
+      <Slide {...properties}>
+        {data.map(item => (
+          <SliderItem
+            key={item.id}
+            data={item}
+          />
+        ))}
+      </Slide>
+    </div>
   )
 }
 

@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './styles/index.css'
 import './styles/animations.css'
+import { ContextProvider } from './context/context'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <ContextProvider>
+      <App />
+    </ContextProvider>
   </React.StrictMode>
 )

@@ -1,8 +1,10 @@
 import { Link, useLocation } from 'wouter'
 import { menu } from '../components/data'
+import { useDataContext } from '../context/useDataContext'
 
 const Nav = () => {
   const [location] = useLocation()
+  const { color } = useDataContext()
 
   const handleMenu = () => {
     const btnMenu = document.getElementById('btn-menu')
@@ -25,7 +27,10 @@ const Nav = () => {
               className='border-r border-[#1d1d1b] px-1'
             >
               <Link to={item.url}>
-                <a className={`${location.split('/')[1] === item.url.split('/')[1] ? 'a-main-active' : 'a-main'}`}>
+                <a
+                  className={`${location.split('/')[1] === item.url.split('/')[1] ? 'a-main-active' : 'a-main'}`}
+                  style={location.split('/')[1] === item.url.split('/')[1] ? { backgroundColor: color } : {}}
+                >
                   {item.title}
                 </a>
               </Link>
@@ -51,8 +56,9 @@ const Nav = () => {
       >
         <div className='w-full flex justify-end'>
           <button
-            className='w-4 h-4 lg:w-5 lg:h-5 rounded-full bg-primary hover:bg-black/80 '
+            className='w-4 h-4 lg:w-5 lg:h-5 rounded-full hover:bg-black/80 '
             onClick={handleMenu}
+            style={{ backgroundColor: color }}
           ></button>
         </div>
       </div>

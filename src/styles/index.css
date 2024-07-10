@@ -41,7 +41,6 @@ body {
 .color-orange-2 {
   color: #db9705;
 }
-
 .vertical-text {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
@@ -70,7 +69,7 @@ body {
 }
 .a-main:hover,
 .a-main-active {
-  background-color: var(--color-primary);
+  background-color: #999999;
   color: white;
 }
 header,
@@ -112,12 +111,19 @@ header {
   left: -2.25rem;
   font-family: 'BioRhyme', serif;
   font-weight: 900;
-  color: var(--color-primary);
+  color: currentColor;
   font-size: 1.6rem;
 }
 
 .indicators {
   position: absolute;
   z-index: 1000;
-  top: 2rem;
+  bottom: 2rem;
+  left: 0;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.25rem;
 }

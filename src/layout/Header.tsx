@@ -7,13 +7,11 @@ const Header = () => {
     <header className='sticky w-full max-w-6xl m-auto top-0 p-6 flex gap-x-6 bg-background z-50'>
       <div>
         <Link to='/'>
-          <a>
-            <img
-              src={Logo}
-              alt='logo'
-              className='w-48 lg:w-full'
-            />
-          </a>
+          <img
+            src={Logo}
+            alt='logo'
+            className='w-48 lg:w-full'
+          />
         </Link>
       </div>
       <div className='flex-1'>

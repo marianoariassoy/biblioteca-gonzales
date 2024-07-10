@@ -2,15 +2,22 @@ import Layout from '../../layout/Layout'
 import SobreArchivosItem from './SobreArchivosItem'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
+import { useDataContext } from '../../context/useDataContext'
 
 const Index = () => {
   const { data, loading } = useFetch(`/sobre-archivos`)
+  const { color } = useDataContext()
 
   return (
     <Layout>
       <section className='section-main fade-in'>
         <div className='w-full max-w-6xl m-auto px-6 flex flex-col gap-y-12'>
-          <h1 className='font-secondary text-2xl lg:text-4xl font-bold color-green-1'>Sobre Archivos</h1>
+          <h1
+            className='font-secondary text-2xl lg:text-4xl font-bold'
+            style={{ color: color }}
+          >
+            Sobre Archivos
+          </h1>
           {loading ? (
             <Loader />
           ) : (

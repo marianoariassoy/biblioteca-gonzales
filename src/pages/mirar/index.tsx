@@ -4,12 +4,14 @@ import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
 import { useLocation } from 'wouter'
 import { useEffect, useState } from 'react'
+import { useDataContext } from '../../context/useDataContext'
 
 const Index = () => {
   const [selected, setSelected] = useState(0)
   const { data, loading } = useFetch(`/mirar`)
   const { data: images, loading: loadingImages } = useFetch(`/imagenes`)
   const route = useLocation()[0]
+  const { color } = useDataContext()
 
   useEffect(() => {
     if (route === '/mirar/soncats') {
@@ -27,7 +29,12 @@ const Index = () => {
         ) : (
           <div className='w-full max-w-6xl m-auto px-6 flex flex-col gap-y-12'>
             <div>
-              <h1 className='font-secondary text-2xl lg:text-4xl font-bold color-orange-2'>{data[selected].title}</h1>
+              <h1
+                className='font-secondary text-2xl lg:text-4xl font-bold'
+                style={{ color: color }}
+              >
+                {data[selected].title}
+              </h1>
               <h2 className='font-bold color-blue-1 text-xl'>{data[selected].subtitle}</h2>
             </div>
             <div className='grid grid-cols-2 lg:grid-cols-3 gap-6'>

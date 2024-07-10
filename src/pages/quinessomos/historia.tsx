@@ -2,9 +2,11 @@ import Layout from '../../layout/Layout'
 import Image from '../../components/Image'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
+import { useDataContext } from '../../context/useDataContext'
 
 const Index = () => {
   const { data, loading } = useFetch(`/quienes-somos`)
+  const { color } = useDataContext()
 
   return (
     <Layout>
@@ -13,9 +15,19 @@ const Index = () => {
           <Loader />
         ) : (
           <div className='w-full max-w-6xl m-auto px-6 flex flex-col gap-y-6'>
-            <h1 className='font-secondary text-2xl lg:text-4xl font-bold color-green-1'>Quienes somos</h1>
+            <h1
+              className='font-secondary text-2xl lg:text-4xl font-bold'
+              style={{ color: color }}
+            >
+              Quienes somos
+            </h1>
             <div className='lg:pl-24 flex flex-col gap-y-6'>
-              <h2 className='lg:text-xl color-primary font-extrabold'>{data[0].title}</h2>
+              <h2
+                className='lg:text-xl font-extrabold'
+                style={{ color: color }}
+              >
+                {data[0].title}
+              </h2>
               <p className='color-gray-1 text-sm lg:text-base mb-6 text-wrap max-w-4xl whitespace-break-spaces'>
                 {data[0].text}
               </p>
