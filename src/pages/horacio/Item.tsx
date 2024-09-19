@@ -8,15 +8,13 @@ interface Props {
   }
   setCurrentImage: (image: string) => void
   setcurrentIndex: (number: number) => void
-  setCurrentText: (text: string) => void
   index: number
 }
 
-const SoncatsItem = ({ item, setCurrentImage, setcurrentIndex, setCurrentText, index }: Props) => {
-  const handleImage = (image, index, text) => {
+const SoncatsItem = ({ item, setCurrentImage, setcurrentIndex, index }: Props) => {
+  const handleImage = (image, index) => {
     setCurrentImage(image)
     setcurrentIndex(index)
-    setCurrentText(text)
   }
 
   console.log(item)
@@ -24,7 +22,7 @@ const SoncatsItem = ({ item, setCurrentImage, setcurrentIndex, setCurrentText, i
     <article className='flex flex-col gap-y-3 color-gray-1 hover:[color:var(--color-primary)]'>
       <div
         className='aspect-square overflow-hidden hover:opacity-70 transition-all cursor-pointer'
-        onClick={() => handleImage(item.image, index, item.text)}
+        onClick={() => handleImage(item.image, index)}
       >
         <Image
           src={item.image}

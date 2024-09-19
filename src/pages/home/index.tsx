@@ -7,10 +7,6 @@ const Index = () => {
   const [random, setRandom] = useState(0)
 
   useEffect(() => {
-    const btnMenu = document.getElementById('btn-menu')
-    const navMenu = document.getElementById('nav-menu')
-    navMenu?.classList.remove('lg:flex')
-    btnMenu?.classList.remove('lg:hidden')
     const random = Math.floor(Math.random() * 4) + 1
     setRandom(random)
   }, [])

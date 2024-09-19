@@ -18,16 +18,16 @@ const Index = () => {
               className='font-secondary text-2xl lg:text-4xl font-bold'
               style={{ color: color }}
             >
-              Quienes somos
+              Decálogo
             </h1>
-            <div className='lg:pl-24 flex flex-col gap-y-6'>
+            <div className='flex flex-col gap-y-6'>
               <h2
-                className='lg:text-xl font-extrabold'
+                className='text-base lg:text-xl font-extrabold'
                 style={{ color: color }}
               >
-                Decálogo BIBLIOTECA GONZÁLEZ
+                Biblioteca González
               </h2>
-              <ul className='flex flex-col gap-y-6 decalogo-list color-blue-1 italic font-medium text-sm lg:text-base'>
+              <ul className='lg:pl-10 flex flex-col gap-y-6 decalogo-list color-blue-1 italic font-medium text-sm lg:text-base'>
                 {data.map(item => (
                   <li key={item.id}>{item.title}</li>
                 ))}

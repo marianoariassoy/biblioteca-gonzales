@@ -17,11 +17,11 @@ const SliderItem = ({ data }) => {
   }, [data.image])
 
   return isLoading ? (
-    <div className='w-full h-[60vh]'>
+    <div className='w-full h-full'>
       <Loader />
     </div>
   ) : (
-    <div className='relative h-[60vh] w-full'>
+    <div className='relative w-full h-full aspect-square lg:aspect-video'>
       <div className='absolute h-full w-full left-0 top-0 bg-black/20 z-20'>
         <div className='text-white p-6 lg:p-12 '>
           <p className='italic lg:text-xl'>{data.text}</p>
@@ -37,7 +37,7 @@ const SliderItem = ({ data }) => {
 }
 
 const Slider = () => {
-  const { data, loading } = useFetch(`/portada`)
+  const { data, loading } = useFetch(`/galeria/48`)
 
   const sliderProperties = {
     autoplay: false,

@@ -3,55 +3,45 @@ import { Instagram, Facebook } from './icons'
 export const menu = [
   {
     title: 'Quienes somos',
-    url: '/quienes-somos/historia',
+    url: '/quienes-somos',
     section: [
-      { title: 'Historia del proyecto', url: '/quienes-somos/historia' },
-      { title: 'Decálogo BG', url: '/quienes-somos/decalogo' }
+      { title: 'Quienes somos', url: '/quienes-somos' },
+      { title: 'Decálogo', url: '/quienes-somos/decalogo' },
+      { title: 'Historia del proyecto', url: '/quienes-somos/historia' }
     ]
   },
   {
-    title: 'Archivo',
+    title: 'Archivos',
     url: '/archivo/archivo',
     section: [
-      { title: 'Archivo', url: '/archivo/archivo' },
-      { title: 'Biblioteca ', url: '/archivo/biblioteca' },
-      { title: 'Cinefilias ', url: '/archivo/cinefilias' }
+      { title: 'Catálogo Biblioteca', url: '/archivo/catalogo' },
+      { title: 'Picadito ', url: '/archivo/picadito' },
+      { title: 'Cinefilias ', url: '/archivo/cinefilias' },
+      { title: 'Hogueras ', url: '/archivo/hogueras' },
+      { title: 'Descargar ', url: '/archivo/descargar' }
     ]
   },
   {
-    title: 'Leer',
-    url: '/leer/sobre-archivos',
-    section: [
-      { title: 'Sobre archivos', url: '/leer/sobre-archivos' },
-      { title: 'Montajes ', url: '/leer/montajes' }
-    ]
-  },
-  {
-    title: 'Mirar',
-    url: '/mirar/soncats',
-    section: [
-      { title: 'Soncats', url: '/mirar/soncats' },
-      { title: 'Mapas ', url: '/mirar/mapas' }
-    ]
-  },
-  {
-    title: 'Horacio González',
-    url: '/horacio-gonzalez/acerca',
-    section: [
-      { title: 'Acerca de HG', url: '/horacio-gonzalez/acerca' },
-      { title: 'Dibujos  ', url: '/horacio-gonzalez/dibujos' },
-      { title: 'Fotos', url: '/horacio-gonzalez/fotos' },
-      { title: 'Descargas', url: '/horacio-gonzalez/descargas' }
-    ]
-  },
-  {
-    title: 'Catálogos',
-    url: '/catalogos',
+    title: 'Montajes',
+    url: '/montajes',
     section: []
   },
   {
-    title: 'Agenda',
-    url: '/agenda',
+    title: '¿Qué dice el gato?',
+    url: '/que-dice-el-gato',
+    section: []
+  },
+  {
+    title: 'Horacio González',
+    url: '/horacio-gonzalez/biografia',
+    section: [
+      { title: 'Biografía en 10 pasos', url: '/horacio-gonzalez/biografia' },
+      { title: 'Sobre HG', url: '/horacio-gonzalez/sobreHC' }
+    ]
+  },
+  {
+    title: 'Actividades',
+    url: '/actividades',
     section: []
   },
   {

@@ -1,12 +1,15 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { Link } from 'wouter'
 import Forma from '../../assets/forma.svg'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
 import { useDataContext } from '../../context/useDataContext'
+import PopUp from './PopUp'
 
 const Talleres = ({ random }: { random: number }) => {
   const { color, setColor } = useDataContext()
-  const { data, loading } = useFetch(`/talleres`)
+  const { data, loading } = useFetch(`/actividades`)
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     if (random === 1) {
@@ -23,25 +26,41 @@ const Talleres = ({ random }: { random: number }) => {
   if (loading) return <Loader />
 
   return (
-    <article
-      className='rounded-2xl h-full w-full text-white relative overflow-hidden grid lg:grid-rows-2'
-      style={{ backgroundColor: color }}
-    >
-      <div className='bg-white/25 p-3 flex items-center justify-center'>
-        <img
-          src={Forma}
-          alt='Ilustración'
-          className='h-36 lg:h-full'
-        />
-      </div>
-      <div className='p-6 transition-colors'>
-        <div className='text-white flex flex-col gap-y-3'>
-          <h2 className='text-xl opacity-60'>Talleres</h2>
-          <p className='font-extrabold'>{data[0].title}</p>
-          <p>{data[0].subtitle}</p>
+    <>
+      <PopUp
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+      />
+      <article
+        className='rounded-2xl h-full w-full text-white relative overflow-hidden grid lg:grid-rows-2'
+        style={{ backgroundColor: color }}
+      >
+        <div className='bg-white/25 p-8 items-center justify-center hidden lg:flex'>
+          <img
+            src={Forma}
+            alt='Ilustración'
+            className='w-full cursor-pointer hover:scale-105 transition-all'
+            onClick={() => setIsVisible(true)}
+          />
         </div>
-      </div>
-    </article>
+        <div className='p-6 transition-colors'>
+          <div className='text-white flex flex-col gap-y-3'>
+            <h2 className='text-xl opacity-60'>Actividades</h2>
+            <div className='flex flex-col'>
+              {data.slice(0, 6).map((taller, index) => (
+                <Link
+                  key={index}
+                  to={`/actividades/${taller.id}`}
+                  className='hover:underline'
+                >
+                  {taller.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </article>
+    </>
   )
 }
 

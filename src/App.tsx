@@ -1,15 +1,19 @@
 import { Route, Switch } from 'wouter'
 import Home from './pages/home'
-import Historia from './pages/quinessomos/historia'
-import HistoriaDecalogo from './pages/quinessomos/decalogo'
-import Archivo from './pages/archivo'
-import SobreArchivos from './pages/leer/sobre-archivos'
-import Montajes from './pages/leer/montajes'
-import Soncats from './pages/mirar'
-import HoracioAcerca from './pages/horacio/acerca'
-import Dibujos from './pages/horacio/dibujos'
-import Fotos from './pages/horacio/fotos'
-import Descargas from './pages/horacio/descargas'
+import QuienesSomos from './pages/quinessomos'
+import QuienesSomosDecalogo from './pages/quinessomos/decalogo'
+import QuienesSomosHistoria from './pages/quinessomos/historia'
+
+import ArchivosCatalogo from './pages/archivos/catalogo'
+import Montajes from './pages/montajes/'
+import MontajesDetalles from './pages/montajes/montajes'
+import QueDiceElGato from './pages/que-dice-el-gato'
+
+import HoracioBiografia from './pages/horacio/biografia'
+import HoracioSobreHC from './pages/horacio/sobreHC'
+
+import Actividades from './pages/actividades'
+import Fundacion from './pages/fundacion'
 
 import Soon from './pages/soon'
 import Error from './pages/error'
@@ -22,46 +26,47 @@ function App() {
         component={Home}
       />
       <Route
-        path='/quienes-somos/historia'
-        component={Historia}
+        path='/quienes-somos/'
+        component={QuienesSomos}
       />
       <Route
         path='/quienes-somos/decalogo'
-        component={HistoriaDecalogo}
+        component={QuienesSomosDecalogo}
       />
       <Route
-        path='/archivo/archivo'
-        component={Archivo}
+        path='/quienes-somos/historia'
+        component={QuienesSomosHistoria}
       />
+
       <Route
-        path='/archivo/biblioteca'
-        component={Archivo}
+        path='/archivos/catalogo'
+        component={ArchivosCatalogo}
       />
+
       <Route
-        path='/archivo/cinefilias'
-        component={Archivo}
-      />
-      <Route
-        path='/leer/sobre-archivos'
-        component={SobreArchivos}
-      />
-      <Route
-        path='/leer/montajes'
+        path='/montajes'
         component={Montajes}
       />
       <Route
-        path='/mirar/soncats'
-        component={Soncats}
+        path='/leer/montajes/:id'
+        component={MontajesDetalles}
+      />
+
+      <Route
+        path='/que-dice-el-gato'
+        component={QueDiceElGato}
+      />
+
+      <Route
+        path='/horacio-gonzalez/biografia'
+        component={HoracioBiografia}
       />
       <Route
-        path='/mirar/mapas'
-        component={Soncats}
+        path='/horacio-gonzalez/sobreHC'
+        component={HoracioSobreHC}
       />
-      <Route
-        path='/horacio-gonzalez/acerca'
-        component={HoracioAcerca}
-      />
-      <Route
+
+      {/* <Route
         path='/horacio-gonzalez/dibujos'
         component={Dibujos}
       />
@@ -72,10 +77,14 @@ function App() {
       <Route
         path='/horacio-gonzalez/descargas'
         component={Descargas}
+      /> */}
+      <Route
+        path='/actividades'
+        component={Actividades}
       />
       <Route
-        path='/catalogos'
-        component={Soon}
+        path='/actividades/:id'
+        component={Actividades}
       />
       <Route
         path='/agenda'
@@ -88,6 +97,10 @@ function App() {
       <Route
         path='/donaciones'
         component={Soon}
+      />
+      <Route
+        path='/fundacion'
+        component={Fundacion}
       />
 
       <Route component={Error} />

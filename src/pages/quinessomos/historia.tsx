@@ -1,12 +1,25 @@
+import { useEffect } from 'react'
 import Layout from '../../layout/Layout'
 import Image from '../../components/Image'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
 import { useDataContext } from '../../context/useDataContext'
+import HTML from '../../hooks/useHTML'
 
 const Index = () => {
   const { data, loading } = useFetch(`/quienes-somos`)
   const { color } = useDataContext()
+
+  useEffect(() => {
+    if (data) {
+      const enlace = document.querySelectorAll('a')
+      if (enlace) {
+        for (let i = 0; i < enlace.length; i++) {
+          enlace[i].setAttribute('target', '_blank')
+        }
+      }
+    }
+  }, [data])
 
   return (
     <Layout>
@@ -19,17 +32,11 @@ const Index = () => {
               className='font-secondary text-2xl lg:text-4xl font-bold'
               style={{ color: color }}
             >
-              Quienes somos
+              {data[0].title}
             </h1>
-            <div className='lg:pl-24 flex flex-col gap-y-6'>
-              <h2
-                className='lg:text-xl font-extrabold'
-                style={{ color: color }}
-              >
-                {data[0].title}
-              </h2>
-              <p className='color-gray-1 text-sm lg:text-base mb-6 text-wrap max-w-4xl whitespace-break-spaces'>
-                {data[0].text}
+            <div className='flex flex-col gap-y-6'>
+              <p className='color-gray-1 text-sm lg:text-base mb-6 text-wrap whitespace-break-spaces'>
+                <HTML text={data[0].text} />
               </p>
             </div>
             {data[0].image && (

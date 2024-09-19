@@ -1,34 +1,48 @@
+import { useEffect, useState } from 'react'
 import Layout from '../../layout/Layout'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
 import { useLocation } from 'wouter'
-import { useEffect, useState } from 'react'
 import HTML from '../../hooks/useHTML'
 import Image from '../../components/Image'
 import ReactPlayer from 'react-player'
 import { useDataContext } from '../../context/useDataContext'
+import Share from '../../components/Share'
 
 const Index = () => {
   const [selected, setSelected] = useState(0)
+  const [url, setURL] = useState('http://bibliotecagonzalez.com/archivo/archivo')
   const { data, loading } = useFetch(`/archivo`)
   const route = useLocation()[0]
   const { color } = useDataContext()
 
-  console.log(data)
-
   useEffect(() => {
     if (route === '/archivo/archivo') {
       setSelected(0)
+      setURL('http://bibliotecagonzalez.com/archivo/archivo')
     } else if (route === '/archivo/biblioteca') {
       setSelected(1)
+      setURL('http://bibliotecagonzalez.com/archivo/biblioteca')
     } else if (route === '/archivo/cinefilias') {
       setSelected(2)
+      setURL('http://bibliotecagonzalez.com/archivo/cinefilias')
     }
-  }, [route])
+  }, [route, url])
+
+  useEffect(() => {
+    if (data) {
+      const enlace = document.querySelectorAll('a')
+      if (enlace) {
+        for (let i = 0; i < enlace.length; i++) {
+          enlace[i].setAttribute('target', '_blank')
+        }
+      }
+    }
+  }, [data])
 
   return (
     <Layout>
-      <section className='section-main fade-in'>
+      <section className='section-main fade-in flex flex-col gap-y-6'>
         {loading ? (
           <Loader />
         ) : (
@@ -74,6 +88,8 @@ const Index = () => {
             </div>
           </div>
         )}
+
+        <Share url={url} />
       </section>
     </Layout>
   )

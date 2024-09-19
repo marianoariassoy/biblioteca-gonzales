@@ -36,3 +36,34 @@ export const Facebook = () => {
     </svg>
   )
 }
+
+export const Forward = () => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='31.5'
+      height='60.4'
+      viewBox='0 0 31.5 60.4'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2px'
+    >
+      <path d='M.7,.7L14.4,13.6l15.1,14.2c1.3,1.2,1.3,3.7,0,4.9l-15.1,14.2L.7,59.7' />
+    </svg>
+  )
+}
+export const Back = () => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='31.5'
+      height='60.4'
+      viewBox='0 0 31.5 60.4'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2px'
+    >
+      <path d='M30.8,59.7l-13.7-12.8L2,32.7c-1.3-1.2-1.3-3.7,0-4.9l15.1-14.2L30.8,.7' />
+    </svg>
+  )
+}

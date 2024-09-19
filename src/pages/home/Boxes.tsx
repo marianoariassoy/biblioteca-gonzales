@@ -25,14 +25,14 @@ const Boxes = ({ random }) => {
             title='Montajes'
             color='#aaaa00'
             image={url + 'montajes.jpg'}
-            url='/leer/montajes'
+            url='/montajes'
           />
           <div className='grid grid-cols-2 gap-3 lg:gap-6'>
             <Box2
               title='Quienes somos'
               color='#687c32'
               image={url + 'quienes-somos.jpg'}
-              url='/quienes-somos/historia'
+              url='/quienes-somos'
             />
             <Box2
               title='Leer / Sobre archivos'
