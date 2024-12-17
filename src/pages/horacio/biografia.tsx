@@ -12,17 +12,25 @@ const Index = () => {
     <Layout>
       <section className='section-main fade-in'>
         <div className='w-full max-w-6xl m-auto px-6 flex flex-col gap-y-12'>
-          {loading ? (
-            <Loader />
-          ) : (
-            data.map((item, index) => (
-              <Item
-                key={index}
-                data={item}
-                color={color}
-              />
-            ))
-          )}
+          <h1
+            className='font-secondary text-2xl lg:text-3xl font-bold'
+            style={{ color: color }}
+          >
+            Biografía en 10 pasos
+          </h1>
+          <div className='flex flex-col gap-y-12'>
+            {loading ? (
+              <Loader />
+            ) : (
+              data.map((item, index) => (
+                <Item
+                  key={index}
+                  data={item}
+                  color={color}
+                />
+              ))
+            )}
+          </div>
         </div>
       </section>
     </Layout>

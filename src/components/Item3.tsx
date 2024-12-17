@@ -2,10 +2,23 @@ import Image from './Image'
 import HTML from '../hooks/useHTML'
 import ReactPlayer from 'react-player'
 
-const Item = ({ data, color }) => {
+const Item3 = ({ data, color }) => {
   return (
-    <article className='flex gap-y-3 gap-x-6 flex-col lg:flex-row'>
-      <div className='lg:w-1/2 min-h-44 flex flex-col gap-y-4'>
+    <article className='w-full max-w-6xl m-auto px-6 flex flex-col gap-y-6'>
+      <h1
+        className='font-secondary text-xl lg:text-2xl font-bold'
+        style={{ color: color }}
+      >
+        {data.title}
+      </h1>
+      <div>
+        {data.text && (
+          <div className='flex flex-col gap-y-6'>
+            <p className='color-gray-1 mb-6 text-wrap whitespace-break-spaces roboto-regular'>
+              <HTML text={data.text} />
+            </p>
+          </div>
+        )}
         {data.image && (
           <div>
             <Image
@@ -15,7 +28,7 @@ const Item = ({ data, color }) => {
           </div>
         )}
         {data.video && (
-          <div className='aspect-video'>
+          <div>
             <ReactPlayer
               url={data.video}
               controls
@@ -24,18 +37,6 @@ const Item = ({ data, color }) => {
             />
           </div>
         )}
-      </div>
-      <div className='lg:w-1/2'>
-        <h1
-          className='text-xl lg:text-2xl'
-          style={{ color: color }}
-        >
-          {data.title}
-        </h1>
-        {data.subtitle && <h2 className='text-lg'>{data.subtitle}</h2>}
-        <div className='mt-2 roboto-regular'>
-          <HTML text={data.text} />
-        </div>
         <div className='flex gap-3 mt-6'>
           {data.url && (
             <a
@@ -61,4 +62,4 @@ const Item = ({ data, color }) => {
   )
 }
 
-export default Item
+export default Item3

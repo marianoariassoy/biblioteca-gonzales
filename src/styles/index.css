@@ -17,6 +17,12 @@ body {
 .font-secondary {
   font-family: 'Alegreya', serif;
 }
+.roboto-regular {
+  font-family: 'Roboto', serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.9rem;
+}
 .color-primary {
   color: var(--color-primary);
 }

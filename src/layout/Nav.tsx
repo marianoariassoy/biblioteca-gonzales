@@ -25,16 +25,14 @@ const Nav = () => {
             >
               <Link
                 to={item.url}
-                className={`block ${location.split('/')[1] === item.url.split('/')[1] ? 'a-main-active' : 'a-main'}`}
+                className={`block cursor-pointer ${
+                  location.split('/')[1] === item.url.split('/')[1] ? 'a-main-active' : 'a-main'
+                }`}
                 style={location.split('/')[1] === item.url.split('/')[1] ? { backgroundColor: color } : {}}
               >
                 {item.title}
               </Link>
-              <ul
-                className={`absolute bg-[#f4f2f2] ${
-                  location.split('/')[1] === item.url.split('/')[1] ? 'flex' : 'hidden submenu-main'
-                }`}
-              >
+              <ul className={`absolute hidden submenu-main bg-[#f4f2f2]`}>
                 {item.section.map((item, index) => (
                   <li key={index}>
                     <Link
@@ -50,19 +48,6 @@ const Nav = () => {
             </li>
           ))}
         </ul>
-
-        {/* <ul className='flex text-sm pl-3 submenu mt-3 pb-3 [&>li:last-child::after]:hidden lg:mt-0'>
-          {menu
-            .filter(item => item.url.split('/')[1] === location.split('/')[1])
-            .flatMap(item => item.section)
-            .map((item, index) => (
-              <li key={index}>
-                <Link to={item.url}>
-                  <a className={`${location === item.url ? 'font-extrabold' : 'hover:underline'}`}>{item.title}</a>
-                </Link>
-              </li>
-            ))}
-        </ul> */}
       </nav>
       <div
         className='lg:hidden mt-6 lg:mt-10'

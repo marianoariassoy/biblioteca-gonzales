@@ -2,10 +2,10 @@ import Layout from '../../layout/Layout'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
 import { useDataContext } from '../../context/useDataContext'
-import Item from '../../components/Item2'
+import Item3 from '../../components/Item3'
 
 const Index = () => {
-  const { data, loading } = useFetch(`/sobreHG`)
+  const { data, loading } = useFetch(`/amigos`)
   const { color } = useDataContext()
 
   return (
@@ -16,13 +16,14 @@ const Index = () => {
             <Loader />
           ) : (
             data.map((item, index) => (
-              <Item
+              <Item3
                 key={index}
                 data={item}
                 color={color}
               />
             ))
           )}
+          {!loading && data.length === 0 && <div className='text-xl'>No hay resultados :-(</div>}
         </div>
       </section>
     </Layout>

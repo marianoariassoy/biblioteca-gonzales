@@ -12,19 +12,25 @@ export const menu = [
   },
   {
     title: 'Archivos',
-    url: '/archivo/archivo',
+    url: '/archivos/catalogo-biblioteca',
     section: [
-      { title: 'Catálogo Biblioteca', url: '/archivo/catalogo' },
-      { title: 'Picadito ', url: '/archivo/picadito' },
-      { title: 'Cinefilias ', url: '/archivo/cinefilias' },
-      { title: 'Hogueras ', url: '/archivo/hogueras' },
-      { title: 'Descargar ', url: '/archivo/descargar' }
+      { title: 'Catálogo Biblioteca', url: '/archivos/catalogo-biblioteca' },
+      { title: 'Catálogo Videoteca ', url: '/archivos/catalogo-videoteca' },
+      { title: 'Catálogo HG ', url: '/archivos/catalogo-hg' },
+      { title: 'Sobre Archivos ', url: '/archivos/sobre-archivos' }
     ]
   },
   {
     title: 'Montajes',
     url: '/montajes',
-    section: []
+    section: [
+      { title: 'Montajes', url: '/montajes' },
+      { title: 'Mapas', url: '/mapas' },
+      { title: 'Fantasmal', url: '/fantasmal' },
+      { title: 'Recomendaciones', url: '/recomendaciones' },
+      { title: 'Textitos', url: '/textitos' },
+      { title: 'Testimonios', url: '/testimonios' }
+    ]
   },
   {
     title: '¿Qué dice el gato?',
@@ -35,8 +41,9 @@ export const menu = [
     title: 'Horacio González',
     url: '/horacio-gonzalez/biografia',
     section: [
-      { title: 'Biografía en 10 pasos', url: '/horacio-gonzalez/biografia' },
-      { title: 'Sobre HG', url: '/horacio-gonzalez/sobreHC' }
+      { title: 'Biografía', url: '/horacio-gonzalez/biografia' },
+      { title: 'Sobre HG', url: '/horacio-gonzalez/sobreHG' },
+      { title: 'Descargas', url: '/archivos/catalogo-hg' }
     ]
   },
   {
@@ -47,11 +54,6 @@ export const menu = [
   {
     title: 'Amigxs',
     url: '/amigxs',
-    section: []
-  },
-  {
-    title: 'Donaciones',
-    url: '/donaciones',
     section: []
   }
 ]

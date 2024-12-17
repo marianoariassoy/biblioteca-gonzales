@@ -14,7 +14,7 @@ const item = ({ item }: Props) => {
     <article className='flex flex-col gap-y-3'>
       <div>
         <Link
-          href={`/montajes/${item.id}`}
+          href={`/que-dice-el-gato/${item.id}`}
           className='aspect-[4/5] hover:opacity-70 transition-all block'
         >
           <Image

@@ -15,7 +15,7 @@ const Index = () => {
         ) : (
           <div className='w-full max-w-6xl m-auto px-6 flex flex-col gap-y-6'>
             <h1
-              className='font-secondary text-2xl lg:text-4xl font-bold'
+              className='font-secondary text-2xl lg:text-3xl font-bold'
               style={{ color: color }}
             >
               Decálogo
@@ -27,7 +27,7 @@ const Index = () => {
               >
                 Biblioteca González
               </h2>
-              <ul className='lg:pl-10 flex flex-col gap-y-6 decalogo-list color-blue-1 italic font-medium text-sm lg:text-base'>
+              <ul className='lg:pl-10 flex flex-col gap-y-4 decalogo-list color-blue-1 font-medium text-sm lg:text-base max-w-4xl'>
                 {data.map(item => (
                   <li key={item.id}>{item.title}</li>
                 ))}

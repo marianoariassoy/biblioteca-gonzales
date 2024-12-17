@@ -35,39 +35,39 @@ const Boxes = ({ random }) => {
               url='/quienes-somos'
             />
             <Box2
-              title='Leer / Sobre archivos'
+              title='Sobre archivos'
               color='#358b74'
               image={url + 'sobrearchivos.jpg'}
-              url='/leer/sobre-archivos'
+              url='/archivos/sobre-archivos'
             />
           </div>
         </div>
         <div className='flex flex-col gap-3 lg:gap-6'>
           <div className='grid grid-cols-2 gap-3 lg:gap-6'>
             <Box2
-              title='Leer / Motajerd'
+              title='Recomendaciones'
               color='#008d36'
               image={url + 'motajerd.jpg'}
-              url='/leer/montajes'
+              url='/recomendaciones'
             />
             <Box2
               title='Mapas'
               color='#006633'
               image={url + 'mapas.jpg'}
-              url='/mirar/mapas'
+              url='/mapas'
             />
           </div>
           <Box1
-            title='Catálogo Horacio González '
+            title='Catálogo Horacio González'
             color='#00a19a'
             image={url + 'catalogo.jpg'}
-            url='/catalogos'
+            url='/archivos/catalogo-hg'
           />
           <Box1
-            title='Bitácora'
+            title='Fantasmal'
             color='#248e90'
             image={url + 'bitacora.jpg'}
-            url='/'
+            url='/fantasmal'
           />
         </div>
       </article>
@@ -84,7 +84,7 @@ const Boxes = ({ random }) => {
               url='/quienes-somos/historia'
             />
             <Box2
-              title='Leer / Sobre archivos'
+              title='Sobre archivos'
               color='#b2302c'
               image={url + 'sobrearchivos.jpg'}
               url='/leer/sobre-archivos'
@@ -118,10 +118,10 @@ const Boxes = ({ random }) => {
           />
           <div className='grid grid-cols-2 gap-3 lg:gap-6'>
             <Box2
-              title='Leer / Motajerd'
+              title='Donaciones'
               color='#9e1510'
               image={url + 'motajerd.jpg'}
-              url='/leer/montajes'
+              url='/donaciones'
             />
             <Box2
               title='Mapas'
@@ -145,10 +145,10 @@ const Boxes = ({ random }) => {
               url='/quienes-somos/historia'
             />
             <Box2
-              title='Leer / Sobre archivos'
+              title='Donaciones'
               color='#007499'
               image={url + 'sobrearchivos.jpg'}
-              url='/leer/sobre-archivos'
+              url='/leer/donaciones'
             />
           </div>
           <Box1
@@ -206,7 +206,7 @@ const Boxes = ({ random }) => {
               url='/quienes-somos/historia'
             />
             <Box2
-              title='Leer / Sobre archivos'
+              title='Sobre archivos'
               color='#a78bc0'
               image={url + 'sobrearchivos.jpg'}
               url='/leer/sobre-archivos'
@@ -234,10 +234,10 @@ const Boxes = ({ random }) => {
           />
           <div className='grid grid-cols-2 gap-3 lg:gap-6'>
             <Box2
-              title='Leer / Motajerd'
+              title='Donaciones'
               color='#956095'
               image={url + 'motajerd.jpg'}
-              url='/leer/montajes'
+              url='/donaciones'
             />
             <Box2
               title='Mapas'

@@ -2,10 +2,10 @@ import Layout from '../../layout/Layout'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
 import { useDataContext } from '../../context/useDataContext'
-import Item from '../../components/Item2'
+import Item from '../../components/Item'
 
 const Index = () => {
-  const { data, loading } = useFetch(`/sobreHG`)
+  const { data, loading } = useFetch(`/testimonios`)
   const { color } = useDataContext()
 
   return (
@@ -23,6 +23,7 @@ const Index = () => {
               />
             ))
           )}
+          {!loading && data.length === 0 && <div className='text-xl'>No hay resultados :-(</div>}
         </div>
       </section>
     </Layout>

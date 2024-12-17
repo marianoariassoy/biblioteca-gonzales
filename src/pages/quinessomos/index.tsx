@@ -1,52 +1,85 @@
-import { useEffect } from 'react'
 import Layout from '../../layout/Layout'
-import Image from '../../components/Image'
+import { useLocation } from 'wouter'
+import { useDataContext } from '../../context/useDataContext'
+import { useEffect } from 'react'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
-import { useDataContext } from '../../context/useDataContext'
 import HTML from '../../hooks/useHTML'
 
+interface Props {
+  id: string
+  title: string
+  text: string
+  image: string
+  url: string
+}
+
 const Index = () => {
-  const { data, loading } = useFetch(`/quienes-somos`)
   const { color } = useDataContext()
+  const { data, loading } = useFetch(`/quienes-somos`)
+  let dataFilteder = {} as Props
+  const [location] = useLocation()
 
   useEffect(() => {
-    if (data) {
-      const enlace = document.querySelectorAll('a')
-      if (enlace) {
-        for (let i = 0; i < enlace.length; i++) {
-          enlace[i].setAttribute('target', '_blank')
-        }
-      }
+    window.scrollTo(0, 0)
+  }, [])
+
+  if (data) {
+    if (location === '/quienes-somos/historia') {
+      dataFilteder = data[0]
+    } else {
+      dataFilteder = data[1]
     }
-  }, [data])
+  }
 
   return (
     <Layout>
       <section className='section-main fade-in'>
-        {loading ? (
-          <Loader />
-        ) : (
-          <div className='w-full max-w-6xl m-auto px-6 flex flex-col gap-y-6'>
-            <h1
-              className='font-secondary text-2xl lg:text-4xl font-bold'
-              style={{ color: color }}
-            >
-              {data[1].title}
-            </h1>
-            <div className='flex flex-col gap-y-6'>
-              <p className='color-gray-1 text-sm lg:text-base mb-6 text-wrap whitespace-break-spaces'>
-                <HTML text={data[1].text} />
-              </p>
-            </div>
-            {data[0].image && (
-              <Image
-                src={data[1].image}
-                alt={data[1].title}
-              />
-            )}
+        <div className='w-full max-w-4xl m-auto px-6 flex flex-col gap-y-12'>
+          <div className='font-secondary lg:text-xl font-bold'>
+            {loading ? <Loader /> : <HTML text={dataFilteder.text} />}
           </div>
-        )}
+
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-12 items-center'>
+            <div style={{ color: color }}>
+              <img
+                src='/images/img-fundacion.svg'
+                alt='Imagen Fundación'
+                className='w-full'
+              />
+            </div>
+            <div className='flex flex-col gap-y-3 text-base roboto-regular'>
+              <h2
+                className='font-secondary lg:text-xl font-bold'
+                style={{ color: color }}
+              >
+                Quiénes somos
+              </h2>
+              <ul className='flex flex-col'>
+                <li>Marcos Cappelacci</li>
+                <li>Tomás Colombres</li>
+                <li>Luciana Córdoba Torti</li>
+                <li>Florencia Eva González</li>
+                <li>Lidia González</li>
+                <li>Diego Hillal</li>
+                <li>Pablo Vialatte </li>
+              </ul>
+              <h2
+                className='font-secondary lg:text-xl font-bold'
+                style={{ color: color }}
+              >
+                Colaboran
+              </h2>
+              <ul className='flex flex-col'>
+                <li>Bibiana Aflalo</li>
+                <li>Beatriz Mengoni</li>
+                <li>Jorge Quiroga</li>
+                <li>Pedro Vialatte</li>
+                <li>Ariana Santa</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </section>
     </Layout>
   )

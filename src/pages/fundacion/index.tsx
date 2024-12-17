@@ -12,8 +12,8 @@ const Index = () => {
   return (
     <Layout>
       <section className='section-main fade-in'>
-        <div className='w-full max-w-6xl m-auto px-6 flex flex-col gap-y-12'>
-          <div className='font-secondary lg:text-xl font-bold m-auto max-w-4xl'>
+        <div className='w-full max-w-4xl m-auto px-6 flex flex-col gap-y-12'>
+          <div className='font-secondary lg:text-xl font-bold'>
             El objeto de la Fundación es investigar, estudiar, crear, estimular, restaurar y difundir iniciativas
             vinculadas al patrimonio cultural argentino tales como libros, revistas y diarios de época así como material
             audiovisual, destinadas al Arte, la Investigación y la Cultura, en sus distintas manifestaciones, como el
@@ -29,14 +29,14 @@ const Index = () => {
                 className='w-full'
               />
             </div>
-            <div className='flex flex-col gap-y-3 text-base'>
+            <div className='flex flex-col gap-y-3 text-base roboto-regular'>
               <h2
                 className='font-secondary lg:text-xl font-bold'
                 style={{ color: color }}
               >
                 Quiénes somos
               </h2>
-              <ul className='flex flex-col gap-y-1'>
+              <ul className='flex flex-col'>
                 <li>Marcos Cappelacci</li>
                 <li>Tomás Colombres</li>
                 <li>Luciana Córdoba Torti</li>
@@ -51,7 +51,7 @@ const Index = () => {
               >
                 Colaboran
               </h2>
-              <ul className='flex flex-col gap-y-1'>
+              <ul className='flex flex-col'>
                 <li>Bibiana Aflalo</li>
                 <li>Beatriz Mengoni</li>
                 <li>Jorge Quiroga</li>
@@ -60,7 +60,7 @@ const Index = () => {
               </ul>
             </div>
           </div>
-          <div className='grid grid-cols-2 gap-x-20 items-center'>
+          {/* <div className='grid grid-cols-2 gap-x-20 items-center'>
             <div className='lg:pl-20'>
               <a
                 href='#'
@@ -77,7 +77,7 @@ const Index = () => {
                 Hacete amigx
               </a>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
     </Layout>

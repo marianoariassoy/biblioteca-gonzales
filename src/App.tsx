@@ -1,19 +1,34 @@
 import { Route, Switch } from 'wouter'
 import Home from './pages/home'
-import QuienesSomos from './pages/quinessomos'
+
+import QuienesSomos from './pages/quinessomos/'
 import QuienesSomosDecalogo from './pages/quinessomos/decalogo'
 import QuienesSomosHistoria from './pages/quinessomos/historia'
 
-import ArchivosCatalogo from './pages/archivos/catalogo'
+import ArchivosCatalogo from './pages/archivos'
+import SobreArchivos from './pages/archivos/sobreArchivos'
+
 import Montajes from './pages/montajes/'
 import MontajesDetalles from './pages/montajes/montajes'
+
+import Mapas from './pages/montajes/Mapas'
+import Fantasmal from './pages/montajes/Fantasmal'
+import Recomendaciones from './pages/montajes/Recomendaciones'
+import Textitos from './pages/montajes/Textitos'
+import Testimonios from './pages/montajes/Testimonios'
+
 import QueDiceElGato from './pages/que-dice-el-gato'
+import GatoDetalles from './pages/que-dice-el-gato/Details'
 
 import HoracioBiografia from './pages/horacio/biografia'
-import HoracioSobreHC from './pages/horacio/sobreHC'
+import HoracioSobreHG from './pages/horacio/sobreHC'
+
+import Amigxs from './pages/amigxs'
 
 import Actividades from './pages/actividades'
+import ActividadesDetalles from './pages/actividades/Details'
 import Fundacion from './pages/fundacion'
+import Donaciones from './pages/donaciones'
 
 import Soon from './pages/soon'
 import Error from './pages/error'
@@ -25,6 +40,7 @@ function App() {
         path='/'
         component={Home}
       />
+
       <Route
         path='/quienes-somos/'
         component={QuienesSomos}
@@ -39,8 +55,20 @@ function App() {
       />
 
       <Route
-        path='/archivos/catalogo'
+        path='/archivos/catalogo-biblioteca'
         component={ArchivosCatalogo}
+      />
+      <Route
+        path='/archivos/catalogo-videoteca'
+        component={ArchivosCatalogo}
+      />
+      <Route
+        path='/archivos/catalogo-hg'
+        component={ArchivosCatalogo}
+      />
+      <Route
+        path='/archivos/sobre-archivos'
+        component={SobreArchivos}
       />
 
       <Route
@@ -48,13 +76,37 @@ function App() {
         component={Montajes}
       />
       <Route
-        path='/leer/montajes/:id'
+        path='/montajes/:id'
         component={MontajesDetalles}
+      />
+      <Route
+        path='/mapas'
+        component={Mapas}
+      />
+      <Route
+        path='/fantasmal'
+        component={Fantasmal}
+      />
+      <Route
+        path='/recomendaciones'
+        component={Recomendaciones}
+      />
+      <Route
+        path='/textitos'
+        component={Textitos}
+      />
+      <Route
+        path='/testimonios'
+        component={Testimonios}
       />
 
       <Route
         path='/que-dice-el-gato'
         component={QueDiceElGato}
+      />
+      <Route
+        path='/que-dice-el-gato/:id'
+        component={GatoDetalles}
       />
 
       <Route
@@ -62,29 +114,16 @@ function App() {
         component={HoracioBiografia}
       />
       <Route
-        path='/horacio-gonzalez/sobreHC'
-        component={HoracioSobreHC}
+        path='/horacio-gonzalez/sobreHG'
+        component={HoracioSobreHG}
       />
-
-      {/* <Route
-        path='/horacio-gonzalez/dibujos'
-        component={Dibujos}
-      />
-      <Route
-        path='/horacio-gonzalez/fotos'
-        component={Fotos}
-      />
-      <Route
-        path='/horacio-gonzalez/descargas'
-        component={Descargas}
-      /> */}
       <Route
         path='/actividades'
         component={Actividades}
       />
       <Route
         path='/actividades/:id'
-        component={Actividades}
+        component={ActividadesDetalles}
       />
       <Route
         path='/agenda'
@@ -92,15 +131,16 @@ function App() {
       />
       <Route
         path='/amigxs'
-        component={Soon}
+        component={Amigxs}
       />
-      <Route
-        path='/donaciones'
-        component={Soon}
-      />
+
       <Route
         path='/fundacion'
         component={Fundacion}
+      />
+      <Route
+        path='/donaciones'
+        component={Donaciones}
       />
 
       <Route component={Error} />

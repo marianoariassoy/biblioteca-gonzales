@@ -1,48 +1,36 @@
-import { useParams, Link } from 'wouter'
 import Layout from '../../layout/Layout'
-import { useDataContext } from '../../context/useDataContext'
+import Item from './Item'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
-import Item from '../../components/Item'
+import { useDataContext } from '../../context/useDataContext'
 
 const Index = () => {
-  const { id } = useParams() as { id: string }
-  const { color } = useDataContext()
   const { data, loading } = useFetch(`/actividades`)
-  let dataFiltered = []
-
-  if (id) {
-    if (data) {
-      dataFiltered = data.filter(item => item.id === +id)
-    }
-  } else {
-    dataFiltered = data
-  }
+  const { color } = useDataContext()
 
   return (
     <Layout>
       <section className='section-main fade-in'>
-        <div className='w-full max-w-6xl m-auto px-6 flex flex-col gap-y-12'>
+        <div className='w-full max-w-6xl m-auto px-6 flex flex-col gap-y-8'>
+          <div>
+            <h1
+              className='font-secondary text-2xl lg:text-3xl font-bold mb-4'
+              style={{ color: color }}
+            >
+              Actividades
+            </h1>
+          </div>
+
           {loading ? (
             <Loader />
           ) : (
-            dataFiltered.map((item, index) => (
-              <Item
-                key={index}
-                data={item}
-                color={color}
-              />
-            ))
-          )}
-          {id && (
-            <div className='flex justify-center'>
-              <Link
-                to='/actividades'
-                className='text-white a-main'
-                style={{ backgroundColor: color }}
-              >
-                Ver todas las actividades
-              </Link>
+            <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
+              {data.map((item, index) => (
+                <Item
+                  key={index}
+                  item={item}
+                />
+              ))}
             </div>
           )}
         </div>
