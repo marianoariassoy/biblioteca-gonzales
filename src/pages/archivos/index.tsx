@@ -5,6 +5,7 @@ import Loader from '../../components/Loader'
 import { useDataContext } from '../../context/useDataContext'
 import HTML from '../../hooks/useHTML'
 import ReactPlayer from 'react-player'
+import { Dibujo } from '../../components/icons'
 
 interface Props {
   id: string
@@ -12,6 +13,8 @@ interface Props {
   text: string
   image: string
   url: string
+  video: string
+  file: string
 }
 
 const Index = () => {
@@ -22,61 +25,64 @@ const Index = () => {
 
   if (data) {
     if (location === '/archivos/catalogo-biblioteca') {
-      dataFilteder = data.filter(item => item.category === 0)
+      dataFilteder = data.filter(item => item.id === 9)
     } else if (location === '/archivos/catalogo-videoteca') {
-      dataFilteder = data.filter(item => item.category === 1)
-    } else if (location === '/archivos/catalogo-hg') {
-      dataFilteder = data.filter(item => item.category === 2)
+      dataFilteder = data.filter(item => item.id === 10)
     }
   }
 
   return (
     <Layout>
       <section className='section-main fade-in'>
-        <div className='w-full max-w-6xl m-auto px-6 flex flex-col gap-y-8'>
+        <div className='w-full max-w-4xl m-auto px-6 flex flex-col gap-y-8'>
           {loading ? (
             <Loader />
           ) : (
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-8 items-center'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4'>
               <div style={{ color: color }}>
-                <img
-                  src='/images/img-fundacion.svg'
-                  alt='Imagen Fundación'
-                  className='w-full'
-                />
+                <Dibujo />
               </div>
-              <div className='flex flex-col gap-y-3 text-base roboto-regular'>
-                <HTML text={dataFilteder[0].text} />
-              </div>
-              {data.video && (
-                <div>
-                  <ReactPlayer
-                    url={data.video}
-                    controls
-                    width='100%'
-                    height='100%'
-                  />
+              <div className='flex flex-col gap-y-4'>
+                <h1
+                  className='text-xl lg:text-2xl'
+                  style={{ color: color }}
+                >
+                  {dataFilteder[0].title}
+                </h1>
+                <div className='text-base roboto-regular'>
+                  <HTML text={dataFilteder[0].text} />
                 </div>
-              )}
-              <div className='flex gap-3 mt-6'>
-                {data.url && (
-                  <a
-                    href={data.url}
-                    target='_blank'
-                    className='bg-primary text-white px-6 py-2 hover:bg-black'
-                  >
-                    Link
-                  </a>
+
+                {dataFilteder[0].video && (
+                  <div className='aspect-video'>
+                    <ReactPlayer
+                      url={dataFilteder[0].video}
+                      controls
+                      width='100%'
+                      height='100%'
+                    />
+                  </div>
                 )}
-                {data.file && (
-                  <a
-                    href={`./images/${data.file}`}
-                    target='_blank'
-                    className='bg-primary text-white px-6 py-2 hover:bg-black'
-                  >
-                    Descarga PDF
-                  </a>
-                )}
+                <div className='flex gap-3'>
+                  {dataFilteder[0].file && (
+                    <a
+                      href={`./images/${dataFilteder[0].file}`}
+                      target='_blank'
+                      className='bg-primary text-white px-6 py-2 hover:bg-black'
+                    >
+                      Descarga PDF
+                    </a>
+                  )}
+                  {dataFilteder[0].url && (
+                    <a
+                      href={dataFilteder[0].url}
+                      target='_blank'
+                      className='bg-primary text-white px-6 py-2 hover:bg-black'
+                    >
+                      Link
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           )}

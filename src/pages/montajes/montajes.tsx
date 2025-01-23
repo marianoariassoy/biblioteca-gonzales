@@ -17,8 +17,6 @@ const Index = () => {
     dataFiltered = data.filter(item => item.id === +id)
   }
 
-  const url = `http://bibliotecagonzalez.com/montajes/${id}`
-
   return (
     <Layout>
       <section className='section-main fade-in flex flex-col gap-y-12'>
@@ -64,12 +62,11 @@ const Index = () => {
                         />
                       ))}
                 </div>
+                <Share />
               </article>
             </div>
           )
         )}
-
-        <Share url={url} />
       </section>
     </Layout>
   )

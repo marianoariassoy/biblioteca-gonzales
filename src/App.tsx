@@ -7,6 +7,7 @@ import QuienesSomosHistoria from './pages/quinessomos/historia'
 
 import ArchivosCatalogo from './pages/archivos'
 import SobreArchivos from './pages/archivos/sobreArchivos'
+import ArchivosDetalles from './pages/archivos/Details'
 
 import Montajes from './pages/montajes/'
 import MontajesDetalles from './pages/montajes/montajes'
@@ -64,8 +65,37 @@ function App() {
       />
       <Route
         path='/archivos/catalogo-hg'
-        component={ArchivosCatalogo}
+        component={ArchivosDetalles}
       />
+      <Route
+        path='/archivos/picadito'
+        component={ArchivosDetalles}
+      />
+      <Route
+        path='/archivos/mundo-p'
+        component={ArchivosDetalles}
+      />
+      <Route
+        path='/archivos/cinefilas'
+        component={ArchivosDetalles}
+      />
+      <Route
+        path='/archivos/hogueras'
+        component={ArchivosDetalles}
+      />
+      <Route
+        path='/archivos/cine-internacional'
+        component={ArchivosDetalles}
+      />
+      <Route
+        path='/archivos/documentales'
+        component={ArchivosDetalles}
+      />
+      <Route
+        path='/archivos/ficcion'
+        component={ArchivosDetalles}
+      />
+
       <Route
         path='/archivos/sobre-archivos'
         component={SobreArchivos}

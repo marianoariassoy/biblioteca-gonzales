@@ -15,9 +15,16 @@ export const menu = [
     url: '/archivos/catalogo-biblioteca',
     section: [
       { title: 'Catálogo Biblioteca', url: '/archivos/catalogo-biblioteca' },
-      { title: 'Catálogo Videoteca ', url: '/archivos/catalogo-videoteca' },
-      { title: 'Catálogo HG ', url: '/archivos/catalogo-hg' },
-      { title: 'Sobre Archivos ', url: '/archivos/sobre-archivos' }
+      { title: 'Catálogo Videoteca', url: '/archivos/catalogo-videoteca' },
+      { title: 'Catálogo HG', url: '/archivos/catalogo-hg' },
+      { title: 'Sobre Archivos ', url: '/archivos/sobre-archivos' },
+      { title: 'Picadito', url: '/archivos/picadito' },
+      { title: 'Mundo P', url: '/archivos/mundo-p' },
+      { title: 'Cinefilias', url: '/archivos/cinefilas' },
+      { title: 'Hogueras y Cine Nacional', url: '/archivos/hogueras' },
+      { title: 'Cine Internacional', url: '/archivos/cine-internacional' },
+      { title: 'Documentales', url: '/archivos/documentales' },
+      { title: 'Ficción', url: '/archivos/ficcion' }
     ]
   },
   {

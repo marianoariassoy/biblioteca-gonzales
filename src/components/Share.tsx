@@ -12,10 +12,14 @@ import {
   WhatsappIcon,
   WhatsappShareButton
 } from 'react-share'
+import { useLocation } from 'wouter'
 
-const Share = ({ url }) => {
+const Share = () => {
+  const [location] = useLocation()
+  const url = `${window.location.origin}${location}`
+
   return (
-    <div className='w-full max-w-6xl m-auto px-6 flex gap-x-3'>
+    <div className='flex gap-x-3'>
       <EmailShareButton url={url}>
         <EmailIcon
           size={32}

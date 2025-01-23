@@ -33,7 +33,7 @@ const Item = ({ data, color }) => {
           {data.title}
         </h1>
         {data.subtitle && <h2 className='text-lg'>{data.subtitle}</h2>}
-        <div className='mt-2 roboto-regular'>
+        <div className='mt-2 roboto-regular [&>div>span>a]:underline [&>div>a]:underline [&>div>span>span>a]:underline '>
           <HTML text={data.text} />
         </div>
         <div className='flex gap-3 mt-6'>
@@ -48,8 +48,9 @@ const Item = ({ data, color }) => {
           )}
           {data.file && (
             <a
-              href={`./images/${data.file}`}
+              href={data.file}
               target='_blank'
+              rel='noreferrer'
               className='bg-primary text-white px-6 py-2 hover:bg-black'
             >
               Descarga PDF

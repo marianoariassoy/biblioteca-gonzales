@@ -2,7 +2,8 @@ import Layout from '../../layout/Layout'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
 import { useDataContext } from '../../context/useDataContext'
-import Item from '../../components/Item'
+import Item from '../../components/Item2'
+import Filter from '../../components/Filter'
 
 const Index = () => {
   const { data, loading } = useFetch(`/testimonios`)
@@ -15,13 +16,16 @@ const Index = () => {
           {loading ? (
             <Loader />
           ) : (
-            data.map((item, index) => (
-              <Item
-                key={index}
-                data={item}
-                color={color}
-              />
-            ))
+            <div className='flex flex-col gap-y-8'>
+              <Filter data={data} />
+              {data.map((item, index) => (
+                <Item
+                  key={index}
+                  data={item}
+                  color={color}
+                />
+              ))}
+            </div>
           )}
           {!loading && data.length === 0 && <div className='text-xl'>No hay resultados :-(</div>}
         </div>

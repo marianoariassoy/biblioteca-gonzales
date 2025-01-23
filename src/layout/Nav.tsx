@@ -32,7 +32,7 @@ const Nav = () => {
               >
                 {item.title}
               </Link>
-              <ul className={`absolute hidden submenu-main bg-[#f4f2f2]`}>
+              <ul className={`absolute flex-wrap max-w-[600px] hidden submenu-main bg-[#f4f2f2]`}>
                 {item.section.map((item, index) => (
                   <li key={index}>
                     <Link

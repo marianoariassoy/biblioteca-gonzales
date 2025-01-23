@@ -3,17 +3,24 @@ import HTML from '../hooks/useHTML'
 import ReactPlayer from 'react-player'
 import Slider from './Slider'
 import useFetch from '../hooks/useFetch'
+import Share from './Share'
 
 const Item = ({ data, color }) => {
   const { data: images, loading } = useFetch(`/imagenes`)
   let imagesFiltered = []
-
-  if (images) {
-    imagesFiltered = images.filter(item => item.item === data.id)
-  }
+  if (images) imagesFiltered = images.filter(item => item.item === data.id)
 
   return (
-    <article className='flex flex-col gap-y-8'>
+    <article
+      className='flex flex-col gap-y-8 max-w-4xl m-auto'
+      id={`item-${data.id}`}
+    >
+      <h1
+        className='text-2xl lg:text-3xl'
+        style={{ color: color }}
+      >
+        {data.title}
+      </h1>
       {data.image && (
         <div>
           <Image
@@ -23,23 +30,13 @@ const Item = ({ data, color }) => {
         </div>
       )}
       <div>
-        <h1
-          className='text-2xl lg:text-3xl'
-          style={{ color: color }}
-        >
-          {data.title}
-        </h1>
         {data.subtitle && <h2 className='text-lg'>{data.subtitle}</h2>}
-        <div className='text-sm mt-3 roboto-regular max-w-4xl'>
+        <div className='text-sm roboto-regular [&>div>span>a]:underline [&>div>a]:underline [&>div>span>span>a]:underline'>
           <HTML text={data.text} />
         </div>
       </div>
 
-      {!loading && imagesFiltered.length > 0 && (
-        <div>
-          <Slider data={imagesFiltered} />
-        </div>
-      )}
+      {!loading && imagesFiltered.length > 0 && <Slider data={imagesFiltered} />}
 
       {data.video && (
         <div className='aspect-video'>
@@ -51,25 +48,30 @@ const Item = ({ data, color }) => {
           />
         </div>
       )}
-      <div className='flex gap-3'>
-        {data.url && (
-          <a
-            href={data.url}
-            target='_blank'
-            className='bg-primary text-white px-6 py-2 hover:bg-black'
-          >
-            Link
-          </a>
-        )}
+      <div className='flex gap-4'>
         {data.file && (
           <a
-            href={`./images/${data.file}`}
+            href={data.file}
             target='_blank'
+            rel='noreferrer'
             className='bg-primary text-white px-6 py-2 hover:bg-black'
           >
             Descarga PDF
           </a>
         )}
+        {data.url && (
+          <a
+            href={data.url}
+            target='_blank'
+            rel='noreferrer'
+            className='bg-primary text-white px-6 py-2 hover:bg-black'
+          >
+            Link
+          </a>
+        )}
+      </div>
+      <div>
+        <Share />
       </div>
     </article>
   )

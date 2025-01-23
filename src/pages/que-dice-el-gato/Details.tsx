@@ -24,15 +24,12 @@ const Index = () => {
         ) : (
           data && (
             <div className='w-full max-w-6xl m-auto px-6 flex flex-col gap-y-8'>
-              <h2 className='color-blue-1 text-2xl lg:text-3xl'>{dataFiltered[0].title}</h2>
               <div className='w-full color-primary aspect-square lg:aspect-[5/4] overflow-hidden'>
                 {images && <Slider data={images.filter(item => item.item === +id)} />}
               </div>
               <div>
-                <div className='lg:text-xl mb-4'>
-                  <HTML text={dataFiltered[0].text2} />
-                </div>
-                <div className='roboto-regular'>
+                <h2 className='color-blue-1 text-xl lg:text-2xl mb-3'>{dataFiltered[0].title}</h2>
+                <div className='roboto-regular [&>div>span>a]:underline [&>div>a]:underline [&>div>span>span>a]:underline'>
                   <HTML text={dataFiltered[0].text} />
                 </div>
               </div>

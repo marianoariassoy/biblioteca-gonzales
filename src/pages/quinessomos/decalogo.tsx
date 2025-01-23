@@ -13,7 +13,7 @@ const Index = () => {
         {loading ? (
           <Loader />
         ) : (
-          <div className='w-full max-w-6xl m-auto px-6 flex flex-col gap-y-6'>
+          <div className='w-full max-w-4xl m-auto px-6 flex flex-col gap-y-6'>
             <h1
               className='font-secondary text-2xl lg:text-3xl font-bold'
               style={{ color: color }}

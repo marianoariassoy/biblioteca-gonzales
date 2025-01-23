@@ -26,12 +26,12 @@ const Slider = ({ data }) => {
     <Slide {...sliderProperties}>
       {data.map(item => (
         <div
-          className='aspect-square w-full h-full lg:aspect-[5/4] overflow-hidden'
+          className='aspect-square w-full h-full lg:aspect-video overflow-hidden'
           key={item.id}
         >
           <img
             src={item.image}
-            className='w-full h-full object-cover object-top'
+            className='w-full h-full object-cover object-middle'
           />
         </div>
       ))}

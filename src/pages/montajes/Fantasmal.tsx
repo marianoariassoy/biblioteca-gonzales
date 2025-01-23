@@ -2,7 +2,7 @@ import Layout from '../../layout/Layout'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
 import { useDataContext } from '../../context/useDataContext'
-import Item2 from '../../components/Item2'
+import HTML from '../../hooks/useHTML'
 
 const Index = () => {
   const { data, loading } = useFetch(`/fantasmal`)
@@ -11,19 +11,22 @@ const Index = () => {
   return (
     <Layout>
       <section className='section-main fade-in'>
-        <div className='w-full max-w-6xl m-auto px-6 flex flex-col gap-y-12'>
+        <div className='w-full max-w-4xl m-auto px-6'>
           {loading ? (
             <Loader />
           ) : (
-            data.map((item, index) => (
-              <Item2
-                key={index}
-                data={item}
-                color={color}
-              />
-            ))
+            <div className='flex flex-col gap-y-8'>
+              <h1
+                className='text-2xl lg:text-3xl'
+                style={{ color: color }}
+              >
+                {data[0].title}
+              </h1>
+              <div>
+                <HTML text={data[0].video} />
+              </div>
+            </div>
           )}
-          {!loading && data.length === 0 && <div className='text-xl'>No hay resultados :-(</div>}
         </div>
       </section>
     </Layout>
