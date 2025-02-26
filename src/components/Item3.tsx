@@ -15,7 +15,7 @@ const Item3 = ({ data, color }) => {
       >
         {data.title}
       </h1>
-      <div>
+      <div className='flex flex-col gap-y-6'>
         {data.text && (
           <div className='flex flex-col gap-y-6'>
             <p className='color-gray-1 mb-6 text-wrap whitespace-break-spaces roboto-regular [&>div>span>a]:underline  [&>div>a]:underline [&>div>span>span>a]:underline'>
@@ -32,7 +32,7 @@ const Item3 = ({ data, color }) => {
           </div>
         )}
         {data.video && (
-          <div>
+          <div className='aspect-video'>
             <ReactPlayer
               url={data.video}
               controls
@@ -64,6 +64,7 @@ const Item3 = ({ data, color }) => {
           )}
         </div>
       </div>
+
       <Share />
     </article>
   )

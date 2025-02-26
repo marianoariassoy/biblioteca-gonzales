@@ -3,6 +3,7 @@ import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
 import { useDataContext } from '../../context/useDataContext'
 import HTML from '../../hooks/useHTML'
+import Share from '../../components/Share'
 
 const Index = () => {
   const { data, loading } = useFetch(`/fantasmal`)
@@ -24,6 +25,9 @@ const Index = () => {
               </h1>
               <div>
                 <HTML text={data[0].video} />
+              </div>
+              <div>
+                <Share />
               </div>
             </div>
           )}

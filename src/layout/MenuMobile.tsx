@@ -12,17 +12,17 @@ const MenuMobile = () => {
       style={{ backgroundColor: color }}
       id='menu-mobile'
     >
-      <nav className='max-w-6xl m-auto'>
-        <ul className='flex flex-col gap-y-3 pt-36 px-6'>
+      <nav className='max-w-6xl m-auto roboto-regular text-sm'>
+        <ul className='columns-2 gap-3 pt-36 px-6'>
           {menu.map((item, index) => (
             <li key={index}>
               <Link
                 to={item.url}
-                className={`${location.split('/')[1] === item.url.split('/')[1] ? 'underline' : ''}`}
+                className={`underline ${location.split('/')[1] === item.url.split('/')[1] ? 'underline' : ''}`}
               >
                 {item.title}
               </Link>
-              <ul className='pl-4'>
+              <ul className='mb-3'>
                 {item.section.map((item, index) => (
                   <li key={index}>
                     <Link

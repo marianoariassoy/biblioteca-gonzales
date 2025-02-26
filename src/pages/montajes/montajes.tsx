@@ -43,11 +43,12 @@ const Index = () => {
               <article className='flex flex-col gap-y-8'>
                 <div className='color-blue-1 flex flex-col'>
                   {/* <h2 className='text-3xl font-secondary mb-3'>{dataFiltered[0].title}</h2> */}
-                  <div className='text-xl'>
-                    <HTML text={dataFiltered[0].text} />
+
+                  <div className=' text-xl mb-4'>
+                    <HTML text={dataFiltered[0].text2} />
                   </div>
                   <div className='roboto-regular'>
-                    <HTML text={dataFiltered[0].text2} />
+                    <HTML text={dataFiltered[0].text} />
                   </div>
                 </div>
                 <div className='flex flex-col gap-12'>

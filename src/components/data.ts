@@ -7,7 +7,8 @@ export const menu = [
     section: [
       { title: 'Quienes somos', url: '/quienes-somos' },
       { title: 'Decálogo', url: '/quienes-somos/decalogo' },
-      { title: 'Historia del proyecto', url: '/quienes-somos/historia' }
+      { title: 'Historia del proyecto', url: '/quienes-somos/historia' },
+      { title: 'Donaciones', url: '/donaciones' }
     ]
   },
   {

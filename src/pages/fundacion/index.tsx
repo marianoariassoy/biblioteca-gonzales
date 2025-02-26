@@ -1,31 +1,29 @@
 import Layout from '../../layout/Layout'
-import { useEffect } from 'react'
-import Item from '../../components/Item3'
 import QuienesSomos from '../../components/QuienesSomos'
+import useFetch from '../../hooks/useFetch'
+import Loader from '../../components/Loader'
+import HTML from '../../hooks/useHTML'
 
 const Index = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+  const { data, loading } = useFetch(`/textos`)
+  if (loading) return <Loader />
 
-  const data = {
-    title: 'Fundación',
-    text: 'El objeto de la Fundación es investigar, estudiar, crear, estimular, restaurar y difundir iniciativas vinculadas al patrimonio cultural argentino tales como libros, revistas y diarios de época así como material audiovisual, destinadas al Arte, la Investigación y la Cultura, en sus distintas manifestaciones, como el cine, el teatro, la música, la literatura y el pensamiento en su confluencia con el mundo digital, las nuevas narrativas y lenguajes, y el espacio cibernético.',
-    image: ''
-  }
-
-  return (
-    <Layout>
-      <section className='section-main fade-in'>
-        <Item
-          color='#792477'
-          data={data}
-        />
-
-        <QuienesSomos />
-      </section>
-    </Layout>
-  )
+  if (data)
+    return (
+      <Layout>
+        <section className='section-main fade-in flex flex-col gap-y-6'>
+          <div className='w-full max-w-4xl m-auto flex flex-col gap-y-6'>
+            <h1 className='font-secondary text-xl lg:text-2xl font-bold color-primary'>Fundación</h1>
+            <div className='flex flex-col gap-y-6'>
+              <p className='roboto-regular [&>div>span>a]:underline  [&>div>a]:underline [&>div>span>span>a]:underline'>
+                <HTML text={data[0].text} />
+              </p>
+            </div>
+          </div>
+          <QuienesSomos />
+        </section>
+      </Layout>
+    )
 }
 
 export default Index

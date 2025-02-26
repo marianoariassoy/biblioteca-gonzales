@@ -22,7 +22,7 @@ const SliderItem = ({ data }) => {
     </div>
   ) : (
     <div className='relative h-[60vh] w-full'>
-      <div className='absolute w-full left-0 bottom-6 bg-black/30 z-20'>
+      <div className='absolute w-full left-0 bottom-6 bg-black/20 z-20'>
         <div className='text-white px-6 py-3'>
           <p className='italic leading-5'>{data.text}</p>
           <p className='text-sm roboto-regular mt-1'>{data.title}</p>

@@ -66,7 +66,7 @@ const Index = () => {
                 <div className='flex gap-3'>
                   {dataFilteder[0].file && (
                     <a
-                      href={`./images/${dataFilteder[0].file}`}
+                      href={dataFilteder[0].file}
                       target='_blank'
                       className='bg-primary text-white px-6 py-2 hover:bg-black'
                     >

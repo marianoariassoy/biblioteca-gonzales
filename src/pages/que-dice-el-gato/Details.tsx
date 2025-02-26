@@ -24,7 +24,7 @@ const Index = () => {
         ) : (
           data && (
             <div className='w-full max-w-6xl m-auto px-6 flex flex-col gap-y-8'>
-              <div className='w-full color-primary aspect-square lg:aspect-[5/4] overflow-hidden'>
+              <div className='w-full color-primary overflow-hidden'>
                 {images && <Slider data={images.filter(item => item.item === +id)} />}
               </div>
               <div>

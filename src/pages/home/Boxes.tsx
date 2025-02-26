@@ -16,58 +16,58 @@ const Boxes = ({ random }) => {
       >
         <div className='flex flex-col gap-3 lg:gap-6'>
           <Box1
-            title='Biblioteca'
+            title='Quienes somos'
             color='#2fac66'
-            image={url + 'biblioteca.jpg'}
-            url='/quienes-somos/historia'
+            image={url + 'shortcut1.jpg'}
+            url='/quienes-somos'
           />
           <Box1
-            title='Montajes'
+            title='Archivos'
             color='#aaaa00'
-            image={url + 'montajes.jpg'}
-            url='/montajes'
+            image={url + 'shortcut2.jpg'}
+            url='/archivos/sobre-archivos'
           />
           <div className='grid grid-cols-2 gap-3 lg:gap-6'>
             <Box2
-              title='Quienes somos'
+              title='Montajes'
               color='#687c32'
-              image={url + 'quienes-somos.jpg'}
-              url='/quienes-somos'
+              image={url + 'shortcut3.jpg'}
+              url='/montajes'
             />
             <Box2
-              title='Sobre archivos'
+              title='¿Qué dice el gato?'
               color='#358b74'
-              image={url + 'sobrearchivos.jpg'}
-              url='/archivos/sobre-archivos'
+              image={url + 'shortcut4.jpg'}
+              url='/que-dice-el-gato'
             />
           </div>
         </div>
         <div className='flex flex-col gap-3 lg:gap-6'>
           <div className='grid grid-cols-2 gap-3 lg:gap-6'>
             <Box2
-              title='Recomendaciones'
+              title='Horacio González'
               color='#008d36'
-              image={url + 'motajerd.jpg'}
-              url='/recomendaciones'
+              image={url + 'shortcut5.jpg'}
+              url='/horacio-gonzalez/biografia'
             />
             <Box2
-              title='Mapas'
+              title='Actividades'
               color='#006633'
-              image={url + 'mapas.jpg'}
-              url='/mapas'
+              image={url + 'shortcut6.jpg'}
+              url='/actividades'
             />
           </div>
           <Box1
-            title='Catálogo Horacio González'
+            title='Amigxs'
             color='#00a19a'
-            image={url + 'catalogo.jpg'}
-            url='/archivos/catalogo-hg'
+            image={url + 'shortcut7.jpg'}
+            url='/amigxs'
           />
           <Box1
-            title='Fantasmal'
+            title='Catálogo Biblioteca'
             color='#248e90'
-            image={url + 'bitacora.jpg'}
-            url='/fantasmal'
+            image={url + 'shortcut8.jpg'}
+            url='/archivos/catalogo-videoteca'
           />
         </div>
       </article>
@@ -80,54 +80,54 @@ const Boxes = ({ random }) => {
             <Box2
               title='Quienes somos'
               color='#e63b11'
-              image={url + 'quienes-somos.jpg'}
-              url='/quienes-somos/historia'
+              image={url + 'shortcut1.jpg'}
+              url='/quienes-somos'
             />
             <Box2
-              title='Sobre archivos'
+              title='Archivos'
               color='#b2302c'
-              image={url + 'sobrearchivos.jpg'}
-              url='/leer/sobre-archivos'
+              image={url + 'shortcut2.jpg'}
+              url='/archivos/sobre-archivos'
             />
           </div>
           <Box1
-            title='Biblioteca'
+            title='Montajes'
             color='#d35b17'
-            image={url + 'biblioteca.jpg'}
-            url='/quienes-somos/historia'
+            image={url + 'shortcut3.jpg'}
+            url='/montajes'
           />
           <Box1
-            title='Montajes'
+            title='¿Qué dice el gato?'
             color='#db9d73'
-            image={url + 'montajes.jpg'}
-            url='/leer/montajes'
+            image={url + 'shortcut4.jpg'}
+            url='que-dice-el-gato'
           />
         </div>
         <div className='flex flex-col gap-3 lg:gap-6'>
           <Box1
-            title='Catálogo Horacio González '
+            title='Horacio González'
             color='#db9705'
-            image={url + 'catalogo.jpg'}
-            url='/catalogos'
+            image={url + 'shortcut5.jpg'}
+            url='/horacio-gonzalez/biografia'
           />
           <Box1
-            title='Bitácora'
+            title='Actividades'
             color='#dba092'
-            image={url + 'bitacora.jpg'}
-            url='/'
+            image={url + 'shortcut6.jpg'}
+            url='/actividades'
           />
           <div className='grid grid-cols-2 gap-3 lg:gap-6'>
             <Box2
-              title='Donaciones'
+              title='Amigxs'
               color='#9e1510'
-              image={url + 'motajerd.jpg'}
-              url='/donaciones'
+              image={url + 'shortcut7.jpg'}
+              url='/amigxs'
             />
             <Box2
-              title='Mapas'
+              title='Catálogo Biblioteca'
               color='#7d1206'
-              image={url + 'mapas.jpg'}
-              url='/mirar/mapas'
+              image={url + 'shortcut8.jpg'}
+              url='/archivos/catalogo-videoteca'
             />
           </div>
         </div>
@@ -141,55 +141,55 @@ const Boxes = ({ random }) => {
             <Box2
               title='Quienes somos'
               color='#0080af'
-              image={url + 'quienes-somos.jpg'}
-              url='/quienes-somos/historia'
+              image={url + 'shortcut1.jpg'}
+              url='/quienes-somos'
             />
             <Box2
-              title='Donaciones'
+              title='Archivos'
               color='#007499'
-              image={url + 'sobrearchivos.jpg'}
-              url='/leer/donaciones'
+              image={url + 'shortcut2.jpg'}
+              url='/archivos/sobre-archivos'
             />
           </div>
           <Box1
-            title='Biblioteca'
+            title='Montajes'
             color='#0089bb'
-            image={url + 'biblioteca.jpg'}
-            url='/quienes-somos/historia'
+            image={url + 'shortcut3.jpg'}
+            url='/montajes'
           />
           <Box1
-            title='Montajes'
+            title='¿Qué dice el gato?'
             color='#5bc5f2'
-            image={url + 'montajes.jpg'}
-            url='/leer/montajes'
+            image={url + 'shortcut4.jpg'}
+            url='/que-dice-el-gato'
           />
         </div>
         <div className='flex flex-col gap-3 lg:gap-6'>
           <div className='grid grid-cols-2 gap-3 lg:gap-6'>
             <Box2
-              title='Leer / Motajerd'
+              title='Horacio González'
               color='#006885'
-              image={url + 'motajerd.jpg'}
-              url='/leer/montajes'
+              image={url + 'shortcut5.jpg'}
+              url='/horacio-gonzalez/biografia'
             />
             <Box2
-              title='Mapas'
+              title='Actividades'
               color='#00566f'
-              image={url + 'mapas.jpg'}
-              url='/mirar/mapas'
+              image={url + 'shortcut6.jpg'}
+              url='/actividades'
             />
           </div>
           <Box1
-            title='Catálogo Horacio González '
+            title='Amigxs '
             color='#2581c4'
-            image={url + 'catalogo.jpg'}
-            url='/catalogos'
+            image={url + 'shortcut7.jpg'}
+            url='/amigxs'
           />
           <Box1
-            title='Bitácora'
+            title='Catálogo Biblioteca'
             color='#a1daf8'
-            image={url + 'bitacora.jpg'}
-            url='/'
+            image={url + 'shortcut8.jpg'}
+            url='/archivos/catalogo-videoteca'
           />
         </div>
       </article>
@@ -202,55 +202,55 @@ const Boxes = ({ random }) => {
             <Box2
               title='Quienes somos'
               color='#bca3ce'
-              image={url + 'quienes-somos.jpg'}
-              url='/quienes-somos/historia'
+              image={url + 'shortcut1.jpg'}
+              url='/quienes-somos'
             />
             <Box2
-              title='Sobre archivos'
+              title='Archivos'
               color='#a78bc0'
-              image={url + 'sobrearchivos.jpg'}
-              url='/leer/sobre-archivos'
+              image={url + 'shortcut2.jpg'}
+              url='/archivos/sobre-archivos'
             />
           </div>
           <Box1
-            title='Biblioteca'
+            title='Montajes'
             color='#8d6a9f'
-            image={url + 'biblioteca.jpg'}
-            url='/quienes-somos/historia'
+            image={url + 'shortcut3.jpg'}
+            url='/montajes'
           />
           <Box1
-            title='Montajes'
+            title='¿Qué dice el gato?'
             color='#bb7cb3'
-            image={url + 'montajes.jpg'}
-            url='/leer/montajes'
+            image={url + 'shortcut4.jpg'}
+            url='/que-dice-el-gato'
           />
         </div>
         <div className='flex flex-col gap-3 lg:gap-6'>
           <Box1
-            title='Catálogo Horacio González '
+            title='Horacio González'
             color='#bb7cb3'
-            image={url + 'catalogo.jpg'}
-            url='/catalogos'
+            image={url + 'shortcut5.jpg'}
+            url='/horacio-gonzalez/biografia'
           />
           <div className='grid grid-cols-2 gap-3 lg:gap-6'>
             <Box2
-              title='Donaciones'
+              title='Actividades'
               color='#956095'
-              image={url + 'motajerd.jpg'}
-              url='/donaciones'
+              image={url + 'shortcut6.jpg'}
+              url='/actividades'
             />
             <Box2
-              title='Mapas'
+              title='Amigxs'
               color='#792477'
-              image={url + 'mapas.jpg'}
-              url='/mirar/mapas'
+              image={url + 'shortcut7.jpg'}
+              url='/amigxs'
             />
           </div>
           <Box1
-            title='Bitácora'
+            title='Catálogo Biblioteca'
             color='#d9a2ca'
-            image={url + 'bitacora.jpg'}
-            url='/'
+            image={url + 'shortcut8.jpg'}
+            url='/archivos/catalogo-videoteca'
           />
         </div>
       </article>

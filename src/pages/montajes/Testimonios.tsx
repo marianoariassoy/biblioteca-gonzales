@@ -2,7 +2,7 @@ import Layout from '../../layout/Layout'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
 import { useDataContext } from '../../context/useDataContext'
-import Item from '../../components/Item2'
+import Item from '../../components/Item4'
 import Filter from '../../components/Filter'
 
 const Index = () => {
