@@ -14,11 +14,11 @@ const QuienesSomos = () => {
       </div>
       <div className='flex flex-col gap-y-2 text-base roboto-regular'>
         <h2 className='font-secondary text-base lg:text-xl font-bold color-primary'>Quiénes somos</h2>
-        <div className='font-medium mb-4'>
+        <div className='font-medium mb-4 '>
           <HTML text={data[1].text} />
         </div>
         <h2 className='font-secondary text-base lg:text-xl font-bold color-primary'>Colaboran</h2>
-        <div className='font-medium'>
+        <div className='font-medium [&>div>span>a]:underline [&>div>a]:underline [&>div>span>span>a]:underline'>
           <HTML text={data[2].text} />
         </div>
       </div>

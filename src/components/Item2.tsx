@@ -3,7 +3,6 @@ import HTML from '../hooks/useHTML'
 import ReactPlayer from 'react-player'
 import Slider from './Slider'
 import useFetch from '../hooks/useFetch'
-import Share from './Share'
 
 const Item = ({ data, color }) => {
   const { data: images, loading } = useFetch(`/imagenes`)
@@ -12,7 +11,7 @@ const Item = ({ data, color }) => {
 
   return (
     <article
-      className='flex flex-col gap-y-8 max-w-4xl m-auto'
+      className='flex flex-col gap-y-8 w-full max-w-4xl m-auto'
       id={`item-${data.id}`}
     >
       <h1
@@ -69,9 +68,6 @@ const Item = ({ data, color }) => {
             Link
           </a>
         )}
-      </div>
-      <div>
-        <Share />
       </div>
     </article>
   )

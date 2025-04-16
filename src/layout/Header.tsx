@@ -1,6 +1,7 @@
 import Logo from '../assets/logo.svg'
 import { Link } from 'wouter'
 import Nav from './Nav'
+import NavMobile from './NavMobile'
 
 const Header = () => {
   return (
@@ -14,8 +15,11 @@ const Header = () => {
           />
         </Link>
       </div>
-      <div className='flex-1'>
+      <div className='flex-1 hidden lg:block'>
         <Nav />
+      </div>
+      <div className='flex-1 lg:hidden'>
+        <NavMobile />
       </div>
     </header>
   )

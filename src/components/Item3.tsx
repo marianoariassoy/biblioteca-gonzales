@@ -1,7 +1,6 @@
 import Image from './Image'
 import HTML from '../hooks/useHTML'
 import ReactPlayer from 'react-player'
-import Share from './Share'
 
 const Item3 = ({ data, color }) => {
   return (
@@ -64,8 +63,6 @@ const Item3 = ({ data, color }) => {
           )}
         </div>
       </div>
-
-      <Share />
     </article>
   )
 }

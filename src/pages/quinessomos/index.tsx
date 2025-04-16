@@ -5,6 +5,7 @@ import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
 import Item from '../../components/Item3'
 import QuienesSomos from '../../components/QuienesSomos'
+import Share from '../../components/Share'
 
 interface Props {
   id: string
@@ -44,6 +45,10 @@ const Index = () => {
         )}
 
         <QuienesSomos />
+
+        <div className='w-full max-w-4xl m-auto mt-12'>
+          <Share />
+        </div>
       </section>
     </Layout>
   )

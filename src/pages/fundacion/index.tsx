@@ -3,6 +3,7 @@ import QuienesSomos from '../../components/QuienesSomos'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
 import HTML from '../../hooks/useHTML'
+import Share from '../../components/Share'
 
 const Index = () => {
   const { data, loading } = useFetch(`/textos`)
@@ -21,6 +22,10 @@ const Index = () => {
             </div>
           </div>
           <QuienesSomos />
+
+          <div className='w-full max-w-4xl m-auto mt-12'>
+            <Share />
+          </div>
         </section>
       </Layout>
     )

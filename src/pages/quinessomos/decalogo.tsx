@@ -2,6 +2,7 @@ import Layout from '../../layout/Layout'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
 import { useDataContext } from '../../context/useDataContext'
+import Share from '../../components/Share'
 
 const Index = () => {
   const { data, loading } = useFetch(`/decalogo`)
@@ -35,6 +36,10 @@ const Index = () => {
             </div>
           </div>
         )}
+
+        <div className='w-full max-w-4xl m-auto mt-12 px-6'>
+          <Share />
+        </div>
       </section>
     </Layout>
   )

@@ -1,11 +1,13 @@
 import Layout from '../../layout/Layout'
 import MontajesItem from './MontajesItem'
+
+import { useDataContext } from '../../context/useDataContext'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
-import { useDataContext } from '../../context/useDataContext'
 
 const Index = () => {
   const { data, loading } = useFetch(`/montajes`)
+  const { data: textos, loading: loadingTextos } = useFetch(`/textos`)
   const { color } = useDataContext()
 
   return (
@@ -19,10 +21,7 @@ const Index = () => {
             >
               Montajes
             </h1>
-            <div className='text-xl'>
-              Montajes es un recorrido por libros y películas de acuerdo a un tópico, autor/a o tema. El material
-              pertenece a nuestros archivos y se encuentra a disposición.
-            </div>
+            <div className='text-xl'>{loadingTextos ? <Loader /> : <span>{textos[3].text}</span>}</div>
           </div>
 
           {loading ? (

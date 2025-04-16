@@ -27,7 +27,7 @@ const Index = () => {
             <div className='w-full max-w-6xl m-auto px-6 flex flex-col gap-y-6'>
               <div className='flex flex-col gap-y-3'>
                 <h1 className='font-secondary text-2xl lg:text-3xl font-bold color-orange-1'>Montajes</h1>
-                <ul className='flex submenu [&>li:last-child::after]:hidden'>
+                <ul className='flex flex-wrap submenu [&>li:last-child::after]:hidden'>
                   {data.map((item, index) => (
                     <li key={index}>
                       <Link

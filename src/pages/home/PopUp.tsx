@@ -1,4 +1,12 @@
+import useFetch from '../../hooks/useFetch'
+import Loader from '../../components/Loader'
+import ReactPlayer from 'react-player'
+
 const PopUp = ({ isVisible, setIsVisible }) => {
+  const { data, loading } = useFetch(`/actividades-video`)
+
+  if (loading) return <Loader />
+
   return (
     <>
       {isVisible && (
@@ -13,12 +21,14 @@ const PopUp = ({ isVisible, setIsVisible }) => {
             >
               X
             </button>
-            <iframe
-              width='100%'
-              height='100%'
-              src='https://www.youtube.com/embed/RAkA4XHb0Dg?si=ZcvXPwrKRvnfHCdw'
-              allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-            ></iframe>
+            <div className='aspect-video'>
+              <ReactPlayer
+                url={data.video}
+                controls
+                width='100%'
+                height='100%'
+              />
+            </div>
           </div>
         </div>
       )}

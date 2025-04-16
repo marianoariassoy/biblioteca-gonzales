@@ -1,6 +1,7 @@
 import Footer from './Footer'
+import GoTop from './GoTop'
 import Header from './Header'
-import MenuMobile from './MenuMobile'
+import MenuMobile from './NavMobile'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -9,6 +10,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <main>{children}</main>
       <Footer />
       <MenuMobile />
+      <GoTop />
     </>
   )
 }

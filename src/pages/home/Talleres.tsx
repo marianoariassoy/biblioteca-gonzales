@@ -47,7 +47,7 @@ const Talleres = ({ random }: { random: number }) => {
           <div className='text-white flex flex-col gap-y-3'>
             <h2 className='text-xl opacity-60'>Actividades</h2>
             <div className='flex flex-col'>
-              {data.slice(0, 6).map((taller, index) => (
+              {data.slice(0, 5).map((taller, index) => (
                 <Link
                   key={index}
                   to={`/actividades/${taller.id}`}
