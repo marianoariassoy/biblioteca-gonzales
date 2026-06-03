@@ -49,7 +49,7 @@ const MenuMobile = () => {
           </nav>
         </div>
       )}
-      <div className='w-full flex justify-end mt-6 z-50'>
+      <div className='w-full flex justify-end mt-6 z-50 lg:hidden'>
         <button
           className='w-4 h-4 lg:w-5 lg:h-5 rounded-full bg-black hover:bg-black/80 hover:scale-110 transition-all animate-pulse cursor-pointer'
           onClick={handleMenu}

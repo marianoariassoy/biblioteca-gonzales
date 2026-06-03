@@ -34,6 +34,8 @@ import Donaciones from './pages/donaciones'
 import Soon from './pages/soon'
 import Error from './pages/error'
 
+import SerAmigos from './pages/seramigos'
+
 function App() {
   return (
     <Switch>
@@ -171,6 +173,10 @@ function App() {
       <Route
         path='/donaciones'
         component={Donaciones}
+      />
+      <Route
+        path='/seramigos'
+        component={SerAmigos}
       />
 
       <Route component={Error} />

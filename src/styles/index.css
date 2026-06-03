@@ -32,6 +32,9 @@ body {
 .color-blue-1 {
   color: #29235c;
 }
+.bg-color-blue-1:hover {
+  background-color: #29235c;
+}
 .color-violet-1 {
   color: #757ab9;
 }
@@ -88,7 +91,7 @@ header {
   background-position-y: -4rem;
 }
 .section-main {
-  padding-top: 2rem;
+  padding-top: 1rem;
   padding-bottom: 4rem;
   @media (max-width: 900px) {
     padding-top: 1.5rem;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Forward } from '../lib/icons'
 
 const GoTop = () => {
   const [visible, setVisible] = useState(false)
@@ -28,10 +29,10 @@ const GoTop = () => {
   return (
     visible && (
       <button
-        className='fixed bottom-8 right-8 cursor-pointer bg-black/20 text-white px-6 py-2 hover:bg-black/40 transition-all'
+        className='fixed bottom-6 right-2 cursor-pointer color-primary  px-6 py-2  transition-all text-2xl -rotate-90 hover:opacity-70 '
         onClick={scrollToTop}
       >
-        Ir Arriba
+        <Forward />
       </button>
     )
   )
