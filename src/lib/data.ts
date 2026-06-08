@@ -8,7 +8,7 @@ export const social = [
   },
   {
     name: 'Youtube',
-    href: '',
+    href: 'https://www.youtube.com/@BiblioGonzalez',
     icon: Youtube
   },
   {

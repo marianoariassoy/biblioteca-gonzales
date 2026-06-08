@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import Box1 from './Box1'
 import Box2 from './Box2'
-const url = 'http://bibliotecagonzalez.com.ar/backend/images-static/'
+const url = 'https://bibliotecagonzalez.com.ar/backend/images-static/'
 
 const Boxes = ({ random }) => {
   useEffect(() => {
@@ -67,7 +67,7 @@ const Boxes = ({ random }) => {
             title='Catálogo Biblioteca'
             color='#248e90'
             image={url + 'shortcut8.jpg'}
-            url='/archivos/catalogo-videoteca'
+            url='/archivos/catalogo-biblioteca'
           />
         </div>
       </article>
@@ -127,7 +127,7 @@ const Boxes = ({ random }) => {
               title='Catálogo Biblioteca'
               color='#7d1206'
               image={url + 'shortcut8.jpg'}
-              url='/archivos/catalogo-videoteca'
+              url='/archivos/catalogo-biblioteca'
             />
           </div>
         </div>
@@ -189,7 +189,7 @@ const Boxes = ({ random }) => {
             title='Catálogo Biblioteca'
             color='#a1daf8'
             image={url + 'shortcut8.jpg'}
-            url='/archivos/catalogo-videoteca'
+            url='/archivos/catalogo-biblioteca'
           />
         </div>
       </article>
@@ -250,7 +250,7 @@ const Boxes = ({ random }) => {
             title='Catálogo Biblioteca'
             color='#d9a2ca'
             image={url + 'shortcut8.jpg'}
-            url='/archivos/catalogo-videoteca'
+            url='/archivos/catalogo-biblioteca'
           />
         </div>
       </article>

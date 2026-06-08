@@ -73,15 +73,14 @@ const Index = () => {
                       Descarga PDF
                     </a>
                   )}
-                  {dataFilteder[0].url && (
-                    <a
-                      href={dataFilteder[0].url}
-                      target='_blank'
-                      className='bg-primary text-white px-6 py-2 hover:bg-black'
-                    >
-                      Link
-                    </a>
-                  )}
+
+                  <a
+                    href='/catalogo/catalogo.html'
+                    target='_blank'
+                    className='bg-primary text-white px-6 py-2 hover:bg-black'
+                  >
+                    Ver catálogo
+                  </a>
                 </div>
               </div>
             </div>
