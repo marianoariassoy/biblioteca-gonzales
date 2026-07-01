@@ -22,6 +22,6 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": false
   },
-  "include": ["src"],
+  "include": ["src", "src/pages/horacio/queDiceHGDetalles.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

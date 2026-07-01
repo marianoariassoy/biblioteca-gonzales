@@ -51,17 +51,18 @@ export const menu = [
     section: [
       { title: 'Biografía', url: '/horacio-gonzalez/biografia' },
       { title: 'Sobre HG', url: '/horacio-gonzalez/sobreHG' },
+      { title: 'Que Dice HG', url: '/horacio-gonzalez/que-dice-hg' },
       { title: 'Descargas', url: '/archivos/catalogo-hg' }
     ]
   },
   {
-    title: 'Actividades',
-    url: '/actividades',
+    title: 'Mosaicos',
+    url: '/mosaicos',
     section: []
   },
   {
-    title: 'Amigxs',
-    url: '/amigxs',
+    title: 'Actividades',
+    url: '/actividades',
     section: []
   }
 ]

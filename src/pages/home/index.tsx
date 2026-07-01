@@ -18,7 +18,7 @@ const Index = () => {
     <Layout>
       <section className='section-main fade-in'>
         <div className='w-screen max-w-6xl m-auto px-6 flex flex-col gap-y-3 lg:gap-y-6 relative'>
-          <Social />
+          <Social random={random} />
           <div className='flex justify-end'>
             <Link to='/seramigos'>
               <img

@@ -1,8 +1,8 @@
-const useHTML = ({ text }) => {
+const useHTML = ({ text = '' }) => {
   const formattedText = text
     .replace(/<div>/g, '<div class="mb-3">')
     .replace(/<h3>/g, '<h3 class="mb-3">')
-    .replace(/<a>/g, '<a class="undeline">')
+    .replace(/<a>/g, '<a class="underline">')
 
   return (
     <div

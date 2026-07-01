@@ -1,12 +1,11 @@
 import Layout from '../../layout/Layout'
-import Item from './TextitosItem'
-
+import MontajesItem from './item'
 import { useDataContext } from '../../context/useDataContext'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
 
 const Index = () => {
-  const { data, loading } = useFetch(`/textitos`)
+  const { data, loading } = useFetch(`/mosaicos`)
   const { color } = useDataContext()
 
   return (
@@ -18,7 +17,7 @@ const Index = () => {
               className='font-secondary text-2xl lg:text-3xl font-bold mb-4'
               style={{ color: color }}
             >
-              Textitos
+              Mosaicos
             </h1>
           </div>
 
@@ -27,7 +26,7 @@ const Index = () => {
           ) : (
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
               {data.map((item, index) => (
-                <Item
+                <MontajesItem
                   key={index}
                   item={item}
                 />

@@ -19,6 +19,7 @@
     "react-share": "^5.3.0",
     "react-slideshow-image": "^4.4.0",
     "react-spinners": "^0.13.8",
+    "split-type": "^0.3.4",
     "wouter": "^3.10.0"
   },
   "devDependencies": {

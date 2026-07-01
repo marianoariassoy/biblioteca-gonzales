@@ -3,7 +3,7 @@ const Filter = ({ data }) => {
 
   return (
     <div className='w-full max-w-4xl m-auto'>
-      <ul className='flex submenu [&>li:last-child::after]:hidden'>
+      <ul className='flex flex-wrap submenu [&>li:last-child::after]:hidden'>
         {data.map((item, index) => (
           <li key={index}>
             <a

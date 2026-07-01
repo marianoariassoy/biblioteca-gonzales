@@ -1,840 +1,743 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Archivo y Catálogo - Biblioteca González</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@400;700;800&family=Roboto:wght@300;400;500;700;900&family=Sansita:ital,wght@0,400;0,700;0,800;1,400&display=swap" rel="stylesheet">
-  
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  
-  <style>
-    /* === PALETA DE COLORES Y FUENTES INSTITUCIONALES === */
-    :root {
-      --color-violeta: #582C83; 
-      --color-azul-noche: #1B183A; 
-      --color-fondo: #FDFDFB;
-      --font-roboto: 'Roboto', sans-serif;
-      --font-sansita: 'Sansita', sans-serif;
-      --font-biorhyme: 'BioRhyme', serif;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Archivo y Catálogo - Biblioteca González</title>
 
-    body { 
-      background-color: var(--color-fondo); 
-      font-family: var(--font-roboto); 
-      color: #333; 
-      margin: 0;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      padding-bottom: 100px; 
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@400;700;800&family=Roboto:wght@300;400;500;700;900&family=Sansita:ital,wght@0,400;0,700;0,800;1,400&display=swap" rel="stylesheet" />
 
-    body::before {
-      content: "";
-      position: fixed; 
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-image: url('https://drive.google.com/thumbnail?id=1AvOmQDv6apnoGNM3WU5XaOtNREnQw6zP&sz=s2000');
-      background-repeat: no-repeat; 
-      background-position: center center; 
-      background-size: cover; 
-      opacity: 0.03; 
-      z-index: -1; 
-    }
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
 
-    .contenido-principal { flex: 1; }
+    <style>
+      /* === PALETA DE COLORES Y FUENTES INSTITUCIONALES === */
+      :root {
+        --color-violeta: #792477;
+        --color-azul-noche: #1d1d1b;
+        --color-fondo: #f4f2f2;
+        --font-roboto: 'Roboto', sans-serif;
+        --font-sansita: 'Sansita', sans-serif;
+        --font-biorhyme: 'BioRhyme', serif;
+      }
 
-    /* === CABECERA Y TÍTULO === */
-    .site-header {
-      background-color: #FFFFFF;
-      padding: 25px 0;
-      border-bottom: 2px solid #EAEAEA;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-    }
-    .header-container {
-      display: flex;
-      align-items: center; 
-      justify-content: flex-start;
-      gap: 30px; 
-    }
-    .logo-institucional {
-      height: 75px; 
-      width: auto;
-    }
-    .titulo-catalogo { 
-      font-family: var(--font-biorhyme); 
-      font-weight: 800; 
-      color: var(--color-violeta); 
-      font-size: 2rem;
-      letter-spacing: -0.5px;
-      margin: 0 0 4px 0;
-      border-left: 3px solid var(--color-violeta); 
-      padding-left: 20px;
-      line-height: 1.1;
-    }
-    .subtitulo-catalogo {
-      font-family: var(--font-sansita); 
-      margin: 0 0 0 23px; 
-      font-size: 1.1rem;
-      color: #666;
-      font-style: italic;
-      font-weight: 400;
-    }
-    .conteo-catalogo {
-      margin: 2px 0 0 23px; 
-      font-size: 0.85rem;
-      color: #888;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-    }
-    
-    /* === BUSCADOR Y PANELES === */
-    .buscador-container {
-      background-color: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(5px);
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-      margin-bottom: 30px;
-      margin-top: 30px; 
-      border: 1px solid #EAEAEA;
-    }
-    
-    /* Buscador con ícono */
-    .input-group-text { background-color: #FAFAFA; border-color: #EAEAEA; }
-    .input-buscador { font-family: var(--font-roboto); font-size: 1.15rem; padding: 15px 20px 15px 0; border-left: none; border-color: #EAEAEA; background-color: #FAFAFA; }
-    .input-buscador:focus { box-shadow: none; border-color: #EAEAEA; background-color: #FFFFFF;}
-    .input-group:focus-within .input-group-text, .input-group:focus-within .input-buscador { border-color: var(--color-violeta); background-color: #FFFFFF; }
+      body {
+        background-color: var(--color-fondo); font-family: var(--font-roboto); color: var(--color-azul-noche);
+        margin: 0; position: relative; display: flex; flex-direction: column; min-height: 100vh; padding-bottom: 100px;
+      }
 
-    .form-label { 
-      font-family: var(--font-biorhyme); 
-      font-weight: 700; 
-      color: #555; 
-      font-size: 0.95rem; 
-      text-transform: uppercase; 
-      letter-spacing: 1px; 
-      margin-bottom: 8px;
-    }
+      body::before {
+        content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background-image: url('https://drive.google.com/thumbnail?id=1AvOmQDv6apnoGNM3WU5XaOtNREnQw6zP&sz=s2000');
+        background-repeat: no-repeat; background-position: center center; background-size: cover;
+        opacity: 0.03; z-index: -1;
+      }
 
-    /* --- ESTILOS PARA SELECT2 --- */
-    .select2-container { font-family: var(--font-roboto); } 
-    .select2-container--default .select2-selection--single {
-      border: 1px solid #DDD;
-      border-radius: 6px;
-      height: 42px; 
-      padding: 6px 10px;
-      font-size: 0.95rem;
-    }
-    .select2-container--default .select2-selection--single .select2-selection__arrow { height: 40px; }
-    .select2-container--default.select2-container--focus .select2-selection--single { border-color: var(--color-violeta); box-shadow: 0 0 0 0.25rem rgba(88, 44, 131, 0.1); }
-    .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable { background-color: var(--color-violeta) !important; color: white !important; }
-    .select2-container--default .select2-results__option--selected { background-color: #F0F0F0; }
+      .contenido-principal { flex: 1; }
 
-    /* === BOTONES === */
-    .btn-acciones {
-      font-family: var(--font-sansita); 
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-size: 1rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .btn-dark { background-color: var(--color-violeta); border-color: var(--color-violeta); color: white; }
-    .btn-dark:hover { background-color: var(--color-azul-noche); border-color: var(--color-azul-noche); }
-    .btn-outline-dark { color: var(--color-violeta); border-color: var(--color-violeta); }
-    .btn-outline-dark:hover { background-color: var(--color-violeta); border-color: var(--color-violeta); color: white; }
+      /* === CABECERA Y TÍTULO === */
+      .site-header { padding: 25px 0; }
+      .header-container { display: flex; align-items: center; justify-content: flex-start; gap: 30px; }
+      .logo-institucional { height: 75px; width: auto; }
+      .titulo-catalogo { font-family: var(--font-biorhyme); font-weight: 800; color: var(--color-violeta); font-size: 1.5rem; letter-spacing: -0.5px; margin: 0 0 2px 0; border-left: 1px solid var(--color-violeta); padding-left: 20px; line-height: 1.1; }
+      .subtitulo-catalogo { font-family: var(--font-sansita); margin: 0 0 0 23px; font-size: 1.1rem; color: #666; font-weight: 400; }
+      .conteo-catalogo { margin: 2px 0 0 23px; font-size: 0.85rem; color: #888; font-weight: 500; letter-spacing: 0.5px; }
 
-    /* === DISEÑO DE LA TABLA === */
-    .table-container { 
-      background: rgba(255, 255, 255, 0.95); 
-      padding: 25px; 
-      border-radius: 12px; 
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04); 
-      border: 1px solid #EAEAEA;
-      margin-bottom: 50px;
-    }
-    .table > thead > tr > th {
-      font-family: var(--font-sansita); 
-      border-bottom: 2px solid var(--color-violeta); 
-      color: var(--color-violeta);
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      padding-bottom: 15px;
-    }
-    .table > tbody > tr > td { vertical-align: middle; border-bottom: 1px solid #F0F0F0; padding: 15px 10px; }
-    .table-hover > tbody > tr:hover > * { background-color: #F8F9FA; cursor: pointer; }
-    .dataTables_filter { display: none; } 
+      /* === BUSCADOR Y PANELES === */
+      .buscador-container { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 30px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04); margin-bottom: 30px; margin-top: 30px; }
+      .input-group-text { background-color: #fafafa; border-color: #eaeaea; border-radius: 0; }
+      .input-buscador { font-family: var(--font-roboto); padding: 15px 20px 15px 0; height: 46px; border-radius: 0; border-color: #eaeaea; border-left: none; background-color: #fafafa; }
+      .input-buscador:focus { box-shadow: none; border-color: #eaeaea; background-color: #ffffff; }
+      .input-group:focus-within .input-group-text, .input-group:focus-within .input-buscador { border-color: var(--color-violeta); background-color: #ffffff; }
+      .form-label { font-family: var(--font-biorhyme); font-weight: 700; color: #555; font-size: 0.95rem; letter-spacing: 1px; margin-bottom: 8px; }
 
-    /* --- PAGINACIÓN BOOTSTRAP 5 NATIVA --- */
-    div.dataTables_wrapper div.dataTables_paginate ul.pagination { margin-top: 15px; justify-content: flex-end; gap: 4px; font-family: var(--font-roboto); }
-    .page-item.active .page-link { background-color: var(--color-violeta) !important; border-color: var(--color-violeta) !important; color: #FFF !important; }
-    .page-link { color: var(--color-azul-noche); border-radius: 4px !important; margin: 0 2px; border: 1px solid #EAEAEA; padding: 6px 12px;}
-    .page-link:hover { background-color: #F0F0F0; color: var(--color-violeta); }
+      /* --- ESTILOS PARA SELECT2 --- */
+      .select2-container { font-family: var(--font-roboto); }
+      .select2-container--default .select2-selection--single { border: 1px solid #792477; border-radius: 0; height: 46px; padding: 6px 10px; font-size: 0.95rem; }
+      .select2-container--default .select2-selection--single .select2-selection__arrow { height: 40px; }
+      .select2-container--default.select2-container--focus .select2-selection--single { border-color: var(--color-violeta); box-shadow: 0 0 0 0.25rem rgba(88, 44, 131, 0.1); }
+      .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable { background-color: var(--color-violeta) !important; color: white !important; }
+      .select2-container--default .select2-results__option--selected { background-color: #f0f0f0; }
 
-    /* === RESPALDO MÁGICO PARA LA PAGINACIÓN EN MOSAICO === */
-    .dataTables_paginate .paginate_button {
-       color: var(--color-azul-noche) !important;
-       border: 1px solid #EAEAEA !important;
-       border-radius: 4px !important;
-       padding: 6px 12px !important;
-       margin: 0 3px !important;
-       cursor: pointer;
-       text-decoration: none;
-       background-color: #FFF !important;
-       display: inline-block;
-    }
-    .dataTables_paginate .paginate_button:hover { background-color: #F0F0F0 !important; }
-    .dataTables_paginate .paginate_button.current {
-       background-color: var(--color-violeta) !important;
-       border-color: var(--color-violeta) !important;
-       color: #FFF !important;
-    }
+      /* === BOTONES === */
+      .btn-acciones { font-family: var(--font-sansita); font-weight: 700; letter-spacing: 0.5px; padding: 10px 20px; border-radius: 0; font-size: 1rem; display: inline-flex; align-items: center; gap: 6px; }
+      .btn-dark { background-color: var(--color-violeta); border-color: var(--color-violeta); color: white; }
+      .btn-dark:hover { background-color: var(--color-azul-noche); border-color: var(--color-azul-noche); }
+      .btn-outline-dark { color: var(--color-violeta); border-color: var(--color-violeta); }
+      .btn-outline-dark:hover { background-color: var(--color-violeta); border-color: var(--color-violeta); color: white; }
 
-    /* === IMÁGENES Y DATOS === */
-    .portada-miniatura { width: 55px; height: 80px; object-fit: cover; border-radius: 2px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s; }
-    .portada-miniatura:hover { transform: scale(1.1); }
-    .portada-placeholder { width: 55px; height: 80px; background-color: #F5F5F5; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #AAA; border: 1px solid #EEE; text-transform: uppercase; text-align: center; }
-    .libro-titulo { font-family: var(--font-biorhyme); font-size: 1.15rem; font-weight: 700; color: #1A1A1A; margin-bottom: 2px; display: block; }
-    .libro-autor { font-size: 0.95rem; font-weight: 400; color: #666; }
-    .badge-id { font-family: var(--font-roboto); background-color: #F0F0F0; color: #555; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.5px;}
+      /* === DISEÑO DE LA TABLA === */
+      .table-container { background: rgba(255, 255, 255, 0.95); padding: 25px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04); margin-bottom: 50px; }
+      .table > thead > tr > th { font-family: var(--font-sansita); border-bottom: 2px solid var(--color-violeta); color: var(--color-violeta); font-weight: 700; font-size: 0.9rem; letter-spacing: 1px; padding-bottom: 15px; }
+      .table > tbody > tr > td { vertical-align: middle; border-bottom: 1px solid #f0f0f0; padding: 15px 10px; }
+      .table-hover > tbody > tr:hover > * { cursor: pointer; }
+      .dataTables_filter { display: none; }
 
-    /* === VISTA MOSAICO === */
-    .tarjeta-mosaico { border: 1px solid #EAEAEA; border-radius: 8px; height: 100%; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; background: #FFF; overflow: hidden;}
-    .tarjeta-mosaico:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: var(--color-violeta); }
-    .img-mosaico { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid #EAEAEA; background-color: #F8F9FA;}
-    .cuerpo-mosaico { padding: 15px; display: flex; flex-direction: column; height: calc(100% - 220px); }
-    .titulo-mosaico { font-family: var(--font-biorhyme); font-size: 1.1rem; font-weight: 700; color: var(--color-violeta); line-height: 1.2; margin-bottom: 5px; }
-    .autor-mosaico { font-size: 0.9rem; color: #666; margin-bottom: 10px; }
-    .badge-mosaico { font-size: 0.7rem; background-color: #F0F0F0; color: #555; padding: 4px 8px; border-radius: 4px; align-self: flex-start; margin-top: auto; }
+      div.dataTables_wrapper div.dataTables_paginate ul.pagination { margin-top: 15px; justify-content: flex-end; gap: 4px; font-family: var(--font-roboto); }
+      .page-item.active .page-link { background-color: var(--color-violeta) !important; border-color: var(--color-violeta) !important; color: #fff !important; }
+      .page-link { color: var(--color-azul-noche); border-radius: 4px !important; margin: 0 2px; border: 1px solid #eaeaea; padding: 6px 12px; }
+      .page-link:hover { background-color: #f0f0f0; color: var(--color-violeta); }
 
-    /* === PIE DE PÁGINA === */
-    .site-footer {
-      background-color: #FFFFFF; 
-      border-top: 1px solid #EAEAEA; 
-      padding: 12px 0; 
-      position: fixed; bottom: 0; left: 0; width: 100%;
-      z-index: 998;
-      transform: translateY(100%);
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .site-footer.footer-visible { transform: translateY(0); }
-    .footer-container { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 20px; }
-    .footer-logo { height: 35px; }
-    .footer-text { font-family: var(--font-sansita); color: var(--color-violeta); font-size: 1rem; font-weight: 700; margin: 0; }
-    .footer-contacto { color: #666; font-size: 0.85rem; margin: 0; border-left: 1px solid #DDD; padding-left: 20px; }
-    .footer-contacto a { color: var(--color-azul-noche); text-decoration: underline; font-weight: 700; transition: color 0.3s; }
-    .footer-contacto a:hover { color: var(--color-violeta); }
+      .dataTables_paginate .paginate_button { color: var(--color-azul-noche) !important; border: 1px solid #eaeaea !important; border-radius: 4px !important; padding: 6px 12px !important; margin: 0 3px !important; cursor: pointer; text-decoration: none; background-color: #fff !important; display: inline-block; }
+      .dataTables_paginate .paginate_button:hover { background-color: #f0f0f0 !important; }
+      .dataTables_paginate .paginate_button.current { background-color: var(--color-violeta) !important; border-color: var(--color-violeta) !important; color: #fff !important; }
 
-    /* === BOTÓN FLOTANTE "VOLVER ARRIBA" === */
-    #btnSubir {
-      position: fixed; bottom: 80px; right: 30px; display: none; 
-      background-color: var(--color-violeta); color: white; border: none; border-radius: 50%;
-      width: 45px; height: 45px; font-size: 1.2rem; cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1000; transition: background-color 0.3s, transform 0.2s;
-    }
-    #btnSubir:hover { background-color: var(--color-azul-noche); transform: translateY(-3px); }
+      /* === IMÁGENES Y DATOS === */
+      .portada-miniatura { width: 55px; height: 80px; object-fit: cover; border-radius: 2px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); transition: transform 0.2s; }
+      .portada-miniatura:hover { transform: scale(1.1); }
+      .portada-placeholder { width: 55px; height: 80px; background-color: #f5f5f5; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #aaa; border: 1px solid #eee; text-align: center; }
+      .libro-titulo { font-weight: 700; display: block; }
+      .libro-autor { font-size: 0.95rem; font-weight: 400; color: #666; }
+      .badge-id { font-family: var(--font-roboto); background-color: #f0f0f0; color: #555; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.5px; }
 
-    /* === DISEÑO FICHA (MODAL) === */
-    .ficha-portada-principal { width: 100%; max-width: 250px; border-radius: 4px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); margin-bottom: 15px; border: 1px solid #EEE; transition: opacity 0.3s; }
-    .ficha-titulo { font-family: var(--font-biorhyme); font-weight: 800; color: var(--color-violeta); font-size: 1.7rem; line-height: 1.2; margin-bottom: 5px; }
-    .ficha-subtitulo { font-family: var(--font-sansita); font-weight: 400; color: #555; font-size: 1.2rem; margin-bottom: 10px; font-style: italic; }
-    .ficha-autor { font-weight: 500; color: var(--color-azul-noche); font-size: 1.2rem; margin-bottom: 10px; }
-    .ficha-dato-etiqueta { font-family: var(--font-sansita); font-size: 0.85rem; text-transform: uppercase; font-weight: 700; color: #888; letter-spacing: 0.5px; margin-bottom: 2px; }
-    .ficha-dato-valor { font-size: 1rem; color: #333; margin-bottom: 15px; font-weight: 400;}
-    .badge-clave { background-color: #E9ECEF; color: #495057; font-weight: 400; font-size: 0.85rem; padding: 8px 12px; margin-right: 5px; margin-bottom: 5px; border-radius: 4px; display: inline-block;}
-    .badge-boolean { background-color: #F8F9FA; color: #333; border: 1px solid #CCC; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.5px; padding: 5px 10px; margin-right: 5px; margin-bottom: 15px; display: inline-block; }
-    .galeria-miniaturas { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-    .galeria-img { width: 60px; height: 85px; object-fit: cover; border-radius: 3px; border: 1px solid #DDD; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;}
-    .galeria-img:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 4px 8px rgba(0,0,0,0.2);}
-    #contenedorNotas { background-color: #F8F9FA; padding: 15px; border-radius: 6px; border-left: 3px solid #DDD; margin-top: 10px; }
+      /* === VISTA MOSAICO === */
+      .tarjeta-mosaico { border: 1px solid #eaeaea; border-radius: 8px; height: 100%; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; background: #fff; overflow: hidden; }
+      .tarjeta-mosaico:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08); border-color: var(--color-violeta); }
+      .img-mosaico { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid #eaeaea; background-color: #f8f9fa; }
+      .cuerpo-mosaico { padding: 15px; display: flex; flex-direction: column; height: calc(100% - 220px); }
+      .titulo-mosaico { font-family: var(--font-biorhyme); font-size: 1.1rem; font-weight: 700; color: var(--color-violeta); line-height: 1.2; margin-bottom: 5px; }
+      .autor-mosaico { font-size: 0.9rem; color: #666; margin-bottom: 10px; }
+      .badge-mosaico { font-size: 0.7rem; background-color: #f0f0f0; color: #555; padding: 4px 8px; border-radius: 4px; align-self: flex-start; margin-top: auto; }
 
-    /* === RESPONSIVE === */
-    @media (max-width: 768px) {
-      .header-container { flex-direction: column; text-align: center; gap: 15px; }
-      .titulo-catalogo { font-size: 1.6rem; border-left: none; border-bottom: 3px solid var(--color-violeta); padding-left: 0; padding-bottom: 10px; }
-      .buscador-container, .table-container { padding: 20px 15px; }
-      .btn-acciones { width: 100%; margin-bottom: 10px; justify-content: center; }
-      .btn-group { width: 100%; display: flex; }
-      div.dataTables_wrapper div.dataTables_paginate ul.pagination { justify-content: center; flex-wrap: wrap; }
-      .footer-container { flex-direction: column; gap: 5px; text-align: center; }
-      .footer-contacto { border-left: none; padding-left: 0; margin-top: 5px; }
-    }
+      /* === PIE DE PÁGINA === */
+      .site-footer { background-color: #ffffff; border-top: 1px solid #eaeaea; padding: 12px 0; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 998; transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+      .site-footer.footer-visible { transform: translateY(0); }
+      .footer-container { display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 20px; }
+      .footer-logo { height: 35px; }
+      .footer-text { font-family: var(--font-sansita); color: var(--color-violeta); font-size: 1rem; font-weight: 700; margin: 0; }
+      .footer-contacto { color: #666; font-size: 0.85rem; margin: 0; border-left: 1px solid #ddd; padding-left: 20px; }
+      .footer-contacto a { color: var(--color-azul-noche); text-decoration: underline; font-weight: 700; transition: color 0.3s; }
+      .footer-contacto a:hover { color: var(--color-violeta); }
 
-    /* === CSS IMPRESIÓN (PDF SIN CORTES) === */
-    @media print {
-      body::before { display: none !important; }
-      body { background-color: #FFF !important; color: #000 !important; padding-bottom: 0 !important; }
-      #panelBusqueda, #btnSubir, .site-footer, #vistaMosaico, .dataTables_length, .dataTables_info, .dataTables_paginate { display: none !important; }
-      .modal-backdrop { display: none !important; opacity: 0 !important; }
+      #btnSubir { position: fixed; bottom: 80px; right: 30px; display: none; background-color: var(--color-violeta); color: white; border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 1.2rem; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); z-index: 1000; transition: background-color 0.3s, transform 0.2s; }
+      #btnSubir:hover { background-color: var(--color-azul-noche); transform: translateY(-3px); }
+
+      /* === DISEÑO FICHA (MODAL) === */
+      .ficha-portada-principal { width: 100%; max-width: 250px; border-radius: 4px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); margin-bottom: 15px; border: 1px solid #eee; transition: opacity 0.3s; }
+      .ficha-titulo { font-family: var(--font-biorhyme); font-weight: 800; color: var(--color-violeta); font-size: 1.7rem; line-height: 1.2; margin-bottom: 5px; }
+      .ficha-subtitulo { font-family: var(--font-sansita); font-weight: 400; color: #555; font-size: 1.2rem; margin-bottom: 10px; font-style: italic; }
+      .ficha-dato-etiqueta { font-family: var(--font-sansita); font-size: 0.85rem; font-weight: 700; color: #888; letter-spacing: 0.5px; margin-bottom: 4px; }
       
-      /* Imprimir la Tabla (Evita que se corte) */
-      body:not(.modal-open) .modal { display: none !important; }
-      body:not(.modal-open) .site-header { box-shadow: none !important; border-bottom: 2px solid #000 !important; padding: 10px 0 !important; position: static !important; }
-      body:not(.modal-open) .container, 
-      body:not(.modal-open) .table-container { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; box-shadow: none !important; border: none !important; }
-      
-      body:not(.modal-open) .table-responsive { overflow: visible !important; }
-      body:not(.modal-open) #vistaTablaWrapper { display: block !important; }
-      body:not(.modal-open) table { width: 100% !important; border-collapse: collapse !important; table-layout: auto !important; }
-      body:not(.modal-open) table, body:not(.modal-open) th, body:not(.modal-open) td { 
-          border-bottom: 1px solid #CCC !important; 
-          white-space: normal !important; 
-          word-wrap: break-word !important; 
+      /* ESTILO UNIFICADO DE DATOS (Fondo gris como Palabras Clave) */
+      .ficha-dato-valor { 
+        font-size: 0.95rem; color: #495057; background-color: #e9ecef; 
+        padding: 8px 12px; border-radius: 4px; margin-bottom: 15px; 
+        font-weight: 400; display: inline-block; width: 100%; word-wrap: break-word;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
       }
       
-      body:not(.modal-open) th:first-child, body:not(.modal-open) td:first-child { display: none !important; }
-      body:not(.modal-open) .libro-titulo { font-size: 11pt !important; font-weight: bold !important; color: #000 !important; }
-      body:not(.modal-open) .badge-id { border: none !important; background-color: transparent !important; color: #000 !important; font-size: 9pt !important; padding: 0 !important; }
-
-      /* Imprimir la Ficha Modal */
-      body.modal-open .contenido-principal, body.modal-open .site-header { display: none !important; }
-      body.modal-open .modal { position: absolute !important; left: 0 !important; top: 0 !important; margin: 0 !important; padding: 0 !important; display: block !important; overflow: visible !important; background: transparent !important;}
-      body.modal-open .modal-dialog { max-width: 100% !important; width: 100% !important; margin: 0 !important; }
-      body.modal-open .modal-content { border: none !important; box-shadow: none !important; background-color: transparent !important; }
-      body.modal-open .btn-close, body.modal-open #btnImprimirFicha { display: none !important; }
-      body.modal-open .ficha-portada-principal { max-width: 250px; border: 1px solid #CCC; box-shadow: none !important; page-break-inside: avoid;}
-      body.modal-open .galeria-img { box-shadow: none !important; border: 1px solid #CCC; page-break-inside: avoid;}
-      body.modal-open .ficha-titulo { font-size: 24pt !important; color: #000 !important; }
-      body.modal-open .badge-id { border: 1px solid #000 !important; color: #000 !important; background-color: transparent !important; }
+      .badge-clave { background-color: #e9ecef; color: #495057; font-weight: 400; font-size: 0.95rem; padding: 8px 12px; margin-right: 5px; margin-bottom: 5px; border-radius: 4px; display: inline-block; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .badge-boolean { background-color: #f8f9fa; color: #333; border: 1px solid #ccc; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.5px; padding: 5px 10px; margin-right: 5px; margin-bottom: 15px; display: inline-block; }
       
-      @page { margin: 1cm; size: A4 portrait; }
-    }
-  </style>
-</head>
-<body>
+      .galeria-miniaturas { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+      .galeria-img { width: 60px; height: 85px; object-fit: cover; border-radius: 3px; border: 1px solid #ddd; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+      .galeria-img:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
 
-<header class="site-header" id="inicioTop">
-  <div class="container header-container">
-    <img src="https://bibliotecagonzalez.com.ar/assets/logo-DjkPKhRt.svg" alt="Logo Biblioteca González" class="logo-institucional">
-    <div>
-      <h1 class="titulo-catalogo">Catálogo de Consulta Pública</h1>
-      <p class="subtitulo-catalogo">14 mil libros, 5 mil revistas y 5 mil películas, más otros materiales de archivo</p>
-      <p class="conteo-catalogo" id="conteoTotalText"></p>
-    </div>
-  </div>
-</header>
+      @media (max-width: 768px) {
+        .header-container { flex-direction: column; text-align: center; gap: 15px; }
+        .titulo-catalogo { font-size: 1.6rem; border-left: none; border-bottom: 3px solid var(--color-violeta); padding-left: 0; padding-bottom: 10px; }
+        .buscador-container, .table-container { padding: 0; }
+        .btn-acciones { width: 100%; margin-bottom: 10px; justify-content: center; }
+        .btn-group { width: 100%; display: flex; }
+        div.dataTables_wrapper div.dataTables_paginate ul.pagination { justify-content: center; flex-wrap: wrap; }
+        .footer-container { flex-direction: column; gap: 5px; text-align: center; }
+      }
 
-<div class="contenido-principal container">
-  
-  <div class="buscador-container" id="panelBusqueda">
-    <div class="row mb-4 align-items-center">
-      <div class="col-lg-5 mb-3 mb-lg-0">
-        <div class="input-group">
-          <span class="input-group-text"><i class="bi bi-search text-muted"></i></span>
-          <input type="text" id="buscadorGeneral" class="form-control input-buscador" placeholder="Buscar en todo el catálogo...">
-        </div>
-      </div>
-      <div class="col-lg-7 text-lg-end d-flex flex-wrap justify-content-lg-end gap-2">
-        <button class="btn btn-dark btn-acciones" id="btnInicio"><i class="bi bi-house-door"></i> Inicio</button>
-        <button class="btn btn-outline-dark btn-acciones" id="btnBorrarFiltros"><i class="bi bi-eraser"></i> Borrar filtros</button>
-        <button class="btn btn-outline-dark btn-acciones" id="btnDescargar" title="Guardar catálogo como PDF"><i class="bi bi-file-earmark-pdf"></i> PDF</button>
+      /* === CSS IMPRESIÓN (VERTICAL, FLUIDA SIN CORTES) === */
+      @media print {
+        @page { margin: 1.5cm; size: portrait; }
+        body::before { display: none !important; }
+        body { background-color: #fff !important; color: #000 !important; padding-bottom: 0 !important; }
+        #panelBusqueda, #btnSubir, .site-footer, #vistaMosaico, .dataTables_length, .dataTables_info, .dataTables_paginate { display: none !important; }
+        .modal-backdrop { display: none !important; opacity: 0 !important; }
+
+        body:not(.modal-open) .modal { display: none !important; }
+        body:not(.modal-open) .site-header { box-shadow: none !important; border-bottom: 2px solid #000 !important; padding: 10px 0 !important; position: static !important; }
+        body:not(.modal-open) .container, body:not(.modal-open) .table-container { width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; box-shadow: none !important; border: none !important; }
+        body:not(.modal-open) .table-responsive { overflow: visible !important; }
+        body:not(.modal-open) table { width: 100% !important; border-collapse: collapse !important; table-layout: auto !important; }
+        body:not(.modal-open) table, body:not(.modal-open) th, body:not(.modal-open) td { border-bottom: 1px solid #ccc !important; white-space: normal !important; word-wrap: break-word !important; }
+        body:not(.modal-open) th:first-child, body:not(.modal-open) td:first-child { display: none !important; }
+        body:not(.modal-open) .libro-titulo { font-size: 11pt !important; font-weight: bold !important; color: #000 !important; }
+        body:not(.modal-open) .badge-id { border: none !important; background-color: transparent !important; color: #000 !important; font-size: 9pt !important; padding: 0 !important; }
+
+        /* IMPRESIÓN DE FICHA (VERTICAL, DESAPILADA) */
+        body.modal-open .contenido-principal, body.modal-open .site-header { display: none !important; }
+        body.modal-open .modal { position: static !important; margin: 0 !important; padding: 0 !important; display: block !important; overflow: visible !important; background: transparent !important; }
+        body.modal-open .modal-dialog { max-width: 100% !important; width: 100% !important; margin: 0 !important; transform: none !important; }
+        body.modal-open .modal-content, body.modal-open .modal-body { border: none !important; box-shadow: none !important; background-color: transparent !important; overflow: visible !important; padding: 0 !important; height: auto !important; max-height: none !important; }
+        body.modal-open .btn-close, body.modal-open #btnImprimirFicha { display: none !important; }
+
+        /* En impresión la hoja se vuelve de 1 sola columna 100% para que fluyan los datos */
+        body.modal-open .modal-body .row { display: block !important; width: 100% !important; margin: 0 !important; }
+        body.modal-open #colIzquierda, body.modal-open #colDerecha { width: 100% !important; max-width: 100% !important; display: block !important; padding: 0 !important; margin-bottom: 20px !important; }
         
-        <div class="btn-group" role="group">
-          <input type="radio" class="btn-check" name="btnVista" id="btnVistaTabla" autocomplete="off" checked>
-          <label class="btn btn-outline-dark btn-acciones m-0" for="btnVistaTabla" title="Vista de Lista"><i class="bi bi-list-ul"></i></label>
-          <input type="radio" class="btn-check" name="btnVista" id="btnVistaMosaico" autocomplete="off">
-          <label class="btn btn-outline-dark btn-acciones m-0" for="btnVistaMosaico" title="Vista de Portadas"><i class="bi bi-grid-fill"></i></label>
-        </div>
-      </div>
-    </div>
-    
-    <div class="row d-none" id="panelFiltros">
-      <div class="col-md-3 mb-3 mb-md-0">
-        <label class="form-label">Soporte</label>
-        <select id="filtroTipo" class="form-select" style="width: 100%"><option value="">Todos</option></select>
-      </div>
-      <div class="col-md-3 mb-3 mb-md-0">
-        <label class="form-label">Autor/a</label>
-        <select id="filtroAutor" class="form-select" style="width: 100%"><option value="">Todos</option></select>
-      </div>
-      <div class="col-md-3 mb-3 mb-md-0">
-        <label class="form-label">Editorial</label>
-        <select id="filtroEditorial" class="form-select" style="width: 100%"><option value="">Todas</option></select>
-      </div>
-      <div class="col-md-3">
-        <label class="form-label">País</label>
-        <select id="filtroPais" class="form-select" style="width: 100%"><option value="">Todos</option></select>
-      </div>
-    </div>
-  </div>
-
-  <div id="loader" class="text-center my-5 py-5">
-    <div class="spinner-border" style="color: var(--color-violeta); width: 3rem; height: 3rem;" role="status"></div>
-    <h6 class="mt-4" style="color: #666; font-weight: 400; letter-spacing: 1px;">Sincronizando archivo...</h6>
-  </div>
-
-  <div class="table-container d-none" id="contenedorTabla">
-    <div id="vistaMosaico" class="row g-4 d-none mb-3"></div>
-    
-    <div class="table-responsive" id="vistaTablaWrapper">
-      <table id="tablaCatalogo" class="table table-hover w-100">
-        <thead>
-          <tr>
-            <th style="width: 70px;">Portada</th>
-            <th>Obra</th>
-            <th>Editorial</th>
-            <th>Fecha de publicación</th>
-            <th>ID</th>
-          </tr>
-        </thead>
-        <tbody id="cuerpoTabla"></tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="modalFicha" tabindex="-1" aria-labelledby="modalFichaLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header border-bottom-0 pb-0 align-items-center">
+        body.modal-open .mb-3, body.modal-open .mb-4, body.modal-open .ficha-portada-principal, body.modal-open .galeria-img { page-break-inside: avoid !important; }
+        
+        .ficha-dato-valor, .badge-clave { background-color: #e9ecef !important; color: #495057 !important; border: 1px solid #ddd !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header" id="inicioTop">
+      <div class="container header-container">
+        <img src="https://bibliotecagonzalez.com.ar/assets/logo-DjkPKhRt.svg" alt="Logo Biblioteca González" class="logo-institucional" />
         <div>
-          <span class="badge bg-secondary me-2" id="fichaID" style="font-size: 0.9rem; letter-spacing: 1px;"></span>
-          <button type="button" class="btn btn-sm btn-outline-dark" id="btnImprimirFicha" onclick="window.print()" title="Imprimir o guardar Ficha como PDF" style="font-family: var(--font-sansita); font-weight:700;"><i class="bi bi-printer"></i> Imprimir Ficha</button>
+          <h1 class="titulo-catalogo">Catálogo de Consulta Pública</h1>
+          <p class="subtitulo-catalogo">14 mil libros, 5 mil revistas y 5 mil películas, más otros materiales de archivo</p>
+          <p class="conteo-catalogo" id="conteoTotalText"></p>
         </div>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body pt-3 px-4 px-md-5 pb-4">
-        <div class="row">
-          <div class="col-md-5 text-center mb-4 mb-md-0">
-            <div id="fichaContenedorImagen"></div>
-            <div id="fichaGaleria" class="galeria-miniaturas mt-3"></div>
-          </div>
-          <div class="col-md-7">
-            <h2 class="ficha-titulo" id="fichaTitulo"></h2>
-            <div id="fichaBadgesBooleanos" class="mb-2"></div>
-            <div class="ficha-subtitulo" id="fichaSubtitulo"></div>
-            <div class="ficha-autor" id="fichaAutor"></div>
-            <div class="row" id="fichaCamposExtra"></div>
+    </header>
 
-            <div id="contenedorPalabrasClave" style="display:none; margin-top: 15px;">
-              <div class="ficha-dato-etiqueta mb-2">Palabras Clave / Temas</div>
-              <div id="fichaPalabrasClave" class="mb-3"></div>
+    <div class="contenido-principal container">
+      <div class="buscador-container" id="panelBusqueda">
+        <div class="row mb-4 align-items-center">
+          <div class="col-lg-5 mb-3 mb-lg-0">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-search text-muted"></i></span>
+              <input type="text" id="buscadorGeneral" class="form-control input-buscador" placeholder="Buscar en todo el catálogo..." />
             </div>
+          </div>
+          <div class="col-lg-7 text-lg-end d-flex flex-wrap justify-content-lg-end gap-2">
+            <button class="btn btn-dark btn-acciones" id="btnInicio"><i class="bi bi-house-door"></i> Inicio</button>
+            <button class="btn btn-outline-dark btn-acciones" id="btnBorrarFiltros"><i class="bi bi-eraser"></i> Borrar filtros</button>
+            <button class="btn btn-outline-dark btn-acciones" id="btnDescargar" title="Guardar catálogo como PDF"><i class="bi bi-file-earmark-pdf"></i> PDF</button>
 
-            <div id="contenedorNotas" style="display:none;">
-              <div class="ficha-dato-etiqueta">Otros Datos / Notas</div>
-              <div class="ficha-dato-valor text-muted" id="fichaNotas" style="font-size: 0.9rem; margin-bottom: 0;"></div>
+            <div class="btn-group" role="group">
+              <input type="radio" class="btn-check" name="btnVista" id="btnVistaTabla" autocomplete="off" checked />
+              <label class="btn btn-outline-dark btn-acciones m-0" for="btnVistaTabla" title="Vista de Lista"><i class="bi bi-list-ul"></i></label>
+              <input type="radio" class="btn-check" name="btnVista" id="btnVistaMosaico" autocomplete="off" />
+              <label class="btn btn-outline-dark btn-acciones m-0" for="btnVistaMosaico" title="Vista de Portadas"><i class="bi bi-grid-fill"></i></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row d-none" id="panelFiltros">
+          <div class="col-md-3 mb-3 mb-md-0">
+            <label class="form-label">Soporte</label>
+            <select id="filtroTipo" class="form-select" style="width: 100%"><option value="">Todos</option></select>
+          </div>
+          <div class="col-md-3 mb-3 mb-md-0">
+            <label class="form-label">Autor/a</label>
+            <select id="filtroAutor" class="form-select" style="width: 100%"><option value="">Todos</option></select>
+          </div>
+          <div class="col-md-3 mb-3 mb-md-0">
+            <label class="form-label">Editorial</label>
+            <select id="filtroEditorial" class="form-select" style="width: 100%"><option value="">Todas</option></select>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">País</label>
+            <select id="filtroPais" class="form-select" style="width: 100%"><option value="">Todos</option></select>
+          </div>
+        </div>
+      </div>
+
+      <div id="loader" class="text-center my-5 py-5">
+        <div class="spinner-border" style="color: var(--color-violeta); width: 3rem; height: 3rem" role="status"></div>
+        <h6 class="mt-4" style="color: #666; font-weight: 400; letter-spacing: 1px">Sincronizando con catálogo...</h6>
+      </div>
+
+      <div class="table-container d-none" id="contenedorTabla">
+        <div id="vistaMosaico" class="row g-4 d-none mb-3"></div>
+        <div class="table-responsive" id="vistaTablaWrapper">
+          <table id="tablaCatalogo" class="table table-hover w-100">
+            <thead>
+              <tr>
+                <th style="width: 70px">Portada</th>
+                <th>Obra</th>
+                <th>Editorial</th>
+                <th>Fecha de publicación</th>
+                <th>ID</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpoTabla"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalFicha" tabindex="-1" aria-labelledby="modalFichaLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header border-bottom-0 pb-0 align-items-center">
+            <div>
+              <span class="badge bg-secondary me-2" id="fichaID" style="font-size: 0.9rem; letter-spacing: 1px"></span>
+              <button type="button" class="btn btn-sm btn-outline-dark" id="btnImprimirFicha" onclick="window.print()" title="Imprimir o guardar Ficha como PDF" style="font-family: var(--font-sansita); font-weight: 700"><i class="bi bi-printer"></i> Imprimir Ficha</button>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body pt-3 px-4 px-md-5 pb-4">
+            <div class="row">
+              <div class="col-md-5 text-center mb-4 mb-md-0" id="colIzquierda">
+                <div id="fichaContenedorImagen"></div>
+                <div id="fichaGaleria" class="galeria-miniaturas mt-3 mb-4"></div>
+                <div id="extrasIzquierdaFicha" class="text-start mt-4"></div>
+              </div>
+              <div class="col-md-7" id="colDerecha">
+                <h2 class="ficha-titulo" id="fichaTitulo"></h2>
+                <div id="fichaAutor" class="mb-3"></div>
+                <div id="fichaBadgesBooleanos" class="mb-2"></div>
+                <div class="ficha-subtitulo" id="fichaSubtitulo"></div>
+                
+                <div class="row" id="fichaCamposExtra"></div>
+
+                <div id="contenedorPalabrasClave" style="display: none; margin-top: 15px">
+                  <div class="ficha-dato-etiqueta mb-2">Palabras Clave / Temas</div>
+                  <div id="fichaPalabrasClave" class="mb-3"></div>
+                </div>
+                
+                <div id="textosDerechaFicha" class="mt-4 text-start"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<footer class="site-footer">
-  <div class="container footer-container">
-    <img src="https://bibliotecagonzalez.com.ar/assets/logo-DjkPKhRt.svg" alt="Logo Biblioteca González" class="footer-logo">
-    <p class="footer-text">Catálogo de Consulta de la Biblioteca González</p>
-    <p class="footer-contacto">Contacto: <a href="mailto:consultasbibliotecagonzalez@gmail.com">consultasbibliotecagonzalez@gmail.com</a></p>
-  </div>
-</footer>
+    <footer class="site-footer">
+      <div class="container footer-container">
+        <img src="https://bibliotecagonzalez.com.ar/assets/logo-DjkPKhRt.svg" alt="Logo Biblioteca González" class="footer-logo" />
+        <p class="footer-text">Catálogo de Consulta de la Biblioteca González</p>
+        <p class="footer-contacto">Contacto: <a href="mailto:consultasbibliotecagonzalez@gmail.com">consultasbibliotecagonzalez@gmail.com</a></p>
+      </div>
+    </footer>
 
-<button id="btnSubir" title="Subir al inicio"><i class="bi bi-arrow-up"></i></button>
+    <button id="btnSubir" title="Subir al inicio"><i class="bi bi-arrow-up"></i></button>
 
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-<script>
-  const API_URL = "https://script.google.com/macros/s/AKfycbx55bgEXpEGC3bNwC-srfmHKhhdtelDVsFNEEglk1149GNYkui1UKG3uNH28KDnRMcI/exec"; 
-  let tablaDT; 
-  let catalogoGlobal = []; 
+    <script>
+      const API_URL = 'https://script.google.com/macros/s/AKfycbx55bgEXpEGC3bNwC-srfmHKhhdtelDVsFNEEglk1149GNYkui1UKG3uNH28KDnRMcI/exec';
+      let tablaDT; let catalogoGlobal = [];
 
-  document.addEventListener("DOMContentLoaded", function() {
-    
-    fetch(API_URL)
-      .then(respuesta => respuesta.json())
-      .then(datosCrudos => {
-        let datos = [];
-        if (Array.isArray(datosCrudos) && Array.isArray(datosCrudos[0])) {
-           let encabezados = datosCrudos[0];
-           for (let i = 1; i < datosCrudos.length; i++) {
-             let obj = {};
-             encabezados.forEach((key, j) => { obj[key] = datosCrudos[i][j]; });
-             datos.push(obj);
-           }
-        } else {
-           datos = datosCrudos;
+      document.addEventListener('DOMContentLoaded', function () {
+        fetch(API_URL)
+          .then(respuesta => respuesta.json())
+          .then(datosCrudos => {
+            let datos = [];
+            if (Array.isArray(datosCrudos) && Array.isArray(datosCrudos[0])) {
+              let encabezados = datosCrudos[0]
+              for (let i = 1; i < datosCrudos.length; i++) {
+                let obj = {}; encabezados.forEach((key, j) => { obj[key] = datosCrudos[i][j] }); datos.push(obj)
+              }
+            } else { datos = datosCrudos }
+            procesarDatos(datos)
+          })
+          .catch(error => { document.getElementById('loader').innerHTML = "<div class='alert alert-danger mx-auto' style='max-width:500px;'>Error al conectar con la base de datos. Por favor, refrescá la página.</div>" })
+
+        const btnSubir = document.getElementById('btnSubir'); const footer = document.querySelector('.site-footer');
+        window.onscroll = function () {
+          if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) { btnSubir.style.display = 'block'; footer.classList.add('footer-visible') } 
+          else { btnSubir.style.display = 'none'; footer.classList.remove('footer-visible') }
         }
-        procesarDatos(datos);
-      })
-      .catch(error => {
-        console.error("Error cargando datos:", error);
-        document.getElementById('loader').innerHTML = "<div class='alert alert-danger mx-auto' style='max-width:500px;'>Error al conectar con la base de datos. Por favor, refrescá la página.</div>";
+        btnSubir.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }) })
       });
 
-    const btnSubir = document.getElementById("btnSubir");
-    const footer = document.querySelector('.site-footer');
-    
-    window.onscroll = function() {
-      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        btnSubir.style.display = "block";
-        footer.classList.add('footer-visible');
-      } else {
-        btnSubir.style.display = "none";
-        footer.classList.remove('footer-visible');
-      }
-    };
-    btnSubir.addEventListener("click", function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-  });
-
-  function formatearFecha(fechaOriginal) {
-    if (!fechaOriginal) return '';
-    let str = fechaOriginal.trim();
-    let parts = str.split(/[-/]/);
-    if (parts.length >= 2) {
-      let mes, anio;
-      if (str.includes('-')) { anio = parts[0]; mes = parseInt(parts[1], 10); } 
-      else { mes = parseInt(parts[1], 10); anio = parts[2] ? parts[2] : parts[0]; if(anio.length === 2) anio = "20" + anio; }
-      const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-      if (mes >= 1 && mes <= 12 && anio) return `${meses[mes - 1]} de ${anio}`;
-    }
-    return str; 
-  }
-
-  function procesarDatos(datos) {
-    catalogoGlobal = datos; 
-    const cuerpoTabla = document.getElementById('cuerpoTabla');
-    document.getElementById('conteoTotalText').innerText = `${datos.length} textos catalogados hasta la fecha`;
-
-    let autores = new Set(); let editoriales = new Set(); let paises = new Set(); let tipos = new Set();
-
-    datos.forEach((fila, index) => {
-      let autor = fila['Autorx'] ? fila['Autorx'].trim() : '';
-      let editorial = fila['Editorial'] ? fila['Editorial'].trim() : '';
-      let pais = fila['País'] ? fila['País'].trim() : '';
-      
-      let tipoSoporte = fila['Formato Soporte'] ? fila['Formato Soporte'].toString().trim() : 'Libro';
-      if(!tipoSoporte) tipoSoporte = 'Libro';
-      
-      if(autor) autores.add(autor);
-      if(editorial) editoriales.add(editorial);
-      if(pais) paises.add(pais);
-      tipos.add(tipoSoporte);
-
-      let htmlImagen = `<div class="portada-placeholder"><i class="bi bi-image fs-4"></i></div>`;
-      if (fila['ImagenesDirectas'] && fila['ImagenesDirectas'].length > 0) {
-        let partesUrl = fila['ImagenesDirectas'][0].split('id=');
-        if(partesUrl.length > 1) {
-          let idImagen = partesUrl[1].split('&')[0]; 
-          let urlMiniatura = `https://drive.google.com/thumbnail?id=${idImagen}&sz=w200`; 
-          htmlImagen = `<img src="${urlMiniatura}" class="portada-miniatura" alt="Portada de ${fila['Título']}" loading="lazy" referrerpolicy="no-referrer">`;
-        }
-      }
-
-      let datosOcultosBusqueda = Object.values(fila).map(v => v || "").join(" ").toLowerCase();
-
-      const tr = document.createElement('tr');
-      tr.setAttribute('data-tipo', tipoSoporte);
-      tr.setAttribute('data-autor', autor);
-      tr.setAttribute('data-editorial', editorial);
-      tr.setAttribute('data-pais', pais);
-      tr.setAttribute('data-indice', index); 
-
-      tr.innerHTML = `
-        <td>${htmlImagen}</td>
-        <td>
-          <span class="libro-titulo">${fila['Título'] || 'Sin Título'}</span><br>
-          <span class="libro-autor">${autor}</span>
-          <span class="d-none">${datosOcultosBusqueda}</span> 
-        </td>
-        <td>${editorial}</td>
-        <td>${formatearFecha(fila['Fecha'])}</td>
-        <td><span class="badge badge-id">${fila['ID'] || ''}</span></td>
-      `;
-      cuerpoTabla.appendChild(tr);
-    });
-
-    reconstruirSelect('filtroTipo', tipos);
-    reconstruirSelect('filtroAutor', autores);
-    reconstruirSelect('filtroEditorial', editoriales);
-    reconstruirSelect('filtroPais', paises);
-
-    document.getElementById('loader').classList.add('d-none');
-    document.getElementById('panelFiltros').classList.remove('d-none');
-    document.getElementById('contenedorTabla').classList.remove('d-none');
-
-    tablaDT = $('#tablaCatalogo').DataTable({
-      language: { 
-        url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
-        sProcessing: "Procesando...",
-        sLengthMenu: "Mostrar _MENU_ textos",
-        sZeroRecords: "No se encontraron resultados",
-        sEmptyTable: "Ningún dato disponible en esta tabla",
-        sInfo: "Mostrando _START_ a _END_ de _TOTAL_ textos",
-        sInfoEmpty: "Mostrando 0 textos",
-        sInfoFiltered: "(filtrado de _MAX_ textos en total)",
-        sSearch: "Buscar:",
-        oPaginate: { sFirst: "«", sLast: "»", sNext: "Siguiente", sPrevious: "Anterior" }
-      },
-      pageLength: 25,
-      lengthMenu: [10, 25, 50, 100],
-      order: [[4, 'asc']], 
-      dom: "<'row mb-3'<'col-sm-12'l>>" +
-           "<'row'<'col-sm-12'tr>>" +
-           "<'row mt-3 align-items-center'<'col-sm-12 col-md-5 mb-2 mb-md-0'i><'col-sm-12 col-md-7 d-flex justify-content-md-end justify-content-center'p>>"
-    });
-
-    $('#tablaCatalogo tbody').on('click', 'tr', function () {
-      let idx = $(this).attr('data-indice');
-      if (idx !== undefined) armarFicha(catalogoGlobal[idx]);
-    });
-
-    tablaDT.on('draw.dt', function() {
-      sincronizarMosaico();
-    });
-
-    $.fn.dataTable.ext.search.push(
-        function( settings, data, dataIndex ) {
-            var fTipo = $('#filtroTipo').val();
-            var fAutor = $('#filtroAutor').val();
-            var fEditorial = $('#filtroEditorial').val();
-            var fPais = $('#filtroPais').val();
-            
-            var nodoFila = tablaDT.row(dataIndex).node();
-            if(!nodoFila) return true; 
-            
-            var tFila = nodoFila.getAttribute('data-tipo');
-            var aFila = nodoFila.getAttribute('data-autor');
-            var eFila = nodoFila.getAttribute('data-editorial');
-            var pFila = nodoFila.getAttribute('data-pais');
-            
-            return (fTipo === "" || tFila === fTipo) &&
-                   (fAutor === "" || aFila === fAutor) &&
-                   (fEditorial === "" || eFila === fEditorial) &&
-                   (fPais === "" || pFila === fPais);
-        }
-    );
-
-    $('#buscadorGeneral').on('keyup', function() { tablaDT.search(this.value).draw(); });
-    $('#filtroTipo, #filtroAutor, #filtroEditorial, #filtroPais').on('change', function() { tablaDT.draw(); });
-    
-    $('#btnBorrarFiltros').on('click', function() {
-      $('#buscadorGeneral').val('');
-      $('#filtroTipo, #filtroAutor, #filtroEditorial, #filtroPais').val('').trigger('change');
-      tablaDT.search('').draw(); 
-    });
-
-    $('#btnInicio').on('click', function() {
-      $('#btnBorrarFiltros').click(); 
-      window.scrollTo({ top: 0, behavior: 'smooth' }); 
-    });
-
-    $('input[name="btnVista"]').on('change', function() {
-      if($('#btnVistaTabla').is(':checked')) {
-         $('#vistaMosaico').addClass('d-none');
-         $('#tablaCatalogo').show();
-      } else {
-         $('#tablaCatalogo').hide();
-         $('#vistaMosaico').removeClass('d-none');
-         sincronizarMosaico();
-      }
-    });
-
-    $('#btnDescargar').on('click', function() {
-      var longitudActual = tablaDT.page.len();
-      tablaDT.page.len(-1).draw(); 
-      
-      $('#tablaCatalogo').show();
-      $('#vistaMosaico').addClass('d-none');
-
-      setTimeout(function() {
-        window.print();
-        
-        tablaDT.page.len(longitudActual).draw(); 
-        
-        if($('#btnVistaMosaico').is(':checked')) {
-          $('#tablaCatalogo').hide();
-          $('#vistaMosaico').removeClass('d-none');
-          sincronizarMosaico();
-        }
-      }, 500);
-    });
-
-    sincronizarMosaico();
-  }
-
-  function sincronizarMosaico() {
-    const contenedorMosaico = document.getElementById('vistaMosaico');
-    if(!contenedorMosaico) return;
-    
-    let htmlMosaico = '';
-    let cont = 0;
-    
-    tablaDT.rows({search: 'applied', page: 'current'}).every(function() {
-      let nodo = this.node();
-      if(!nodo) return;
-      
-      let idx = nodo.getAttribute('data-indice');
-      let f = catalogoGlobal[idx];
-      
-      let imgHtml = `<div class="portada-placeholder" style="width:100%; height:220px; flex-direction:column;"><i class="bi bi-image fs-1 mb-2"></i>Sin Portada</div>`;
-      if (f['ImagenesDirectas'] && f['ImagenesDirectas'].length > 0) {
-        let partesUrl = f['ImagenesDirectas'][0].split('id=');
-        if(partesUrl.length > 1) {
-          let idImagen = partesUrl[1].split('&')[0]; 
-          imgHtml = `<img src="https://drive.google.com/thumbnail?id=${idImagen}&sz=w300" class="img-mosaico" loading="lazy" referrerpolicy="no-referrer">`;
-        }
-      }
-      
-      let soporte = f['Formato Soporte'] ? f['Formato Soporte'].toString().trim() : 'Libro';
-      
-      htmlMosaico += `
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="tarjeta-mosaico" onclick="armarFichaMosaico(${idx})">
-            ${imgHtml}
-            <div class="cuerpo-mosaico">
-              <div class="titulo-mosaico">${f['Título'] || 'S/T'}</div>
-              <div class="autor-mosaico">${f['Autorx'] || ''}</div>
-              <div class="badge-mosaico">${soporte} | ${f['ID'] || 'S/D'}</div>
-            </div>
-          </div>
-        </div>
-      `;
-      cont++;
-    });
-    
-    if(cont === 0){
-      contenedorMosaico.innerHTML = `<div class="col-12 text-center text-muted p-5"><i class="bi bi-search fs-1 d-block mb-3"></i>No hay resultados en esta página.</div>`;
-    } else {
-      contenedorMosaico.innerHTML = htmlMosaico;
-    }
-  }
-
-  function armarFichaMosaico(idx) {
-    if(catalogoGlobal[idx]) armarFicha(catalogoGlobal[idx]);
-  }
-
-  function reconstruirSelect(idSelect, setDatos) {
-    const select = $('#' + idSelect);
-    const valorSeleccionado = select.val(); 
-    if (select.hasClass("select2-hidden-accessible")) select.select2('destroy');
-    select.empty(); 
-    select.append('<option value="">Todos</option>'); 
-    
-    let arregloOrdenado = Array.from(setDatos).filter(Boolean).sort(); 
-    arregloOrdenado.forEach(item => {
-      let isSelected = (item === valorSeleccionado) ? 'selected' : '';
-      select.append(`<option value="${item}" ${isSelected}>${item}</option>`);
-    });
-
-    select.select2({ width: '100%', language: { noResults: function() { return "No se encontraron resultados"; } } });
-  }
-
-  function cambiarImagenPrincipal(urlImagenRender, urlImagenOriginal) {
-    const imgPrincipal = document.getElementById('imgPortadaPrincipal');
-    const linkPrincipal = document.getElementById('linkImagenPrincipal');
-    imgPrincipal.style.opacity = 0;
-    setTimeout(() => {
-      imgPrincipal.src = urlImagenRender;
-      linkPrincipal.href = urlImagenOriginal;
-      imgPrincipal.style.opacity = 1;
-    }, 150);
-  }
-
-  function armarFicha(libro) {
-    document.getElementById('fichaID').innerText = libro['ID'] || 'Sin ID';
-    document.getElementById('fichaTitulo').innerText = libro['Título'] || 'Sin Título';
-    document.getElementById('fichaAutor').innerText = libro['Autorx'] || 'Autor desconocido';
-    
-    const divSubtitulo = document.getElementById('fichaSubtitulo');
-    if(libro['Subtitulo'] && libro['Subtitulo'].trim() !== '') {
-      divSubtitulo.innerText = libro['Subtitulo']; divSubtitulo.style.display = 'block';
-    } else { divSubtitulo.style.display = 'none'; }
-
-    const divBadges = document.getElementById('fichaBadgesBooleanos');
-    divBadges.innerHTML = '';
-    let soporte = libro['Formato Soporte'] ? libro['Formato Soporte'].toString().trim() : 'Libro';
-    divBadges.innerHTML += `<span class="badge badge-boolean">${soporte}</span>`;
-
-    const extraGrid = document.getElementById('fichaCamposExtra');
-    extraGrid.innerHTML = '';
-    
-    let lugar = libro['Localidad'] ? libro['Localidad'] : '';
-    let pais = libro['País'] ? libro['País'] : '';
-    let lugarCompleto = (lugar && pais) ? `${lugar}, ${pais}` : (lugar || pais || '');
-
-    const camposPosibles = [
-      { label: 'Editorial', val: libro['Editorial'] },
-      { label: 'Lugar / País', val: lugarCompleto },
-      { label: 'Fecha de Edición', val: formatearFecha(libro['Fecha']) },
-      { label: 'Edición', val: libro['Edición'] },
-      { label: 'ISBN / ISSN', val: libro['ISBN'] || libro['ISSN'] }
-    ];
-
-    camposPosibles.forEach(c => {
-      if(c.val) {
-        let v = c.val.toString().trim();
-        let vLower = v.toLowerCase();
-        if(v !== '' && vLower !== 's/d' && v !== '-' && vLower !== 'no') {
-          extraGrid.innerHTML += `<div class="col-sm-6 mb-3"><div class="ficha-dato-etiqueta">${c.label}</div><div class="ficha-dato-valor" style="margin-bottom:0;">${c.val}</div></div>`;
-        }
-      }
-    });
-
-    const contPalabras = document.getElementById('contenedorPalabrasClave');
-    const divPalabras = document.getElementById('fichaPalabrasClave');
-    divPalabras.innerHTML = ''; 
-    if (libro['Palabras claves'] && libro['Palabras claves'].trim() !== '') {
-      let span = document.createElement('span');
-      span.className = 'badge-clave';
-      span.innerText = libro['Palabras claves'].trim();
-      divPalabras.appendChild(span);
-      contPalabras.style.display = 'block';
-    } else { contPalabras.style.display = 'none'; }
-
-    const contNotas = document.getElementById('contenedorNotas');
-    let notasText = libro['Otros datos'];
-    if (notasText && notasText.trim() !== '') {
-      document.getElementById('fichaNotas').innerText = notasText;
-      contNotas.style.display = 'block';
-    } else { contNotas.style.display = 'none'; }
-
-    const contImagen = document.getElementById('fichaContenedorImagen');
-    const galeria = document.getElementById('fichaGaleria');
-    contImagen.innerHTML = ''; galeria.innerHTML = '';
-
-    if (libro['ImagenesDirectas'] && libro['ImagenesDirectas'].length > 0) {
-      let idPrincipal = libro['ImagenesDirectas'][0].split('id=')[1]?.split('&')[0];
-      if (idPrincipal) {
-        let urlGrandePrincipal = `https://drive.google.com/thumbnail?id=${idPrincipal}&sz=w600`;
-        let urlOriginalPrincipal = libro['ImagenesDirectas'][0];
-        contImagen.innerHTML = `<a href="${urlOriginalPrincipal}" target="_blank" id="linkImagenPrincipal" title="Ver imagen en alta calidad"><img src="${urlGrandePrincipal}" id="imgPortadaPrincipal" class="ficha-portada-principal" alt="Portada" referrerpolicy="no-referrer"></a>`;
-      }
-      if (libro['ImagenesDirectas'].length > 1) {
-        for (let i = 0; i < libro['ImagenesDirectas'].length; i++) {
-          let idMiniatura = libro['ImagenesDirectas'][i].split('id=')[1]?.split('&')[0];
-          if (idMiniatura) {
-            let urlMiniatura = `https://drive.google.com/thumbnail?id=${idMiniatura}&sz=w150`;
-            let urlParaGrande = `https://drive.google.com/thumbnail?id=${idMiniatura}&sz=w600`;
-            let urlOriginal = libro['ImagenesDirectas'][i];
-            galeria.innerHTML += `<img src="${urlMiniatura}" class="galeria-img" alt="Anexo ${i+1}" referrerpolicy="no-referrer" onclick="cambiarImagenPrincipal('${urlParaGrande}', '${urlOriginal}')" title="Clic para ver">`;
+      // MAGIA DE REORDENAMIENTO PARA IMPRESIÓN (Manda los anexos al final sin alterar la pantalla web)
+      window.addEventListener('beforeprint', function() {
+          if(document.body.classList.contains('modal-open')) {
+              const extras = document.getElementById('extrasIzquierdaFicha');
+              const rowPrincipal = document.querySelector('.modal-body > .row');
+              if(extras && rowPrincipal) rowPrincipal.appendChild(extras);
           }
-        }
-      }
-    } else {
-      contImagen.innerHTML = `<div class="portada-placeholder" style="width:100%; max-width:250px; height:350px; font-size:1.2rem; flex-direction:column; margin:0 auto;"><i class="bi bi-image fs-1 mb-2"></i>Sin imagen</div>`;
-    }
+      });
+      window.addEventListener('afterprint', function() {
+          if(document.body.classList.contains('modal-open')) {
+              const extras = document.getElementById('extrasIzquierdaFicha');
+              const colIzq = document.getElementById('colIzquierda');
+              if(extras && colIzq) colIzq.appendChild(extras);
+          }
+      });
 
-    let modalFicha = new bootstrap.Modal(document.getElementById('modalFicha'));
-    modalFicha.show();
-  }
-</script>
-</body>
+      function formatearFecha(fechaOriginal) {
+        if (!fechaOriginal) return ''
+        let str = fechaOriginal.trim(); let parts = str.split(/[-/]/)
+        if (parts.length >= 2) {
+          let mes, anio
+          if (str.includes('-')) { anio = parts[0]; mes = parseInt(parts[1], 10) } 
+          else { mes = parseInt(parts[1], 10); anio = parts[2] ? parts[2] : parts[0]; if (anio.length === 2) anio = '20' + anio }
+          const meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
+          if (mes >= 1 && mes <= 12 && anio) return `${meses[mes - 1]} de ${anio}`
+        }
+        return str
+      }
+
+      function procesarDatos(datos) {
+        catalogoGlobal = datos;
+        const cuerpoTabla = document.getElementById('cuerpoTabla');
+        document.getElementById('conteoTotalText').innerText = `${datos.length} textos catalogados hasta la fecha`;
+
+        let autores = new Set(); let editoriales = new Set(); let paises = new Set(); let tipos = new Set();
+
+        datos.forEach((fila, index) => {
+          let strSoporte = fila['Formato Soporte'] ? fila['Formato Soporte'].toString().trim().toLowerCase() : 'libro';
+          
+          let isLibro = strSoporte === 'libro' || strSoporte === 'libros';
+          let isRevista = strSoporte === 'revista' || strSoporte === 'revistas';
+          let isOtros = !isLibro && !isRevista;
+
+          let tipoSoporteEstandar = isLibro ? 'Libro' : (isRevista ? 'Revista' : 'Otros');
+
+          let tituloTabla = 'Sin Título';
+          let autorTabla = '';
+
+          if (isLibro) { 
+             tituloTabla = fila['Título'] || 'Sin Título'; 
+             autorTabla = fila['Autorx'] ? fila['Autorx'].trim() : '';
+          } else if (isRevista) {
+             tituloTabla = fila['Nombre de Revista'] || 'Sin Título';
+             autorTabla = fila['Responsable revista'] ? fila['Responsable revista'].trim() : '';
+          } else if (isOtros) { 
+             tituloTabla = fila['Título o referencia'] || 'Sin Título'; 
+             autorTabla = fila['Autor u Organizador'] ? fila['Autor u Organizador'].trim() : '';
+          }
+
+          let editorialTabla = isRevista ? (fila['Editorial Revista'] || '') : (fila['Editorial'] || '');
+          let fechaTabla = isRevista ? (fila['Datos revista (Fecha publicación y numero revista)'] || '') : (fila['Fecha de Primera Edición'] || '');
+          let paisTabla = fila['País'] ? fila['País'].trim() : '';
+
+          if (autorTabla) autores.add(autorTabla);
+          if (editorialTabla) editoriales.add(editorialTabla.trim());
+          if (paisTabla) paises.add(paisTabla);
+          tipos.add(tipoSoporteEstandar);
+
+          let htmlImagen = `<div class="portada-placeholder"><i class="bi bi-image fs-4"></i></div>`;
+          if (fila['ImagenesDirectas'] && fila['ImagenesDirectas'].length > 0) {
+            let partesUrl = fila['ImagenesDirectas'][0].split('id=');
+            if (partesUrl.length > 1) {
+              let idImagen = partesUrl[1].split('&')[0];
+              htmlImagen = `<img src="https://drive.google.com/thumbnail?id=${idImagen}&sz=w200" class="portada-miniatura" alt="Portada" loading="lazy" referrerpolicy="no-referrer">`;
+            }
+          }
+
+          let datosOcultosBusqueda = Object.values(fila).map(v => v || '').join(' ').toLowerCase();
+
+          const tr = document.createElement('tr');
+          tr.setAttribute('data-tipo', tipoSoporteEstandar);
+          tr.setAttribute('data-autor', autorTabla);
+          tr.setAttribute('data-editorial', editorialTabla.trim());
+          tr.setAttribute('data-pais', paisTabla);
+          tr.setAttribute('data-indice', index);
+
+          tr.innerHTML = `
+            <td>${htmlImagen}</td>
+            <td>
+              <span class="libro-titulo">${tituloTabla}</span><br>
+              <span class="libro-autor">${autorTabla}</span>
+              <span class="d-none">${datosOcultosBusqueda}</span> 
+            </td>
+            <td>${editorialTabla}</td>
+            <td>${formatearFecha(fechaTabla)}</td>
+            <td><span class="badge badge-id">${fila['ID'] || ''}</span></td>
+          `;
+          cuerpoTabla.appendChild(tr);
+        });
+
+        reconstruirSelect('filtroTipo', tipos); reconstruirSelect('filtroAutor', autores); reconstruirSelect('filtroEditorial', editoriales); reconstruirSelect('filtroPais', paises);
+        document.getElementById('loader').classList.add('d-none'); document.getElementById('panelFiltros').classList.remove('d-none'); document.getElementById('contenedorTabla').classList.remove('d-none');
+
+        tablaDT = $('#tablaCatalogo').DataTable({
+          language: { url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json', sProcessing: 'Procesando...', sLengthMenu: 'Mostrar _MENU_ textos', sZeroRecords: 'No se encontraron resultados', sEmptyTable: 'Ningún dato disponible', sInfo: 'Mostrando _START_ a _END_ de _TOTAL_ textos', sInfoEmpty: 'Mostrando 0 textos', sInfoFiltered: '(filtrado de _MAX_ totales)', sSearch: 'Buscar:', oPaginate: { sFirst: '«', sLast: '»', sNext: 'Siguiente', sPrevious: 'Anterior' } },
+          pageLength: 25, lengthMenu: [10, 25, 50, 100], order: [[4, 'asc']],
+          dom: "<'row mb-3'<'col-sm-12'l>>" + "<'row'<'col-sm-12'tr>>" + "<'row mt-3 align-items-center'<'col-sm-12 col-md-5 mb-2 mb-md-0'i><'col-sm-12 col-md-7 d-flex justify-content-md-end justify-content-center'p>>"
+        });
+
+        $('#tablaCatalogo tbody').on('click', 'tr', function () {
+          let idx = $(this).attr('data-indice'); if (idx !== undefined) armarFicha(catalogoGlobal[idx])
+        });
+
+        tablaDT.on('draw.dt', function () { sincronizarMosaico() });
+
+        $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+          var fTipo = $('#filtroTipo').val(); var fAutor = $('#filtroAutor').val(); var fEditorial = $('#filtroEditorial').val(); var fPais = $('#filtroPais').val();
+          var nodoFila = tablaDT.row(dataIndex).node(); if (!nodoFila) return true;
+          var tFila = nodoFila.getAttribute('data-tipo'); var aFila = nodoFila.getAttribute('data-autor'); var eFila = nodoFila.getAttribute('data-editorial'); var pFila = nodoFila.getAttribute('data-pais');
+          return ((fTipo === '' || tFila === fTipo) && (fAutor === '' || aFila === fAutor) && (fEditorial === '' || eFila === fEditorial) && (fPais === '' || pFila === fPais));
+        });
+
+        $('#buscadorGeneral').on('keyup', function () { tablaDT.search(this.value).draw() });
+        $('#filtroTipo, #filtroAutor, #filtroEditorial, #filtroPais').on('change', function () { tablaDT.draw() });
+        $('#btnBorrarFiltros').on('click', function () { $('#buscadorGeneral').val(''); $('#filtroTipo, #filtroAutor, #filtroEditorial, #filtroPais').val('').trigger('change'); tablaDT.search('').draw() });
+        $('#btnInicio').on('click', function () { $('#btnBorrarFiltros').click(); window.scrollTo({ top: 0, behavior: 'smooth' }) });
+
+        $('input[name="btnVista"]').on('change', function () {
+          if ($('#btnVistaTabla').is(':checked')) { $('#vistaMosaico').addClass('d-none'); $('#tablaCatalogo').show() } 
+          else { $('#tablaCatalogo').hide(); $('#vistaMosaico').removeClass('d-none'); sincronizarMosaico() }
+        });
+
+        $('#btnDescargar').on('click', function () {
+          var longitudActual = tablaDT.page.len(); tablaDT.page.len(-1).draw();
+          $('#tablaCatalogo').show(); $('#vistaMosaico').addClass('d-none');
+          setTimeout(function () {
+            window.print(); tablaDT.page.len(longitudActual).draw();
+            if ($('#btnVistaMosaico').is(':checked')) { $('#tablaCatalogo').hide(); $('#vistaMosaico').removeClass('d-none'); sincronizarMosaico() }
+          }, 500);
+        });
+        sincronizarMosaico();
+      }
+
+      function sincronizarMosaico() {
+        const contenedorMosaico = document.getElementById('vistaMosaico'); if (!contenedorMosaico) return;
+        let htmlMosaico = ''; let cont = 0;
+
+        tablaDT.rows({ search: 'applied', page: 'current' }).every(function () {
+          let nodo = this.node(); if (!nodo) return;
+          let idx = nodo.getAttribute('data-indice'); let f = catalogoGlobal[idx];
+
+          let imgHtml = `<div class="portada-placeholder" style="width:100%; height:220px; flex-direction:column;"><i class="bi bi-image fs-1 mb-2"></i>Sin Portada</div>`;
+          if (f['ImagenesDirectas'] && f['ImagenesDirectas'].length > 0) {
+            let partesUrl = f['ImagenesDirectas'][0].split('id=');
+            if (partesUrl.length > 1) {
+              let idImagen = partesUrl[1].split('&')[0];
+              imgHtml = `<img src="https://drive.google.com/thumbnail?id=${idImagen}&sz=w300" class="img-mosaico" loading="lazy" referrerpolicy="no-referrer">`;
+            }
+          }
+
+          let tipoSoporteEstandar = nodo.getAttribute('data-tipo');
+          let tituloMosaico = 'Sin Título'; let autorMosaico = nodo.getAttribute('data-autor') || '';
+
+          if (tipoSoporteEstandar === 'Libro') { tituloMosaico = f['Título'] || 'Sin Título'; } 
+          else if (tipoSoporteEstandar === 'Revista') { tituloMosaico = f['Nombre de Revista'] || 'Sin Título'; } 
+          else { tituloMosaico = f['Título o referencia'] || 'Sin Título'; }
+
+          htmlMosaico += `
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+              <div class="tarjeta-mosaico" onclick="armarFichaMosaico(${idx})">
+                ${imgHtml}
+                <div class="cuerpo-mosaico">
+                  <div class="titulo-mosaico">${tituloMosaico}</div>
+                  <div class="autor-mosaico">${autorMosaico}</div>
+                  <div class="badge-mosaico">${tipoSoporteEstandar} | ${f['ID'] || 'S/D'}</div>
+                </div>
+              </div>
+            </div>`;
+          cont++;
+        });
+        contenedorMosaico.innerHTML = cont === 0 ? `<div class="col-12 text-center text-muted p-5"><i class="bi bi-search fs-1 d-block mb-3"></i>No hay resultados.</div>` : htmlMosaico;
+      }
+
+      function armarFichaMosaico(idx) { if (catalogoGlobal[idx]) armarFicha(catalogoGlobal[idx]) }
+
+      function reconstruirSelect(idSelect, setDatos) {
+        const select = $('#' + idSelect); const valorSeleccionado = select.val()
+        if (select.hasClass('select2-hidden-accessible')) select.select2('destroy')
+        select.empty().append('<option value="">Todos</option>')
+        let arregloOrdenado = Array.from(setDatos).filter(Boolean).sort()
+        arregloOrdenado.forEach(item => { let isSelected = item === valorSeleccionado ? 'selected' : ''; select.append(`<option value="${item}" ${isSelected}>${item}</option>`) })
+        select.select2({ width: '100%', language: { noResults: function () { return 'No se encontraron resultados' } } })
+      }
+
+      function cambiarImagenPrincipal(urlImagenRender, urlImagenOriginal) {
+        const imgPrincipal = document.getElementById('imgPortadaPrincipal'); const linkPrincipal = document.getElementById('linkImagenPrincipal')
+        imgPrincipal.style.opacity = 0; setTimeout(() => { imgPrincipal.src = urlImagenRender; linkPrincipal.href = urlImagenOriginal; imgPrincipal.style.opacity = 1 }, 150)
+      }
+
+      function armarFicha(libro) {
+        let strSoporte = libro['Formato Soporte'] ? libro['Formato Soporte'].toString().trim().toLowerCase() : 'libro';
+        
+        let isLibro = strSoporte === 'libro' || strSoporte === 'libros';
+        let isRevista = strSoporte === 'revista' || strSoporte === 'revistas';
+        let isOtros = !isLibro && !isRevista;
+
+        let tipoSoporteEstandar = isLibro ? 'Libro' : (isRevista ? 'Revista' : 'Otros');
+
+        document.getElementById('fichaID').innerText = libro['ID'] || 'Sin ID';
+        const divBadges = document.getElementById('fichaBadgesBooleanos');
+        divBadges.innerHTML = `<span class="badge badge-boolean">${tipoSoporteEstandar}</span>`;
+
+        let tituloCabecera = 'Sin Título'; let autorCabecera = ''; let labelAutor = '';
+
+        // TÍTULO, SUBTÍTULO Y AUTOR CONDICIONALES
+        if (isLibro) { 
+            tituloCabecera = libro['Título'] || 'Sin Título'; 
+            autorCabecera = libro['Autorx'] ? libro['Autorx'].trim() : ''; 
+            labelAutor = 'Autor/a';
+        } else if (isRevista) {
+            tituloCabecera = libro['Nombre de Revista'] || 'Sin Título';
+            autorCabecera = libro['Responsable revista'] ? libro['Responsable revista'].trim() : '';
+            labelAutor = 'Responsable o referente';
+        } else if (isOtros) {
+            tituloCabecera = libro['Título o referencia'] || 'Sin Título';
+            autorCabecera = libro['Autor u Organizador'] ? libro['Autor u Organizador'].trim() : '';
+            labelAutor = 'Autor u Organizador';
+        }
+        
+        document.getElementById('fichaTitulo').innerText = tituloCabecera; 
+        
+        const divAutor = document.getElementById('fichaAutor');
+        if (autorCabecera !== '') {
+            divAutor.innerHTML = `<span style="font-size:0.85rem; color:#888; font-weight:700; display:block; font-family:var(--font-sansita); text-transform:uppercase; letter-spacing:0.5px;">${labelAutor}</span>${autorCabecera}`;
+            divAutor.style.display = 'block';
+        } else {
+            divAutor.style.display = 'none';
+        }
+
+        const divSubtitulo = document.getElementById('fichaSubtitulo');
+        if (isLibro && libro['Subtítulo'] && libro['Subtítulo'].trim() !== '') { 
+            divSubtitulo.innerText = libro['Subtítulo'].trim(); divSubtitulo.style.display = 'block';
+        } else { 
+            divSubtitulo.style.display = 'none';
+        }
+
+        // METADATOS DE LA DERECHA (ESTRUCTURA DE CAMPOS Y TEXTOS)
+        const extraGrid = document.getElementById('fichaCamposExtra'); extraGrid.innerHTML = '';
+        let lugar = libro['Localidad'] ? libro['Localidad'].trim() : ''; let pais = libro['País'] ? libro['País'].trim() : ''; let lugarCompleto = lugar && pais ? `${lugar}, ${pais}` : lugar || pais || '';
+
+        let camposFicha = [];
+        if (isLibro) {
+          camposFicha.push({ label: 'Nro. Edición', val: libro['Número de edición del ejemplar a catalogar'] });
+          camposFicha.push({ label: 'Fecha de Primera Edición', val: formatearFecha(libro['Fecha de Primera Edición']) });
+          camposFicha.push({ label: 'Editorial', val: libro['Editorial'] });
+          camposFicha.push({ label: 'ISBN', val: libro['ISBN'] });
+        } else if (isRevista) {
+          camposFicha.push({ label: 'Editorial Revista', val: libro['Editorial Revista'] });
+          camposFicha.push({ label: 'Datos revista (Fecha y N°)', val: libro['Datos revista (Fecha publicación y numero revista)'] });
+          camposFicha.push({ label: 'ISSN', val: libro['ISSN'] });
+        } else if (isOtros) {
+          camposFicha.push({ label: 'Editorial u otros datos', val: libro['Editorial u otros datos'] });
+        }
+
+        // UNIVERSALES
+        camposFicha.push({ label: 'Origen Donación', val: libro['Origen Donación'] });
+        camposFicha.push({ label: 'Idioma', val: libro['Idioma'] });
+        camposFicha.push({ label: 'Lugar / País', val: lugarCompleto });
+        camposFicha.push({ label: 'Clasificación CDD', val: libro['CDD'] });
+
+        let htmlLinkIndice = '';
+        if (libro['Link Indice'] && libro['Link Indice'].trim() !== '') {
+          htmlLinkIndice = `<a href="${libro['Link Indice'].trim()}" target="_blank" style="color:var(--color-violeta); font-weight:500;"><i class="bi bi-box-arrow-up-right"></i> Enlace al índice</a>`;
+        }
+        camposFicha.push({ label: 'Índice', val: htmlLinkIndice, esHTML: true });
+        
+        // Mapeo unificado al final de los campos para la grilla derecha
+        camposFicha.push({ label: 'Otros datos', val: libro['Otros datos'] });
+
+        camposFicha.forEach(c => {
+          if (c.val) {
+            let vStr = c.val.toString().trim(); let vLower = vStr.toLowerCase();
+            if (vStr !== '' && vLower !== 's/d' && vStr !== '-' && vLower !== 'no') {
+              extraGrid.innerHTML += `<div class="col-sm-6 mb-3"><div class="ficha-dato-etiqueta">${c.label}</div><div class="ficha-dato-valor">${c.esHTML ? c.val : vStr}</div></div>`;
+            }
+          }
+        });
+
+        // GENERADOR DE TEXTOS Y BOTONES (Extrae Links y limpia el texto residual)
+        const generarComponenteExtra = (tituloEtiqueta, contenidoTexto, arrayImagenesExtra = [], iconoVectorial) => {
+          let textoClean = contenidoTexto ? contenidoTexto.toString().trim() : '';
+          
+          // Limpiamos CUALQUIER link del texto visible para que la pantalla quede limpia
+          textoClean = textoClean.replace(/(https?:\/\/[^\s,]+)/g, '').trim();
+          textoClean = textoClean.replace(/^[,\s]+|[,\s]+$/g, '').trim(); // Saca comas huérfanas
+
+          let esNulo = textoClean === '' || textoClean.toLowerCase() === 'no' || textoClean === '-';
+
+          // ACÁ ESTABA LA TRAMPA: Eliminamos el código que rescataba links del texto.
+          // Ahora confiamos 100% en lo que nos manda el Backend (que ya viene filtrado y con enlace directo)
+          let linksParaBotones = [...arrayImagenesExtra];
+
+          let htmlBotonesAnexos = '';
+          if (linksParaBotones.length > 0) {
+              htmlBotonesAnexos = `<div class="mt-2">`;
+              
+              // 1. VERSIÓN PANTALLA: Solo los botones (se ocultan al imprimir)
+              htmlBotonesAnexos += `<div class="d-flex flex-row flex-wrap gap-2 d-print-none">`;
+              linksParaBotones.forEach((imgUrl) => {
+                  htmlBotonesAnexos += `
+                    <a href="${imgUrl}" target="_blank" class="btn btn-sm btn-outline-dark" style="border-radius: 4px; padding: 6px 12px;" title="Ver Documento Adjunto">
+                      <i class="${iconoVectorial} fs-5"></i> 
+                    </a>`;
+              });
+              htmlBotonesAnexos += `</div>`;
+
+              // 2. VERSIÓN IMPRESORA: Solo las fotos (visibles al imprimir)
+              htmlBotonesAnexos += `<div class="d-none d-print-block mt-3">`;
+              linksParaBotones.forEach((imgUrl) => {
+                  // Extraemos el ID para forzar miniatura segura de impresión
+                  const matchId = imgUrl.match(/(?:id=|folders\/|d\/|file\/d\/|open\?id=)([-\w]{25,})/i);
+                  const fileId = matchId ? matchId[1] : null;
+                  const srcImg = fileId ? `https://drive.google.com/thumbnail?id=${fileId}&sz=w800` : imgUrl;
+
+                  htmlBotonesAnexos += `
+                    <img src="${srcImg}" style="max-width: 100%; max-height: 400px; object-fit: contain; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; page-break-inside: avoid;" alt="Anexo Impreso">`;
+              });
+              htmlBotonesAnexos += `</div></div>`;
+          }
+
+          if (!esNulo || htmlBotonesAnexos !== '') {
+            return `
+              <div class="mb-4 text-start">
+                <div class="ficha-dato-etiqueta">${tituloEtiqueta}</div>
+                ${!esNulo ? `<div class="ficha-dato-valor mt-1" style="margin-bottom:0;">${textoClean}</div>` : ''}
+                ${htmlBotonesAnexos}
+              </div>`;
+          }
+          return '';
+        };
+
+        // IZQUIERDA: GALERÍA DE PORTADAS + DEDICATORIAS Y NOTAS
+        const contImagen = document.getElementById('fichaContenedorImagen'); const galeria = document.getElementById('fichaGaleria'); contImagen.innerHTML = ''; galeria.innerHTML = '';
+        if (libro['ImagenesDirectas'] && libro['ImagenesDirectas'].length > 0) {
+          let idPrincipal = libro['ImagenesDirectas'][0].split('id=')[1]?.split('&')[0];
+          if (idPrincipal) {
+            let urlGrandePrincipal = `https://drive.google.com/thumbnail?id=${idPrincipal}&sz=w600`; let urlOriginalPrincipal = libro['ImagenesDirectas'][0];
+            contImagen.innerHTML = `<a href="${urlOriginalPrincipal}" target="_blank" id="linkImagenPrincipal" title="Ver imagen en alta calidad"><img src="${urlGrandePrincipal}" id="imgPortadaPrincipal" class="ficha-portada-principal" alt="Portada" referrerpolicy="no-referrer"></a>`;
+          }
+          if (libro['ImagenesDirectas'].length > 1) {
+            for (let i = 0; i < libro['ImagenesDirectas'].length; i++) {
+              let idMiniatura = libro['ImagenesDirectas'][i].split('id=')[1]?.split('&')[0];
+              if (idMiniatura) {
+                let urlMiniatura = `https://drive.google.com/thumbnail?id=${idMiniatura}&sz=w150`; let urlParaGrande = `https://drive.google.com/thumbnail?id=${idMiniatura}&sz=w600`; let urlOriginal = libro['ImagenesDirectas'][i];
+                galeria.innerHTML += `<img src="${urlMiniatura}" class="galeria-img" alt="Imagen ${i + 1}" referrerpolicy="no-referrer" onclick="cambiarImagenPrincipal('${urlParaGrande}', '${urlOriginal}')" title="Clic para ver">`;
+              }
+            }
+          }
+        } else { contImagen.innerHTML = `<div class="portada-placeholder" style="width:100%; max-width:250px; height:350px; font-size:1.2rem; flex-direction:column; margin:0 auto;"><i class="bi bi-image fs-1 mb-2"></i>Sin imagen</div>`; }
+
+        // Anexos inyectados dinámicamente a la izquierda
+        let htmlIzquierda = '';
+        htmlIzquierda += generarComponenteExtra('Dedicatorias', libro['Dedicatorias'], [], 'bi-chat-left-quote');
+        htmlIzquierda += generarComponenteExtra('Imagen dedicatoria', libro['Foto Dedicatoria'], libro['FotosDedicatorias'], 'bi-image');
+        htmlIzquierda += generarComponenteExtra('Notas y papeles', libro['Notas y Papeles dentro de los libros'], libro['FotosNotas'], 'bi-file-earmark-richtext');
+        
+        let contenedorDinamicoExtras = document.getElementById('extrasIzquierdaFicha');
+        if (!contenedorDinamicoExtras) {
+            contenedorDinamicoExtras = document.createElement('div');
+            contenedorDinamicoExtras.id = 'extrasIzquierdaFicha';
+            contenedorDinamicoExtras.className = 'w-100 mt-4 text-start';
+            galeria.parentNode.appendChild(contenedorDinamicoExtras);
+        }
+        contenedorDinamicoExtras.innerHTML = htmlIzquierda;
+
+        // Textos largos adicionales a la derecha
+        let htmlDerechaTextos = '';
+        if (isOtros) { htmlDerechaTextos += generarComponenteExtra('Acerca de', libro['¿De qué se trata?'], [], 'bi-info-square'); }
+        htmlDerechaTextos += generarComponenteExtra('Contratapa', libro['Contratapa'], [], 'bi-book');
+        document.getElementById('textosDerechaFicha').innerHTML = htmlDerechaTextos;
+
+        // Palabras Claves (Derecha, al final)
+        const contPalabras = document.getElementById('contenedorPalabrasClave'); const divPalabras = document.getElementById('fichaPalabrasClave'); divPalabras.innerHTML = ''
+        if (libro['Palabras claves'] && libro['Palabras claves'].trim() !== '') {
+          let palabras = libro['Palabras claves'].split(',');
+          palabras.forEach(palabra => {
+             if(palabra.trim() !== "") {
+               let span = document.createElement('span'); span.className = 'badge-clave'; span.innerText = palabra.trim(); divPalabras.appendChild(span)
+             }
+          });
+          contPalabras.style.display = 'block';
+        } else { contPalabras.style.display = 'none'; }
+
+        let modalFicha = new bootstrap.Modal(document.getElementById('modalFicha'));
+        modalFicha.show();
+      }
+    </script>
+  </body>
 </html>

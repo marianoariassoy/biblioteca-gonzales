@@ -16,6 +16,7 @@ import Mapas from './pages/montajes/Mapas'
 import Fantasmal from './pages/montajes/Fantasmal'
 import Recomendaciones from './pages/montajes/Recomendaciones'
 import Textitos from './pages/montajes/Textitos'
+import TextitosDetalles from './pages/montajes/TextitosDetalles'
 import Testimonios from './pages/montajes/Testimonios'
 
 import QueDiceElGato from './pages/que-dice-el-gato'
@@ -23,8 +24,8 @@ import GatoDetalles from './pages/que-dice-el-gato/Details'
 
 import HoracioBiografia from './pages/horacio/biografia'
 import HoracioSobreHG from './pages/horacio/sobreHC'
-
-import Amigxs from './pages/amigxs'
+import HoracioQueDiceHG from './pages/horacio/queDiceHG'
+import HoracioQueDiceHGDetalles from './pages/horacio/queDiceHGDetalles'
 
 import Actividades from './pages/actividades'
 import ActividadesDetalles from './pages/actividades/Details'
@@ -35,6 +36,9 @@ import Soon from './pages/soon'
 import Error from './pages/error'
 
 import SerAmigos from './pages/seramigos'
+
+import Mosaicos from './pages/mosaicos/'
+import MosaicosDetalles from './pages/mosaicos/mosaicos'
 
 function App() {
   return (
@@ -128,8 +132,21 @@ function App() {
         component={Textitos}
       />
       <Route
+        path='/montajes/textitos/:id'
+        component={TextitosDetalles}
+      />
+      <Route
         path='/testimonios'
         component={Testimonios}
+      />
+
+      <Route
+        path='/mosaicos'
+        component={Mosaicos}
+      />
+      <Route
+        path='/mosaicos/:id'
+        component={MosaicosDetalles}
       />
 
       <Route
@@ -150,6 +167,15 @@ function App() {
         component={HoracioSobreHG}
       />
       <Route
+        path='/horacio-gonzalez/que-dice-hg'
+        component={HoracioQueDiceHG}
+      />
+      <Route
+        path='/horacio-gonzalez/que-dice-hg/:id'
+        component={HoracioQueDiceHGDetalles}
+      />
+
+      <Route
         path='/actividades'
         component={Actividades}
       />
@@ -160,10 +186,6 @@ function App() {
       <Route
         path='/agenda'
         component={Soon}
-      />
-      <Route
-        path='/amigxs'
-        component={Amigxs}
       />
 
       <Route
