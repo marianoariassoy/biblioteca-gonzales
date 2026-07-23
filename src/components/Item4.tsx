@@ -66,7 +66,7 @@ const Item = ({ data, color }) => {
             rel='noreferrer'
             className='bg-primary text-white px-6 py-2 hover:bg-black'
           >
-            Link
+            Enlace
           </a>
         )}
       </div>

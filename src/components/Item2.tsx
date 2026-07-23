@@ -11,7 +11,7 @@ const Item = ({ data, color }) => {
 
   return (
     <article
-      className='flex flex-col gap-y-8 w-full max-w-4xl m-auto'
+      className='flex flex-col gap-y-4 w-full max-w-4xl m-auto'
       id={`item-${data.id}`}
     >
       <h1
@@ -30,7 +30,7 @@ const Item = ({ data, color }) => {
       )}
       <div>
         {data.subtitle && <h2 className='text-lg'>{data.subtitle}</h2>}
-        <div className='text-sm roboto-regular [&>div>span>a]:underline [&>div>a]:underline [&>div>span>span>a]:underline'>
+        <div className='text-sm mb-2 roboto-regular [&>div>span>a]:underline [&>div>a]:underline [&>div>span>span>a]:underline'>
           <HTML text={data.text} />
         </div>
       </div>
@@ -65,7 +65,7 @@ const Item = ({ data, color }) => {
             rel='noreferrer'
             className='bg-primary text-white px-6 py-2 hover:bg-black'
           >
-            Link
+            Enlace
           </a>
         )}
       </div>

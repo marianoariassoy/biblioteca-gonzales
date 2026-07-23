@@ -6,7 +6,7 @@ export const menu = [
     url: '/quienes-somos',
     section: [
       { title: 'Quienes somos', url: '/quienes-somos' },
-      { title: 'Decálogo', url: '/quienes-somos/decalogo' },
+      { title: 'Manifiesto', url: '/quienes-somos/manifiesto' },
       { title: 'Historia del proyecto', url: '/quienes-somos/historia' },
       { title: 'Donaciones', url: '/donaciones' }
     ]
@@ -17,15 +17,15 @@ export const menu = [
     section: [
       { title: 'Catálogo Biblioteca', url: '/archivos/catalogo-biblioteca' },
       { title: 'Catálogo Videoteca', url: '/archivos/catalogo-videoteca' },
-      { title: 'Catálogo HG', url: '/archivos/catalogo-hg' },
-      { title: 'Sobre Archivos ', url: '/archivos/sobre-archivos' },
-      { title: 'Picadito', url: '/archivos/picadito' },
-      { title: 'Mundo P', url: '/archivos/mundo-p' },
-      { title: 'Cinefilias', url: '/archivos/cinefilas' },
-      { title: 'Hogueras y Cine Nacional', url: '/archivos/hogueras' },
-      { title: 'Cine Internacional', url: '/archivos/cine-internacional' },
-      { title: 'Documentales', url: '/archivos/documentales' },
-      { title: 'Ficción', url: '/archivos/ficcion' }
+      { title: 'Catálogo HG', url: '/archivos/catalogo-hg' }
+      // { title: 'Sobre Archivos ', url: '/archivos/sobre-archivos' }
+      // { title: 'Picadito', url: '/archivos/picadito' },
+      // { title: 'Mundo P', url: '/archivos/mundo-p' },
+      // { title: 'Cinefilias', url: '/archivos/cinefilas' },
+      // { title: 'Hogueras y Cine Nacional', url: '/archivos/hogueras' },
+      // { title: 'Cine Internacional', url: '/archivos/cine-internacional' },
+      // { title: 'Documentales', url: '/archivos/documentales' },
+      // { title: 'Ficción', url: '/archivos/ficcion' }
     ]
   },
   {
@@ -34,9 +34,9 @@ export const menu = [
     section: [
       { title: 'Montajes', url: '/montajes' },
       { title: 'Mapas', url: '/mapas' },
-      { title: 'Fantasmal', url: '/fantasmal' },
-      { title: 'Recomendaciones', url: '/recomendaciones' },
-      { title: 'Textitos', url: '/textitos' },
+      // { title: 'Fantasmal', url: '/fantasmal' },
+      // { title: 'Recomendaciones', url: '/recomendaciones' },
+      // { title: 'Textitos', url: '/textitos' },
       { title: 'Testimonios', url: '/testimonios' }
     ]
   },

@@ -34,7 +34,7 @@ const Index = () => {
   return (
     <Layout>
       <section className='section-main fade-in'>
-        <div className='w-full max-w-4xl m-auto px-6 flex flex-col gap-y-8'>
+        <div className='w-full max-w-4xl m-auto px-6 flex flex-col gap-y-4'>
           {loading ? (
             <Loader />
           ) : (

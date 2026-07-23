@@ -43,7 +43,7 @@ const Item = ({ data, color }) => {
               target='_blank'
               className='bg-primary text-white px-6 py-2 hover:bg-black'
             >
-              Link
+              Enlace
             </a>
           )}
           {data.file && (

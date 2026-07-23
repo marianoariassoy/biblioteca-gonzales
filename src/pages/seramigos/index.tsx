@@ -1,3 +1,4 @@
+import Donar from '../../components/Donar'
 import Layout from '../../layout/Layout'
 import Amigos from './amigos'
 
@@ -23,14 +24,7 @@ const Index = () => {
             ataduras ni mandatos.
           </p>
           <h1 className='mb-4 font-secondary text-xl lg:text-2xl font-bold color-primary'>¡GRACIAS!</h1>
-          <a
-            href='link.mercadopago.com.ar/bibliotecagonzalez'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='px-8 py-4 mt-2 inline-block rounded-full text-xl text-white bg-primary hover:opacity-90 transition-all'
-          >
-            Aporte por única vez: link.mercadopago.com.ar/bibliotecagonzalez
-          </a>
+          <Donar />
         </div>
       </section>
       <Amigos />

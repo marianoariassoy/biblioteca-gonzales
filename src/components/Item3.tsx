@@ -5,7 +5,7 @@ import ReactPlayer from 'react-player'
 const Item3 = ({ data, color }) => {
   return (
     <article
-      className='w-full max-w-4xl m-auto flex flex-col gap-y-6'
+      className='w-full max-w-4xl m-auto flex flex-col gap-y-4 px-6'
       id={`item-${data.id}`}
     >
       <h1
@@ -14,13 +14,11 @@ const Item3 = ({ data, color }) => {
       >
         {data.title}
       </h1>
-      <div className='flex flex-col gap-y-6'>
+      <div className='flex flex-col gap-y-4'>
         {data.text && (
-          <div className='flex flex-col gap-y-6'>
-            <p className='color-gray-1 mb-6 text-wrap whitespace-break-spaces roboto-regular [&>div>span>a]:underline  [&>div>a]:underline [&>div>span>span>a]:underline'>
-              <HTML text={data.text} />
-            </p>
-          </div>
+          <p className='color-gray-1 mb-2 text-wrap whitespace-break-spaces roboto-regular [&>div>span>a]:underline  [&>div>a]:underline [&>div>span>span>a]:underline'>
+            <HTML text={data.text} />
+          </p>
         )}
         {data.image && (
           <div className='aspect-square lg:aspect-auto'>

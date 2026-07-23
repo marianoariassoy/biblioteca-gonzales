@@ -2,7 +2,7 @@ import { Route, Switch } from 'wouter'
 import Home from './pages/home'
 
 import QuienesSomos from './pages/quinessomos/'
-import QuienesSomosDecalogo from './pages/quinessomos/decalogo'
+import QuienesSomosManifiesto from './pages/quinessomos/decalogo'
 import QuienesSomosHistoria from './pages/quinessomos/historia'
 
 import ArchivosCatalogo from './pages/archivos'
@@ -53,8 +53,8 @@ function App() {
         component={QuienesSomos}
       />
       <Route
-        path='/quienes-somos/decalogo'
-        component={QuienesSomosDecalogo}
+        path='/quienes-somos/manifiesto'
+        component={QuienesSomosManifiesto}
       />
       <Route
         path='/quienes-somos/historia'
