@@ -3,7 +3,7 @@ import { Email, Youtube, Facebook, Instagram } from './icons'
 export const social = [
   {
     name: 'Email',
-    href: '',
+    href: 'mailto:labibliotecagonzalez@gmail.com',
     icon: Email
   },
   {

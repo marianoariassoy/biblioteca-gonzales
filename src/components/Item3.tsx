@@ -16,7 +16,7 @@ const Item3 = ({ data, color }) => {
       </h1>
       <div className='flex flex-col gap-y-4'>
         {data.text && (
-          <p className='color-gray-1 mb-2 text-wrap whitespace-break-spaces roboto-regular [&>div>span>a]:underline  [&>div>a]:underline [&>div>span>span>a]:underline'>
+          <p className='color-gray-1 mb-2 roboto-regular [&>div>span>a]:underline [&>div>a]:underline [&>div>span>span>a]:underline '>
             <HTML text={data.text} />
           </p>
         )}

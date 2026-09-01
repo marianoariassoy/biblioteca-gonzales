@@ -17,7 +17,7 @@ const Index = () => {
               className='font-secondary text-2xl lg:text-3xl font-bold mb-4'
               style={{ color: color }}
             >
-              Que dice HG
+              ¿Qué dice HG?
             </h1>
           </div>
 

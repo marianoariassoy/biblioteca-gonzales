@@ -24,9 +24,9 @@ const Index = () => {
   let dataFilteder = {} as Props[]
 
   if (data) {
-    if (location === '/archivos/catalogo-biblioteca') {
+    if (location === '/biblioteca') {
       dataFilteder = data.filter(item => item.id === 9)
-    } else if (location === '/archivos/catalogo-videoteca') {
+    } else if (location === '/videoteca') {
       dataFilteder = data.filter(item => item.id === 10)
     }
   }
@@ -75,7 +75,7 @@ const Index = () => {
                   )}
 
                   <a
-                    href='/catalogo/catalogo.html'
+                    href={location === '/biblioteca' ? '/catalogo/catalogo.html' : '/catalogo/videoteca.html'}
                     target='_blank'
                     className='bg-primary text-white px-6 py-2 hover:bg-black'
                   >

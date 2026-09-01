@@ -1,11 +1,10 @@
-import Layout from '../../layout/Layout'
-import { useLocation } from 'wouter'
 import { useEffect } from 'react'
+import { useLocation } from 'wouter'
+import Layout from '../../layout/Layout'
 import useFetch from '../../hooks/useFetch'
 import Loader from '../../components/Loader'
-import Item from '../../components/Item3'
-import QuienesSomos from '../../components/QuienesSomos'
-import Share from '../../components/Share'
+import Item3 from '../../components/Item3'
+import { useDataContext } from '../../context/useDataContext'
 
 interface Props {
   id: string
@@ -17,18 +16,26 @@ interface Props {
 
 const Index = () => {
   const { data, loading } = useFetch(`/quienes-somos`)
-  let dataFilteder = {} as Props
+  const { color } = useDataContext()
   const [location] = useLocation()
+  let dataFilteder = {} as Props
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    if (data) {
+      const enlace = document.querySelectorAll('a')
+      if (enlace) {
+        for (let i = 0; i < enlace.length; i++) {
+          enlace[i].setAttribute('target', '_blank')
+        }
+      }
+    }
+  }, [data])
 
   if (data) {
     if (location === '/quienes-somos/historia') {
-      dataFilteder = data[0]
-    } else {
       dataFilteder = data[1]
+    } else {
+      dataFilteder = data[0]
     }
   }
 
@@ -38,17 +45,11 @@ const Index = () => {
         {loading ? (
           <Loader />
         ) : (
-          <Item
-            color='#792477'
+          <Item3
             data={dataFilteder}
+            color={color}
           />
         )}
-
-        <QuienesSomos />
-
-        <div className='w-full max-w-4xl m-auto mt-12 px-6'>
-          <Share />
-        </div>
       </section>
     </Layout>
   )

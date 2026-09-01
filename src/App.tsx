@@ -2,7 +2,7 @@ import { Route, Switch } from 'wouter'
 import Home from './pages/home'
 
 import QuienesSomos from './pages/quinessomos/'
-import QuienesSomosManifiesto from './pages/quinessomos/decalogo'
+import QuienesSomosManifiesto from './pages/quinessomos/manifiesto'
 import QuienesSomosHistoria from './pages/quinessomos/historia'
 
 import ArchivosCatalogo from './pages/archivos'
@@ -62,11 +62,11 @@ function App() {
       />
 
       <Route
-        path='/archivos/catalogo-biblioteca'
+        path='/biblioteca'
         component={ArchivosCatalogo}
       />
       <Route
-        path='/archivos/catalogo-videoteca'
+        path='/videoteca'
         component={ArchivosCatalogo}
       />
       <Route

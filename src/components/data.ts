@@ -12,21 +12,24 @@ export const menu = [
     ]
   },
   {
-    title: 'Archivos',
-    url: '/archivos/catalogo-biblioteca',
+    title: 'Horacio González',
+    url: '/horacio-gonzalez/biografia',
     section: [
-      { title: 'Catálogo Biblioteca', url: '/archivos/catalogo-biblioteca' },
-      { title: 'Catálogo Videoteca', url: '/archivos/catalogo-videoteca' },
-      { title: 'Catálogo HG', url: '/archivos/catalogo-hg' }
-      // { title: 'Sobre Archivos ', url: '/archivos/sobre-archivos' }
-      // { title: 'Picadito', url: '/archivos/picadito' },
-      // { title: 'Mundo P', url: '/archivos/mundo-p' },
-      // { title: 'Cinefilias', url: '/archivos/cinefilas' },
-      // { title: 'Hogueras y Cine Nacional', url: '/archivos/hogueras' },
-      // { title: 'Cine Internacional', url: '/archivos/cine-internacional' },
-      // { title: 'Documentales', url: '/archivos/documentales' },
-      // { title: 'Ficción', url: '/archivos/ficcion' }
+      { title: 'Biografía', url: '/horacio-gonzalez/biografia' },
+      { title: 'Sobre HG', url: '/horacio-gonzalez/sobreHG' },
+      { title: '¿Qué dice HG?', url: '/horacio-gonzalez/que-dice-hg' }
+      // { title: 'Descargas', url: '/archivos/catalogo-hg' }
     ]
+  },
+  {
+    title: 'Biblioteca',
+    url: '/biblioteca',
+    section: []
+  },
+  {
+    title: 'Videoteca',
+    url: '/videoteca',
+    section: []
   },
   {
     title: 'Montajes',
@@ -34,7 +37,7 @@ export const menu = [
     section: [
       { title: 'Montajes', url: '/montajes' },
       { title: 'Mapas', url: '/mapas' },
-      // { title: 'Fantasmal', url: '/fantasmal' },
+      { title: 'Fantasmal', url: '/fantasmal' },
       // { title: 'Recomendaciones', url: '/recomendaciones' },
       // { title: 'Textitos', url: '/textitos' },
       { title: 'Testimonios', url: '/testimonios' }
@@ -46,23 +49,13 @@ export const menu = [
     section: []
   },
   {
-    title: 'Horacio González',
-    url: '/horacio-gonzalez/biografia',
-    section: [
-      { title: 'Biografía', url: '/horacio-gonzalez/biografia' },
-      { title: 'Sobre HG', url: '/horacio-gonzalez/sobreHG' },
-      { title: 'Que Dice HG', url: '/horacio-gonzalez/que-dice-hg' },
-      { title: 'Descargas', url: '/archivos/catalogo-hg' }
-    ]
-  },
-  {
     title: 'Mosaicos',
     url: '/mosaicos',
     section: []
   },
   {
-    title: 'Actividades',
-    url: '/actividades',
+    title: 'Amigxs',
+    url: '/seramigos',
     section: []
   }
 ]
